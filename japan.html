@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wanderlust Adventures | Japan</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(to right, #1a2a6c, #2b5876);
+      color: white;
+      padding: 20px 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    .site-title span {
+      color: #fdbb2d;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin-left: 25px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    nav ul li a:hover, nav ul li a.active {
+      color: #fdbb2d;
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    /* Page Title */
+    .page-title {
+      text-align: center;
+      padding: 70px 20px;
+      background: linear-gradient(to right, rgba(26, 42, 108, 0.75), rgba(43, 88, 118, 0.75)),
+                  url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      color: white;
+    }
+
+    .page-title h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    }
+
+    .page-title p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    /* Country Intro */
+    .country-intro {
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    .country-intro p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    /* Wonders Section */
+    .wonders-section {
+      padding: 40px 0 70px;
+    }
+
+    .wonders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .wonder-card {
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .wonder-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .wonder-image {
+      height: 220px;
+      background-position: center;
+      background-size: cover;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .wonder-name {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      padding: 20px 15px 15px;
+    }
+
+    .wonder-name h3 {
+      color: white;
+      font-size: 1.6rem;
+      margin: 0;
+    }
+
+    .wonder-info {
+      padding: 20px;
+    }
+
+    .wonder-info p {
+      color: #555;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #fdbb2d;
+      color: #1a2a6c;
+      padding: 10px 24px;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #1a2a6c;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* Hotels Section */
+    .hotels-container {
+      margin-top: 20px;
+      display: none;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .hotel-card {
+      background-color: #f5f7fa;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hotel-info {
+      flex: 1;
+    }
+
+    .hotel-info h4 {
+      color: #1a2a6c;
+      margin-bottom: 5px;
+    }
+
+    .hotel-details {
+      display: flex;
+      gap: 15px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .hotel-price {
+      font-weight: bold;
+      color: #1a2a6c;
+      font-size: 1.1rem;
+    }
+
+    .hotel-rating {
+      color: #fdbb2d;
+    }
+
+    footer {
+      background: linear-gradient(to right, #1a2a6c, #2b5876);
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .social-icons {
+      margin-bottom: 20px;
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 1.5rem;
+      margin: 0 12px;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #fdbb2d;
+    }
+
+    .student-info {
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    /* Back Button */
+    .back-button {
+      margin: 30px 0;
+    }
+
+    /* Cherry Blossom Decoration */
+    .cherry-blossom {
+      position: absolute;
+      font-size: 1.5rem;
+      color: #ffc6d3;
+      opacity: 0.7;
+      z-index: 1;
+      animation: fall 10s linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      nav ul li {
+        margin: 5px 10px;
+      }
+      
+      .wonders-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page-title h1 {
+        font-size: 2.3rem;
+      }
+      
+      .hotel-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      
+      .hotel-price {
+        align-self: flex-end;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Main Website Content -->
+  <div id="main-website">
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="site-title">Wanderlust <span>Adventures</span></div>
+          <nav>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="countries.html">Countries</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Travel Tips</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section class="page-title">
+      <div class="container">
+        <h1>Beautiful Japan</h1>
+        <p>Discover the perfect blend of ancient traditions and cutting-edge technology in the Land of the Rising Sun.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="back-button">
+        <a href="countries.html" class="btn"><i class="fas fa-arrow-left"></i> Back to Countries</a>
+      </div>
+
+      <section class="country-intro">
+        <p>Japan offers a unique travel experience where ancient temples stand beside neon skyscrapers. From the serene beauty of Mount Fuji to the bustling streets of Tokyo, Japan captivates visitors with its perfect harmony of tradition and innovation, exquisite cuisine, and unparalleled natural beauty.</p>
+      </section>
+
+      <section class="wonders-section">
+        <h2 style="text-align: center; margin-bottom: 20px; color: #1a2a6c;">Japan's Wonders</h2>
+        <div class="wonders-grid">
+          <!-- Wonder 1 -->
+          <div class="wonder-card">
+            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('fuji-hotels')">
+              <div class="wonder-name">
+                <h3>Mount Fuji</h3>
+              </div>
+            </div>
+            <div class="wonder-info">
+              <p>Japan's tallest peak and an active volcano, Mount Fuji is one of the country's most iconic symbols. Its nearly perfect symmetrical cone has inspired artists and pilgrims for centuries.</p>
+              <button class="btn" onclick="toggleHotels('fuji-hotels')">Find Nearby Hotels</button>
+              <div id="fuji-hotels" class="hotels-container">
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Fuji View Hotel</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">5 miles away</span>
+                      <span class="hotel-rating">★★★★☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$150/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Lakeside Resort</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">7 miles away</span>
+                      <span class="hotel-rating">★★★★★</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$220/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Mountain Retreat</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">10 miles away</span>
+                      <span class="hotel-rating">★★★☆☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$110/night</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wonder 2 -->
+          <div class="wonder-card">
+            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1599658880436-444c5a6f90ec?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('fushimi-hotels')">
+              <div class="wonder-name">
+                <h3>Fushimi Inari Shrine</h3>
+              </div>
+            </div>
+            <div class="wonder-info">
+              <p>Famous for its thousands of vibrant red torii gates that wind through the forests of Kyoto's sacred Mount Inari. This Shinto shrine is dedicated to the god of rice and prosperity.</p>
+              <button class="btn" onclick="toggleHotels('fushimi-hotels')">Find Nearby Hotels</button>
+              <div id="fushimi-hotels" class="hotels-container">
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Kyoto Traditional Inn</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">0.5 miles away</span>
+                      <span class="hotel-rating">★★★★☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$170/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Inari View Ryokan</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">0.3 miles away</span>
+                      <span class="hotel-rating">★★★★★</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$250/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Kyoto Central Hotel</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">1.2 miles away</span>
+                      <span class="hotel-rating">★★★☆☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$130/night</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wonder 3 -->
+          <div class="wonder-card">
+            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1580135390424-701bd6cce890?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('hiroshima-hotels')">
+              <div class="wonder-name">
+                <h3>Hiroshima Peace Memorial</h3>
+              </div>
+            </div>
+            <div class="wonder-info">
+              <p>Also known as the Atomic Bomb Dome, this haunting structure is a UNESCO World Heritage Site that stands as a powerful symbol of peace and a reminder of the devastation of nuclear weapons.</p>
+              <button class="btn" onclick="toggleHotels('hiroshima-hotels')">Find Nearby Hotels</button>
+              <div id="hiroshima-hotels" class="hotels-container">
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Hiroshima Peace Hotel</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">0.2 miles away</span>
+                      <span class="hotel-rating">★★★★☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$140/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Memorial View Inn</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">0.4 miles away</span>
+                      <span class="hotel-rating">★★★☆☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$100/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Riverfront Suites</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">0.6 miles away</span>
+                      <span class="hotel-rating">★★★★★</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$190/night</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+          </div>
+          <div class="student-info">
+            <p>Student Name: Arvin Esmena | Course: Web System and Technology | Section: IT3G | Year: 2025-2026</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function toggleHotels(hotelId) {
+      const hotelElement = document.getElementById(hotelId);
+      const allHotels = document.querySelectorAll('.hotels-container');
+      
+      // Close all other hotel containers
+      allHotels.forEach(hotel => {
+        if (hotel.id !== hotelId && hotel.style.display === 'block') {
+          hotel.style.display = 'none';
+        }
+      });
+      
+      // Toggle the clicked hotel container
+      if (hotelElement.style.display === 'block') {
+        hotelElement.style.display = 'none';
+      } else {
+        hotelElement.style.display = 'block';
+      }
+    }
+
+    // Create cherry blossom effect
+    function createCherryBlossom() {
+      const blossom = document.createElement('div');
+      blossom.classList.add('cherry-blossom');
+      blossom.innerHTML = '🌸';
+      blossom.style.left = Math.random() * 100 + 'vw';
+      blossom.style.animationDuration = (Math.random() * 10 + 5) + 's';
+      blossom.style.fontSize = (Math.random() * 15 + 10) + 'px';
+      document.body.appendChild(blossom);
+      
+      // Remove the element after animation completes
+      setTimeout(() => {
+        blossom.remove();
+      }, 15000);
+    }
+    
+    // Generate cherry blossoms periodically
+    setInterval(createCherryBlossom, 300);
+  </script>
+</body>
+</html>
