@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wanderlust Adventures | Egypt</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(to right, #1a2a6c, #2b5876);
+      color: white;
+      padding: 20px 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    .site-title span {
+      color: #fdbb2d;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin-left: 25px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    nav ul li a:hover, nav ul li a.active {
+      color: #fdbb2d;
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    /* Page Title */
+    .page-title {
+      text-align: center;
+      padding: 70px 20px;
+      background: linear-gradient(to right, rgba(26, 42, 108, 0.75), rgba(43, 88, 118, 0.75)),
+                  url('https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      color: white;
+    }
+
+    .page-title h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    }
+
+    .page-title p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    /* Country Intro */
+    .country-intro {
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    .country-intro p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    /* Wonders Section */
+    .wonders-section {
+      padding: 40px 0 70px;
+    }
+
+    .wonders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .wonder-card {
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .wonder-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .wonder-image {
+      height: 220px;
+      background-position: center;
+      background-size: cover;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .wonder-name {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      padding: 20px 15px 15px;
+    }
+
+    .wonder-name h3 {
+      color: white;
+      font-size: 1.6rem;
+      margin: 0;
+    }
+
+    .wonder-info {
+      padding: 20px;
+    }
+
+    .wonder-info p {
+      color: #555;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #fdbb2d;
+      color: #1a2a6c;
+      padding: 10px 24px;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #1a2a6c;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* Hotels Section */
+    .hotels-container {
+      margin-top: 20px;
+      display: none;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .hotel-card {
+      background-color: #f5f7fa;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hotel-info {
+      flex: 1;
+    }
+
+    .hotel-info h4 {
+      color: #1a2a6c;
+      margin-bottom: 5px;
+    }
+
+    .hotel-details {
+      display: flex;
+      gap: 15px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .hotel-price {
+      font-weight: bold;
+      color: #1a2a6c;
+      font-size: 1.1rem;
+    }
+
+    .hotel-rating {
+      color: #fdbb2d;
+    }
+
+    footer {
+      background: linear-gradient(to right, #1a2a6c, #2b5876);
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .social-icons {
+      margin-bottom: 20px;
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 1.5rem;
+      margin: 0 12px;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #fdbb2d;
+    }
+
+    .student-info {
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    /* Back Button */
+    .back-button {
+      margin: 30px 0;
+    }
+
+    /* Egyptian Pattern Decoration */
+    .egyptian-pattern {
+      height: 30px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="20" viewBox="0 0 40 20"><path d="M0,0 L40,0 L40,20 L0,20 Z" fill="%23D4AF37"/><path d="M5,5 L35,5 L35,15 L5,15 Z" fill="%231a2a6c"/><circle cx="20" cy="10" r="3" fill="%23fdbb2d"/></svg>') repeat-x;
+      margin: 20px 0;
+      opacity: 0.8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      nav ul li {
+        margin: 5px 10px;
+      }
+      
+      .wonders-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page-title h1 {
+        font-size: 2.3rem;
+      }
+      
+      .hotel-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      
+      .hotel-price {
+        align-self: flex-end;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Main Website Content -->
+  <div id="main-website">
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="site-title">Wanderlust <span>Adventures</span></div>
+          <nav>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="countries.html">Countries</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Travel Tips</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section class="page-title">
+      <div class="container">
+        <h1>Ancient Egypt</h1>
+        <p>Walk in the footsteps of pharaohs and explore ancient wonders along the Nile.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="back-button">
+        <a href="countries.html" class="btn"><i class="fas fa-arrow-left"></i> Back to Countries</a>
+      </div>
+
+      <section class="country-intro">
+        <p>Egypt is home to some of the world's most iconic ancient monuments, with a history spanning over 5,000 years. From the magnificent pyramids to the majestic Nile River, Egypt offers a fascinating journey through time, where ancient pharaohs, mysterious hieroglyphs, and monumental temples await discovery.</p>
+      </section>
+
+      <div class="egyptian-pattern"></div>
+
+      <section class="wonders-section">
+        <h2 style="text-align: center; margin-bottom: 20px; color: #1a2a6c;">Egypt's Wonders</h2>
+        <div class="wonders-grid">
+          <!-- Wonder 1 -->
+          <div class="wonder-card">
+            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('pyramids-hotels')">
+              <div class="wonder-name">
+                <h3>Great Pyramids of Giza</h3>
+              </div>
+            </div>
+            <div class="wonder-info">
+              <p>The last surviving of the Seven Wonders of the Ancient World, these monumental tombs were built for pharaohs over 4,500 years ago and continue to awe visitors with their scale and precision.</p>
+              <button class="btn" onclick="toggleHotels('pyramids-hotels')">Find Nearby Hotels</button>
+              <div id="pyramids-hotels" class="hotels-container">
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Mena House Hotel</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">0.5 miles away</span>
+                      <span class="hotel-rating">★★★★★</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$220/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Pyramids View Inn</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">0.8 miles away</span>
+                      <span class="hotel-rating">★★★★☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$150/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Sphinx Resort</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">1.2 miles away</span>
+                      <span class="hotel-rating">★★★☆☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$100/night</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wonder 2 -->
+          <div class="wonder-card">
+            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1597212617715-e8267136e140?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('sphinx-hotels')">
+              <div class="wonder-name">
+                <h3>Great Sphinx of Giza</h3>
+              </div>
+            </div>
+            <div class="wonder-info">
+              <p>This monumental limestone statue with the body of a lion and the head of a human is one of the world's largest and oldest statues, guarding the Giza Plateau for over 4,500 years.</p>
+              <button class="btn" onclick="toggleHotels('sphinx-hotels')">Find Nearby Hotels</button>
+              <div id="sphinx-hotels" class="hotels-container">
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Sphinx Palace Hotel</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">0.3 miles away</span>
+                      <span class="hotel-rating">★★★★☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$180/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Desert Oasis Resort</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">0.6 miles away</span>
+                      <span class="hotel-rating">★★★★★</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$250/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Nile View Hotel</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">1.5 miles away</span>
+                      <span class="hotel-rating">★★★☆☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$120/night</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wonder 3 -->
+          <div class="wonder-card">
+            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1580502304784-8985b7eb7260?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('luxor-hotels')">
+              <div class="wonder-name">
+                <h3>Valley of the Kings</h3>
+              </div>
+            </div>
+            <div class="wonder-info">
+              <p>The burial place of Egypt's New Kingdom pharaohs, including the famous Tutankhamun. This valley contains over 60 elaborate tombs carved deep into the desert mountains near Luxor.</p>
+              <button class="btn" onclick="toggleHotels('luxor-hotels')">Find Nearby Hotels</button>
+              <div id="luxor-hotels" class="hotels-container">
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Winter Palace Hotel</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">3 miles away</span>
+                      <span class="hotel-rating">★★★★★</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$200/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Nile Valley Resort</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">4 miles away</span>
+                      <span class="hotel-rating">★★★★☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$160/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Kings' Retreat</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">5 miles away</span>
+                      <span class="hotel-rating">★★★☆☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$110/night</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+          </div>
+          <div class="student-info">
+            <p>Student Name: Arvin Esmena | Course: Web System and Technology | Section: IT3G | Year: 2025-2026</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function toggleHotels(hotelId) {
+      const hotelElement = document.getElementById(hotelId);
+      const allHotels = document.querySelectorAll('.hotels-container');
+      
+      // Close all other hotel containers
+      allHotels.forEach(hotel => {
+        if (hotel.id !== hotelId && hotel.style.display === 'block') {
+          hotel.style.display = 'none';
+        }
+      });
+      
+      // Toggle the clicked hotel container
+      if (hotelElement.style.display === 'block') {
+        hotelElement.style.display = 'none';
+      } else {
+        hotelElement.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
