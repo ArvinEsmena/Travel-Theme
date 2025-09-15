@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wanderlust Adventures | Australia</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(to right, #1a2a6c, #2b5876);
+      color: white;
+      padding: 20px 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    .site-title span {
+      color: #fdbb2d;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin-left: 25px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    nav ul li a:hover, nav ul li a.active {
+      color: #fdbb2d;
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    /* Page Title */
+    .page-title {
+      text-align: center;
+      padding: 70px 20px;
+      background: linear-gradient(to right, rgba(26, 42, 108, 0.75), rgba(43, 88, 118, 0.75)),
+                  url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      color: white;
+    }
+
+    .page-title h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    }
+
+    .page-title p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    /* Country Intro */
+    .country-intro {
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    .country-intro p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    /* Wonders Section */
+    .wonders-section {
+      padding: 40px 0 70px;
+    }
+
+    .wonders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .wonder-card {
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .wonder-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .wonder-image {
+      height: 220px;
+      background-position: center;
+      background-size: cover;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .wonder-name {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      padding: 20px 15px 15px;
+    }
+
+    .wonder-name h3 {
+      color: white;
+      font-size: 1.6rem;
+      margin: 0;
+    }
+
+    .wonder-info {
+      padding: 20px;
+    }
+
+    .wonder-info p {
+      color: #555;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #fdbb2d;
+      color: #1a2a6c;
+      padding: 10px 24px;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #1a2a6c;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* Hotels Section */
+    .hotels-container {
+      margin-top: 20px;
+      display: none;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .hotel-card {
+      background-color: #f5f7fa;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hotel-info {
+      flex: 1;
+    }
+
+    .hotel-info h4 {
+      color: #1a2a6c;
+      margin-bottom: 5px;
+    }
+
+    .hotel-details {
+      display: flex;
+      gap: 15px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .hotel-price {
+      font-weight: bold;
+      color: #1a2a6c;
+      font-size: 1.1rem;
+    }
+
+    .hotel-rating {
+      color: #fdbb2d;
+    }
+
+    footer {
+      background: linear-gradient(to right, #1a2a6c, #2b5876);
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .social-icons {
+      margin-bottom: 20px;
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 1.5rem;
+      margin: 0 12px;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #fdbb2d;
+    }
+
+    .student-info {
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    /* Back Button */
+    .back-button {
+      margin: 30px 0;
+    }
+
+    /* Australian Pattern Decoration */
+    .australian-pattern {
+      height: 30px;
+      background: 
+        linear-gradient(90deg, 
+          #012169 0%, #012169 33%, 
+          #E4002B 33%, #E4002B 66%, 
+          #FFFFFF 66%, #FFFFFF 67%, 
+          #E4002B 67%, #E4002B 100%);
+      margin: 20px 0;
+      opacity: 0.8;
+      border-radius: 4px;
+    }
+
+    /* Kangaroo Animation */
+    .kangaroo {
+      position: absolute;
+      font-size: 2rem;
+      bottom: 10px;
+      right: 10px;
+      animation: hop 5s infinite;
+      z-index: 1;
+    }
+
+    @keyframes hop {
+      0%, 100% { transform: translateY(0) rotate(0); }
+      25% { transform: translateY(-20px) rotate(-5deg); }
+      50% { transform: translateY(0) rotate(0); }
+      75% { transform: translateY(-15px) rotate(5deg); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      nav ul li {
+        margin: 5px 10px;
+      }
+      
+      .wonders-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page-title h1 {
+        font-size: 2.3rem;
+      }
+      
+      .hotel-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      
+      .hotel-price {
+        align-self: flex-end;
+      }
+      
+      .kangaroo {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Main Website Content -->
+  <div id="main-website">
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="site-title">Wanderlust <span>Adventures</span></div>
+          <nav>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="countries.html">Countries</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Travel Tips</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section class="page-title">
+      <div class="container">
+        <h1>Amazing Australia</h1>
+        <p>Explore the Outback, dive the Great Barrier Reef, and encounter unique wildlife in this vast island continent.</p>
+        <div class="kangaroo">🦘</div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="back-button">
+        <a href="countries.html" class="btn"><i class="fas fa-arrow-left"></i> Back to Countries</a>
+      </div>
+
+      <section class="country-intro">
+        <p>Australia is a land of contrasts, from the red deserts of the Outback to the lush rainforests and vibrant coastal cities. With unique wildlife, stunning natural wonders, and a laid-back culture, Australia offers an unforgettable adventure for every type of traveler.</p>
+      </section>
+
+      <div class="australian-pattern"></div>
+
+      <section class="wonders-section">
+        <h2 style="text-align: center; margin-bottom: 20px; color: #1a2a6c;">Australia's Wonders</h2>
+        <div class="wonders-grid">
+          <!-- Wonder 1 -->
+          <div class="wonder-card">
+            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('reef-hotels')">
+              <div class="wonder-name">
+                <h3>Great Barrier Reef</h3>
+              </div>
+            </div>
+            <div class="wonder-info">
+              <p>The world's largest coral reef system, stretching over 2,300 kilometers. Home to thousands of species of marine life, it's one of the most diverse ecosystems on the planet and visible from space.</p>
+              <button class="btn" onclick="toggleHotels('reef-hotels')">Find Nearby Hotels</button>
+              <div id="reef-hotels" class="hotels-container">
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Qualia Resort</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">On Hamilton Island</span>
+                      <span class="hotel-rating">★★★★★</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$800/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Reef View Hotel</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">0.2 miles to beach</span>
+                      <span class="hotel-rating">★★★★☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$300/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Coral Sea Resort</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">Waterfront location</span>
+                      <span class="hotel-rating">★★★★☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$250/night</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wonder 2 -->
+          <div class="wonder-card">
+            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1528072164453-f4e8ef0d475a?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('uluru-hotels')">
+              <div class="wonder-name">
+                <h3>Uluru (Ayers Rock)</h3>
+              </div>
+            </div>
+            <div class="wonder-info">
+              <p>A massive sandstone monolith in the heart of Australia's Red Centre, sacred to the Aboriginal people. It's renowned for its spectacular color changes at sunrise and sunset.</p>
+              <button class="btn" onclick="toggleHotels('uluru-hotels')">Find Nearby Hotels</button>
+              <div id="uluru-hotels" class="hotels-container">
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Longitude 131°</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">View of Uluru</span>
+                      <span class="hotel-rating">★★★★★</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$1,200/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Sails in the Desert</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">10 miles away</span>
+                      <span class="hotel-rating">★★★★☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$350/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Outback Pioneer Hotel</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">12 miles away</span>
+                      <span class="hotel-rating">★★★☆☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$180/night</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wonder 3 -->
+          <div class="wonder-card">
+            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1528072164453-f4e8ef0d475a?auto=format&fit=crop&w=1351&q=80');" onclick="toggleHotels('opera-hotels')">
+              <div class="wonder-name">
+                <h3>Sydney Opera House</h3>
+              </div>
+            </div>
+            <div class="wonder-info">
+              <p>One of the world's most famous performing arts venues and an architectural masterpiece. Its distinctive sail-like design makes it an iconic symbol of both Sydney and Australia.</p>
+              <button class="btn" onclick="toggleHotels('opera-hotels')">Find Nearby Hotels</button>
+              <div id="opera-hotels" class="hotels-container">
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Park Hyatt Sydney</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">0.1 miles away</span>
+                      <span class="hotel-rating">★★★★★</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$900/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Four Seasons Hotel</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">0.3 miles away</span>
+                      <span class="hotel-rating">★★★★★</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$500/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Sir Stamford Circular Quay</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance">0.5 miles away</span>
+                      <span class="hotel-rating">★★★★☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$280/night</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+          </div>
+          <div class="student-info">
+            <p>Student Name: Arvin Esmena | Course: Web System and Technology | Section: IT3G | Year: 2025-2026</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function toggleHotels(hotelId) {
+      const hotelElement = document.getElementById(hotelId);
+      const allHotels = document.querySelectorAll('.hotels-container');
+      
+      // Close all other hotel containers
+      allHotels.forEach(hotel => {
+        if (hotel.id !== hotelId && hotel.style.display === 'block') {
+          hotel.style.display = 'none';
+        }
+      });
+      
+      // Toggle the clicked hotel container
+      if (hotelElement.style.display === 'block') {
+        hotelElement.style.display = 'none';
+      } else {
+        hotelElement.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
