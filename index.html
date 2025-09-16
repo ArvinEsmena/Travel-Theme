@@ -5,18 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wanderlust Adventures | Explore the World</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #1a2a6c;
+      --secondary: #2b5876;
+      --accent: #fdbb2d;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --text: #333;
+      --text-light: #6c757d;
+      --shadow: 0 5px 15px rgba(0,0,0,0.1);
+      --transition: all 0.3s ease;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
-      background-color: #f9f9f9;
-      color: #333;
+      background-color: var(--light);
+      color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     /* Splash Screen */
@@ -40,57 +54,73 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
+      background: linear-gradient(135deg, rgba(26, 42, 108, 0.85), rgba(43, 88, 118, 0.85));
       z-index: -1;
     }
 
     .logo {
       width: 150px;
       height: 150px;
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: rgba(255,255,255,0.9);
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
       margin-bottom: 30px;
       animation: pulse 2s infinite;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transition: var(--transition);
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     .logo i {
       font-size: 70px;
-      color: #1a2a6c;
+      color: var(--primary);
+      transition: var(--transition);
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-      100% { transform: scale(1); }
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(253, 187, 45, 0.7); }
+      70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(253, 187, 45, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(253, 187, 45, 0); }
     }
 
     #splash-screen h1 {
       color: white;
-      font-size: 3rem;
+      font-size: 3.5rem;
       font-weight: 700;
       margin-bottom: 20px;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    .splash-subtitle {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      text-align: center;
+      max-width: 600px;
       animation: fadeIn 2s ease-in;
     }
 
     .loader {
-      width: 100px;
+      width: 120px;
       height: 6px;
       background-color: rgba(255, 255, 255, 0.3);
       border-radius: 3px;
       margin-top: 20px;
       overflow: hidden;
+      position: relative;
     }
 
     .loader-bar {
       height: 100%;
       width: 0%;
-      background-color: #fdbb2d;
-      animation: loading 3s ease-in-out;
+      background: linear-gradient(to right, var(--accent), #ff5e62);
+      animation: loading 2.5s ease-in-out;
       border-radius: 3px;
     }
 
@@ -111,11 +141,15 @@
       transition: opacity 1s ease-in;
     }
 
+    /* Header */
     header {
-      background: linear-gradient(to right, #1a2a6c, #2b5876);
+      background: linear-gradient(to right, var(--primary), var(--secondary));
       color: white;
-      padding: 20px 0;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      padding: 15px 0;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .container {
@@ -131,12 +165,19 @@
     }
 
     .site-title {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 700;
+      display: flex;
+      align-items: center;
     }
 
     .site-title span {
-      color: #fdbb2d;
+      color: var(--accent);
+    }
+
+    .site-title i {
+      margin-right: 10px;
+      font-size: 1.8rem;
     }
 
     nav ul {
@@ -145,21 +186,48 @@
     }
 
     nav ul li {
-      margin-left: 25px;
+      margin-left: 20px;
+      position: relative;
     }
 
     nav ul li a {
       color: white;
       text-decoration: none;
       font-weight: 500;
-      transition: all 0.3s;
+      transition: var(--transition);
       padding: 8px 12px;
       border-radius: 6px;
+      font-size: 1rem;
     }
 
-    nav ul li a:hover {
-      color: #fdbb2d;
-      background-color: rgba(255, 255, 255, 0.1);
+    nav ul li a:hover, nav ul li a.active {
+      color: var(--accent);
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 50%;
+      background-color: var(--accent);
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover::after {
+      width: 70%;
+      left: 15%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
     }
 
     /* Hero Section */
@@ -202,49 +270,116 @@
 
     .btn {
       display: inline-block;
-      background-color: #fdbb2d;
-      color: #1a2a6c;
+      background: linear-gradient(to right, var(--accent), #ff5e62);
+      color: white;
       padding: 14px 34px;
       text-decoration: none;
       border-radius: 40px;
       font-weight: 600;
       font-size: 1rem;
-      transition: all 0.3s;
+      transition: var(--transition);
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      border: none;
+      cursor: pointer;
     }
 
     .btn:hover {
-      background-color: #1a2a6c;
-      color: white;
       transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
+    .btn i {
+      margin-left: 5px;
+      transition: var(--transition);
+    }
+
+    .btn:hover i {
+      transform: translateX(5px);
+    }
+
+    /* Footer */
     footer {
-      background: linear-gradient(to right, #1a2a6c, #2b5876);
+      background: linear-gradient(to right, var(--primary), var(--secondary));
       color: white;
-      padding: 40px 0;
-      text-align: center;
+      padding: 60px 0 30px;
     }
 
     .footer-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-column h3 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+
+    .footer-column p {
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      transition: var(--transition);
+      opacity: 0.9;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      padding-left: 5px;
     }
 
     .social-icons {
-      margin-bottom: 20px;
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
     }
 
     .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
       color: white;
-      font-size: 1.5rem;
-      margin: 0 12px;
-      transition: color 0.3s;
+      border-radius: 50%;
+      transition: var(--transition);
     }
 
     .social-icons a:hover {
-      color: #fdbb2d;
+      background: var(--accent);
+      transform: translateY(-5px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .student-info {
@@ -252,8 +387,39 @@
       opacity: 0.85;
     }
 
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--accent);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 99;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background: var(--primary);
+      transform: translateY(-5px);
+    }
+
     /* Responsive */
-    @media (max-width: 768px) {
+    @media (max-width: 992px) {
       .header-content {
         flex-direction: column;
         text-align: center;
@@ -268,9 +434,68 @@
       nav ul li {
         margin: 5px 10px;
       }
+    }
+
+    @media (max-width: 768px) {
+      .site-title {
+        font-size: 1.8rem;
+      }
       
       .hero-content h2 {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
+      }
+      
+      .newsletter-form {
+        flex-direction: column;
+      }
+      
+      .newsletter-input {
+        border-radius: 50px;
+        margin-bottom: 10px;
+      }
+      
+      .newsletter-btn {
+        border-radius: 50px;
+        padding: 15px;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+      }
+      
+      nav {
+        display: none;
+        width: 100%;
+        margin-top: 15px;
+      }
+      
+      nav.show {
+        display: block;
+      }
+      
+      nav ul {
+        flex-direction: column;
+      }
+      
+      nav ul li {
+        margin: 8px 0;
+      }
+    }
+
+    @media (max-width: 576px) {
+      #splash-screen h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-content h2 {
+        font-size: 2rem;
+      }
+      
+      .hero-content p {
+        font-size: 1rem;
       }
     }
   </style>
@@ -282,6 +507,7 @@
       <i class="fas fa-globe-americas"></i>
     </div>
     <h1>Wanderlust Adventures</h1>
+    <p class="splash-subtitle">Discover the world's most beautiful destinations and create unforgettable memories</p>
     <div class="loader">
       <div class="loader-bar"></div>
     </div>
@@ -292,10 +518,13 @@
     <header>
       <div class="container">
         <div class="header-content">
-          <div class="site-title">Wanderlust <span>Adventures</span></div>
-          <nav>
+          <div class="site-title"><i class="fas fa-globe-americas"></i>Wanderlust <span>Adventures</span></div>
+          <button class="mobile-menu-btn" id="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+          </button>
+          <nav id="main-nav">
             <ul>
-              <li><a href="index.html">Home</a></li>
+              <li><a href="index.html" class="active">Home</a></li>
               <li><a href="countries.html">Countries</a></li>
               <li><a href="blog.html">Blog</a></li>
               <li><a href="travel.html">Travel Tips</a></li>
@@ -320,18 +549,55 @@
     <footer>
       <div class="container">
         <div class="footer-content">
-          <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-pinterest"></i></a>
+          <div class="footer-column">
+            <h3>About Us</h3>
+            <p>Wanderlust Adventures is dedicated to helping travelers discover the world's most beautiful destinations and create unforgettable memories.</p>
+            <div class="social-icons">
+              <a href="fb.com"><i class="fab fa-facebook-f"></i></a>
+              <a href="x.com"><i class="fab fa-twitter"></i></a>
+              <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+              <a href="pinterest.com"><i class="fab fa-pinterest"></i></a>
+            </div>
           </div>
+          <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="countries.html">Destinations</a></li>
+              <li><a href="blog.html">Travel Blog</a></li>
+              <li><a href="travel.html">Travel Tips</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contacts.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Popular Destinations</h3>
+            <ul class="footer-links">
+              <li><a href="italy.html">Italy</a></li>
+              <li><a href="japan.html">Japan</a></li>
+              <li><a href="australia.html">Australia</a></li>
+              <li><a href="brazil.html">Brazil</a></li>
+              <li><a href="egypt.html">Egypt</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Contact Info</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Lot 6 block 89, Susan street, Quezon City</p>
+            <p><i class="fas fa-phone"></i> +1 234 567 8900</p>
+            <p><i class="fas fa-envelope"></i> info@wanderlustadventures.com</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
           <div class="student-info">
             <p>Student Name: Arvin Esmena | Course: Web System and Technology | Section: IT3G | Year: 2025-2026</p>
           </div>
         </div>
       </div>
     </footer>
+
+    <a href="#" class="back-to-top" id="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </a>
   </div>
 
   <script>
@@ -346,7 +612,22 @@
             document.getElementById('main-website').style.opacity = '1';
           }, 50);
         }, 800);
-      }, 3000);
+      }, 2500); 
+    });
+
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+      document.getElementById('main-nav').classList.toggle('show');
+    });
+
+    // Back to top button
+    window.addEventListener('scroll', function() {
+      var backToTop = document.getElementById('back-to-top');
+      if (window.pageYOffset > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
     });
   </script>
 </body>
