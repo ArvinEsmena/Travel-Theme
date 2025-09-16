@@ -5,18 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wanderlust Adventures | Explore Countries</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #1a2a6c;
+      --secondary: #2b5876;
+      --accent: #fdbb2d;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --text: #333;
+      --text-light: #6c757d;
+      --shadow: 0 5px 15px rgba(0,0,0,0.1);
+      --transition: all 0.3s ease;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
-      background-color: #f9f9f9;
-      color: #333;
+      background-color: var(--light);
+      color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     /* Splash Screen */
@@ -40,7 +54,7 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
+      background: linear-gradient(135deg, rgba(26, 42, 108, 0.85), rgba(43, 88, 118, 0.85));
       z-index: -1;
     }
 
@@ -54,43 +68,59 @@
       align-items: center;
       margin-bottom: 30px;
       animation: pulse 2s infinite;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transition: var(--transition);
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     .logo i {
       font-size: 70px;
-      color: #1a2a6c;
+      color: var(--primary);
+      transition: var(--transition);
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-      100% { transform: scale(1); }
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(253, 187, 45, 0.7); }
+      70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(253, 187, 45, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(253, 187, 45, 0); }
     }
 
     #splash-screen h1 {
       color: white;
-      font-size: 3rem;
+      font-size: 3.5rem;
       font-weight: 700;
       margin-bottom: 20px;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    .splash-subtitle {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      text-align: center;
+      max-width: 600px;
       animation: fadeIn 2s ease-in;
     }
 
     .loader {
-      width: 100px;
+      width: 120px;
       height: 6px;
       background-color: rgba(255, 255, 255, 0.3);
       border-radius: 3px;
       margin-top: 20px;
       overflow: hidden;
+      position: relative;
     }
 
     .loader-bar {
       height: 100%;
       width: 0%;
-      background-color: #fdbb2d;
-      animation: loading 3s ease-in-out;
+      background: linear-gradient(to right, var(--accent), #ff5e62);
+      animation: loading 2.5s ease-in-out;
       border-radius: 3px;
     }
 
@@ -111,11 +141,15 @@
       transition: opacity 1s ease-in;
     }
 
+    /* Header */
     header {
-      background: linear-gradient(to right, #1a2a6c, #2b5876);
+      background: linear-gradient(to right, var(--primary), var(--secondary));
       color: white;
-      padding: 20px 0;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      padding: 15px 0;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .container {
@@ -131,12 +165,19 @@
     }
 
     .site-title {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 700;
+      display: flex;
+      align-items: center;
     }
 
     .site-title span {
-      color: #fdbb2d;
+      color: var(--accent);
+    }
+
+    .site-title i {
+      margin-right: 10px;
+      font-size: 1.8rem;
     }
 
     nav ul {
@@ -145,36 +186,116 @@
     }
 
     nav ul li {
-      margin-left: 25px;
+      margin-left: 20px;
+      position: relative;
     }
 
     nav ul li a {
       color: white;
       text-decoration: none;
       font-weight: 500;
-      transition: all 0.3s;
+      transition: var(--transition);
       padding: 8px 12px;
       border-radius: 6px;
+      font-size: 1rem;
     }
 
     nav ul li a:hover, nav ul li a.active {
-      color: #fdbb2d;
+      color: var(--accent);
       background-color: rgba(255,255,255,0.1);
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 50%;
+      background-color: var(--accent);
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover::after {
+      width: 70%;
+      left: 15%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Search Bar */
+    .search-container {
+      margin: 30px auto;
+      max-width: 600px;
+      position: relative;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 50px;
+      box-shadow: var(--shadow);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .search-box:focus {
+      outline: none;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+      transform: translateY(-2px);
+    }
+
+    .search-btn {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      background: var(--accent);
+      border: none;
+      border-radius: 50px;
+      padding: 10px 20px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .search-btn:hover {
+      background: var(--primary);
     }
 
     /* Page Title */
     .page-title {
       text-align: center;
-      padding: 70px 20px;
+      padding: 80px 20px;
       background: linear-gradient(to right, rgba(26, 42, 108, 0.75), rgba(43, 88, 118, 0.75)),
                   url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
       color: white;
+      position: relative;
+    }
+
+    .page-title::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(26, 42, 108, 0.7), rgba(43, 88, 118, 0.7));
     }
 
     .page-title h1 {
-      font-size: 3rem;
+      font-size: 3.2rem;
       margin-bottom: 15px;
       text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+      position: relative;
     }
 
     .page-title p {
@@ -182,6 +303,38 @@
       max-width: 700px;
       margin: 0 auto;
       opacity: 0.9;
+      position: relative;
+    }
+
+    /* Filter Section */
+    .filter-section {
+      padding: 20px 0;
+      background: white;
+      box-shadow: var(--shadow);
+      margin-bottom: 30px;
+    }
+
+    .filter-options {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .filter-btn {
+      padding: 8px 20px;
+      background: white;
+      border: 1px solid #e9ecef;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
     }
 
     /* Countries Section */
@@ -191,7 +344,7 @@
 
     .countries-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 30px;
       margin-top: 40px;
     }
@@ -200,13 +353,14 @@
       background-color: white;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
     }
 
     .country-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
     }
 
     .country-flag {
@@ -214,6 +368,11 @@
       background-position: center;
       background-size: cover;
       position: relative;
+      transition: var(--transition);
+    }
+
+    .country-card:hover .country-flag {
+      transform: scale(1.05);
     }
 
     .country-name {
@@ -234,11 +393,11 @@
     .country-name h3 a {
       color: white;
       text-decoration: none;
-      transition: color 0.3s;
+      transition: var(--transition);
     }
 
     .country-name h3 a:hover {
-      color: #fdbb2d;
+      color: var(--accent);
     }
 
     .country-info {
@@ -246,56 +405,203 @@
     }
 
     .country-info p {
-      color: #555;
-      margin-bottom: 15px;
+      color: var(--text-light);
+      margin-bottom: 20px;
       line-height: 1.6;
+    }
+
+    .country-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #e9ecef;
+      padding-bottom: 15px;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-light);
     }
 
     .btn {
       display: inline-block;
-      background-color: #fdbb2d;
-      color: #1a2a6c;
-      padding: 10px 24px;
+      background: linear-gradient(to right, var(--accent), #ff5e62);
+      color: white;
+      padding: 12px 28px;
       text-decoration: none;
       border-radius: 30px;
       font-weight: 600;
       font-size: 0.95rem;
-      transition: all 0.3s;
+      transition: var(--transition);
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border: none;
+      cursor: pointer;
     }
 
     .btn:hover {
-      background-color: #1a2a6c;
-      color: white;
       transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
-    footer {
-      background: linear-gradient(to right, #1a2a6c, #2b5876);
+    .btn i {
+      margin-left: 5px;
+      transition: var(--transition);
+    }
+
+    .btn:hover i {
+      transform: translateX(5px);
+    }
+
+    /* Newsletter Section */
+    .newsletter-section {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      padding: 80px 0;
       color: white;
-      padding: 40px 0;
       text-align: center;
+      margin: 80px 0;
     }
 
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .newsletter-content {
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    .social-icons {
+    .newsletter-content h2 {
+      font-size: 2.2rem;
       margin-bottom: 20px;
     }
 
-    .social-icons a {
+    .newsletter-content p {
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .newsletter-form {
+      display: flex;
+      margin: 0 auto;
+      max-width: 500px;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 50px 0 0 50px;
+      font-size: 1rem;
+    }
+
+    .newsletter-input:focus {
+      outline: none;
+    }
+
+    .newsletter-btn {
+      background: var(--accent);
       color: white;
-      font-size: 1.5rem;
-      margin: 0 12px;
-      transition: color 0.3s;
+      border: none;
+      border-radius: 0 50px 50px 0;
+      padding: 0 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .newsletter-btn:hover {
+      background: #ff5e62;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      padding: 60px 0 30px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-column h3 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+
+    .footer-column p {
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      transition: var(--transition);
+      opacity: 0.9;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      padding-left: 5px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-radius: 50%;
+      transition: var(--transition);
     }
 
     .social-icons a:hover {
-      color: #fdbb2d;
+      background: var(--accent);
+      transform: translateY(-5px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .student-info {
@@ -303,8 +609,39 @@
       opacity: 0.85;
     }
 
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--accent);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 99;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background: var(--primary);
+      transform: translateY(-5px);
+    }
+
     /* Responsive */
-    @media (max-width: 768px) {
+    @media (max-width: 992px) {
       .header-content {
         flex-direction: column;
         text-align: center;
@@ -319,13 +656,76 @@
       nav ul li {
         margin: 5px 10px;
       }
+    }
+
+    @media (max-width: 768px) {
+      .site-title {
+        font-size: 1.8rem;
+      }
+      
+      .page-title h1 {
+        font-size: 2.5rem;
+      }
       
       .countries-grid {
         grid-template-columns: 1fr;
       }
+      
+      .newsletter-form {
+        flex-direction: column;
+      }
+      
+      .newsletter-input {
+        border-radius: 50px;
+        margin-bottom: 10px;
+      }
+      
+      .newsletter-btn {
+        border-radius: 50px;
+        padding: 15px;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+      }
+      
+      nav {
+        display: none;
+        width: 100%;
+        margin-top: 15px;
+      }
+      
+      nav.show {
+        display: block;
+      }
+      
+      nav ul {
+        flex-direction: column;
+      }
+      
+      nav ul li {
+        margin: 8px 0;
+      }
+    }
 
+    @media (max-width: 576px) {
+      #splash-screen h1 {
+        font-size: 2.5rem;
+      }
+      
+      .page-title {
+        padding: 60px 20px;
+      }
+      
       .page-title h1 {
-        font-size: 2.3rem;
+        font-size: 2rem;
+      }
+      
+      .page-title p {
+        font-size: 1rem;
       }
     }
   </style>
@@ -337,6 +737,7 @@
       <i class="fas fa-globe-americas"></i>
     </div>
     <h1>Wanderlust Adventures</h1>
+    <p class="splash-subtitle">Discover the world's most beautiful destinations and create unforgettable memories</p>
     <div class="loader">
       <div class="loader-bar"></div>
     </div>
@@ -347,11 +748,14 @@
     <header>
       <div class="container">
         <div class="header-content">
-          <div class="site-title">Wanderlust <span>Adventures</span></div>
-          <nav>
+          <div class="site-title"><i class="fas fa-globe-americas"></i>Wanderlust <span>Adventures</span></div>
+          <button class="mobile-menu-btn" id="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+          </button>
+          <nav id="main-nav">
             <ul>
               <li><a href="index.html">Home</a></li>
-              <li><a href="countries.html">Countries</a></li>
+              <li><a href="countries.html" class="active">Countries</a></li>
               <li><a href="blog.html">Blog</a></li>
               <li><a href="travel.html">Travel Tips</a></li>
               <li><a href="about.html">About</a></li>
@@ -369,6 +773,24 @@
       </div>
     </section>
 
+    <div class="container">
+      <div class="search-container">
+        <input type="text" class="search-box" placeholder="Search for destinations, activities, or experiences...">
+        <button class="search-btn">Search</button>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-options">
+          <button class="filter-btn active">All</button>
+          <button class="filter-btn">Europe</button>
+          <button class="filter-btn">Asia</button>
+          <button class="filter-btn">Africa</button>
+          <button class="filter-btn">Americas</button>
+          <button class="filter-btn">Oceania</button>
+        </div>
+      </div>
+    </div>
+
     <section class="countries-section">
       <div class="container">
         <div class="countries-grid">
@@ -380,8 +802,22 @@
               </div>
             </div>
             <div class="country-info">
+              <div class="country-stats">
+                <div class="stat">
+                  <div class="stat-value">4.8</div>
+                  <div class="stat-label">Rating</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">7-10</div>
+                  <div class="stat-label">Best Season</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">€€</div>
+                  <div class="stat-label">Price Level</div>
+                </div>
+              </div>
               <p>Experience the romance of Venice, the history of Rome, and the culinary delights of Tuscany in this Mediterranean paradise.</p>
-              <a href="italy.html" class="btn">Explore Italy</a>
+              <a href="italy.html" class="btn">Explore Italy <i class="fas fa-arrow-right"></i></a>
             </div>
           </div>
 
@@ -393,8 +829,22 @@
               </div>
             </div>
             <div class="country-info">
+              <div class="country-stats">
+                <div class="stat">
+                  <div class="stat-value">4.9</div>
+                  <div class="stat-label">Rating</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">3-5, 9-11</div>
+                  <div class="stat-label">Best Season</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">€€€</div>
+                  <div class="stat-label">Price Level</div>
+                </div>
+              </div>
               <p>Discover the perfect blend of ancient traditions and cutting-edge technology in the Land of the Rising Sun.</p>
-              <a href="japan.html" class="btn">Explore Japan</a>
+              <a href="japan.html" class="btn">Explore Japan <i class="fas fa-arrow-right"></i></a>
             </div>
           </div>
 
@@ -406,8 +856,22 @@
               </div>
             </div>
             <div class="country-info">
+              <div class="country-stats">
+                <div class="stat">
+                  <div class="stat-value">4.5</div>
+                  <div class="stat-label">Rating</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">10-4</div>
+                  <div class="stat-label">Best Season</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">€</div>
+                  <div class="stat-label">Price Level</div>
+                </div>
+              </div>
               <p>Walk in the footsteps of pharaohs and explore ancient pyramids in this cradle of civilization along the Nile.</p>
-              <a href="egypt.html" class="btn">Explore Egypt</a>
+              <a href="egypt.html" class="btn">Explore Egypt <i class="fas fa-arrow-right"></i></a>
             </div>
           </div>
 
@@ -419,8 +883,22 @@
               </div>
             </div>
             <div class="country-info">
+              <div class="country-stats">
+                <div class="stat">
+                  <div class="stat-value">4.6</div>
+                  <div class="stat-label">Rating</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">12-3</div>
+                  <div class="stat-label">Best Season</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">€€</div>
+                  <div class="stat-label">Price Level</div>
+                </div>
+              </div>
               <p>From the Amazon rainforest to vibrant Carnival celebrations, Brazil offers incredible biodiversity and cultural richness.</p>
-              <a href="brazil.html" class="btn">Explore Brazil</a>
+              <a href="brazil.html" class="btn">Explore Brazil <i class="fas fa-arrow-right"></i></a>
             </div>
           </div>
 
@@ -432,10 +910,64 @@
               </div>
             </div>
             <div class="country-info">
+              <div class="country-stats">
+                <div class="stat">
+                  <div class="stat-value">4.7</div>
+                  <div class="stat-label">Rating</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">9-11, 3-5</div>
+                  <div class="stat-label">Best Season</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">€€€</div>
+                  <div class="stat-label">Price Level</div>
+                </div>
+              </div>
               <p>Explore the Outback, dive the Great Barrier Reef, and encounter unique wildlife in this vast island continent.</p>
-              <a href="australia.html" class="btn">Explore Australia</a>
+              <a href="australia.html" class="btn">Explore Australia <i class="fas fa-arrow-right"></i></a>
             </div>
           </div>
+
+          <!-- New Zealand -->
+          <div class="country-card">
+            <div class="country-flag" style="background-image: url('https://images.unsplash.com/photo-1507699622108-4be3abd695ad?auto=format&fit=crop&w=1350&q=80');">
+              <div class="country-name">
+                <h3><a href="newzealand.html">New Zealand</a></h3>
+              </div>
+            </div>
+            <div class="country-info">
+              <div class="country-stats">
+                <div class="stat">
+                  <div class="stat-value">4.9</div>
+                  <div class="stat-label">Rating</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">12-2</div>
+                  <div class="stat-label">Best Season</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">€€€</div>
+                  <div class="stat-label">Price Level</div>
+                </div>
+              </div>
+              <p>From breathtaking fjords to volcanic landscapes, New Zealand offers unparalleled natural beauty and adventure activities.</p>
+              <a href="newzealand.html" class="btn">Explore New Zealand <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter-section">
+      <div class="container">
+        <div class="newsletter-content">
+          <h2>Get Travel Inspiration</h2>
+          <p>Subscribe to our newsletter for exclusive travel tips, destination guides, and special offers.</p>
+          <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Your email address">
+            <button type="submit" class="newsletter-btn">Subscribe</button>
+          </form>
         </div>
       </div>
     </section>
@@ -443,18 +975,56 @@
     <footer>
       <div class="container">
         <div class="footer-content">
-          <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-pinterest"></i></a>
+          <div class="footer-column">
+            <h3>About Us</h3>
+            <p>Wanderlust Adventures is dedicated to helping travelers discover the world's most beautiful destinations and create unforgettable memories.</p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-pinterest"></i></a>
+            </div>
           </div>
+          <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="countries.html">Destinations</a></li>
+              <li><a href="blog.html">Travel Blog</a></li>
+              <li><a href="travel.html">Travel Tips</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contacts.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Popular Destinations</h3>
+            <ul class="footer-links">
+              <li><a href="italy.html">Italy</a></li>
+              <li><a href="japan.html">Japan</a></li>
+              <li><a href="australia.html">Australia</a></li>
+              <li><a href="brazil.html">Brazil</a></li>
+              <li><a href="egypt.html">Egypt</a></li>
+              <li><a href="newzealand.html">New Zealand</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Contact Info</h3>
+            <p><i class="fas fa-map-marker-alt"></i> 123 Adventure Street, Travel City</p>
+            <p><i class="fas fa-phone"></i> +1 234 567 8900</p>
+            <p><i class="fas fa-envelope"></i> info@wanderlustadventures.com</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
           <div class="student-info">
             <p>Student Name: Arvin Esmena | Course: Web System and Technology | Section: IT3G | Year: 2025-2026</p>
           </div>
         </div>
       </div>
     </footer>
+
+    <a href="#" class="back-to-top" id="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </a>
   </div>
 
   <script>
@@ -469,7 +1039,52 @@
             document.getElementById('main-website').style.opacity = '1';
           }, 50);
         }, 800);
-      }, 3000);
+      }, 2500); // Reduced from 3s to 2.5s for better UX
+    });
+
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+      document.getElementById('main-nav').classList.toggle('show');
+    });
+
+    // Back to top button
+    window.addEventListener('scroll', function() {
+      var backToTop = document.getElementById('back-to-top');
+      if (window.pageYOffset > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+
+    // Filter buttons
+    var filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        filterButtons.forEach(function(btn) {
+          btn.classList.remove('active');
+        });
+        this.classList.add('active');
+        // Here you would typically filter the content
+      });
+    });
+
+    // Simple search functionality
+    var searchBox = document.querySelector('.search-box');
+    searchBox.addEventListener('keyup', function() {
+      var searchTerm = this.value.toLowerCase();
+      var countryCards = document.querySelectorAll('.country-card');
+      
+      countryCards.forEach(function(card) {
+        var countryName = card.querySelector('.country-name h3 a').textContent.toLowerCase();
+        var countryDesc = card.querySelector('.country-info p').textContent.toLowerCase();
+        
+        if (countryName.includes(searchTerm) || countryDesc.includes(searchTerm)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
     });
   </script>
 </body>
