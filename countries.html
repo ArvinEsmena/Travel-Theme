@@ -306,37 +306,6 @@
       position: relative;
     }
 
-    /* Filter Section */
-    .filter-section {
-      padding: 20px 0;
-      background: white;
-      box-shadow: var(--shadow);
-      margin-bottom: 30px;
-    }
-
-    .filter-options {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    .filter-btn {
-      padding: 8px 20px;
-      background: white;
-      border: 1px solid #e9ecef;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: var(--transition);
-      font-weight: 500;
-    }
-
-    .filter-btn:hover, .filter-btn.active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-
     /* Countries Section */
     .countries-section {
       padding: 70px 0;
@@ -776,18 +745,6 @@
     <div class="container">
       <div class="search-container">
         <input type="text" class="search-box" placeholder="Search for destinations, activities, or experiences...">
-        <button class="search-btn">Search</button>
-      </div>
-
-      <div class="filter-section">
-        <div class="filter-options">
-          <button class="filter-btn active">All</button>
-          <button class="filter-btn">Europe</button>
-          <button class="filter-btn">Asia</button>
-          <button class="filter-btn">Africa</button>
-          <button class="filter-btn">Americas</button>
-          <button class="filter-btn">Oceania</button>
-        </div>
       </div>
     </div>
 
@@ -929,32 +886,6 @@
             </div>
           </div>
 
-          <!-- New Zealand -->
-          <div class="country-card">
-            <div class="country-flag" style="background-image: url('https://images.unsplash.com/photo-1507699622108-4be3abd695ad?auto=format&fit=crop&w=1350&q=80');">
-              <div class="country-name">
-                <h3><a href="newzealand.html">New Zealand</a></h3>
-              </div>
-            </div>
-            <div class="country-info">
-              <div class="country-stats">
-                <div class="stat">
-                  <div class="stat-value">4.9</div>
-                  <div class="stat-label">Rating</div>
-                </div>
-                <div class="stat">
-                  <div class="stat-value">12-2</div>
-                  <div class="stat-label">Best Season</div>
-                </div>
-                <div class="stat">
-                  <div class="stat-value">€€€</div>
-                  <div class="stat-label">Price Level</div>
-                </div>
-              </div>
-              <p>From breathtaking fjords to volcanic landscapes, New Zealand offers unparalleled natural beauty and adventure activities.</p>
-              <a href="newzealand.html" class="btn">Explore New Zealand <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </div>
         </div>
       </div>
     </section>
