@@ -11,15 +11,11 @@
       --primary: #1a2a6c;
       --secondary: #2b5876;
       --accent: #fdbb2d;
-      --accent-light: #ffd166;
       --light: #f8f9fa;
       --dark: #212529;
-      --gray: #6c757d;
-      --success: #2ecc71;
-      --danger: #e74c3c;
-      --warning: #f39c12;
-      --border-radius: 12px;
-      --box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --text: #333;
+      --text-light: #6c757d;
+      --shadow: 0 5px 15px rgba(0,0,0,0.1);
       --transition: all 0.3s ease;
     }
 
@@ -27,82 +23,104 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
       background-color: var(--light);
-      color: var(--dark);
+      color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    /* Splash Screen - Reduced time for better UX */
+    /* Splash Screen */
     #splash-screen {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(26,42,108,0.9), rgba(43,88,118,0.9)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      transition: opacity 0.6s ease-out;
+      transition: opacity 0.8s ease-out;
+    }
+
+    #splash-screen::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, rgba(26, 42, 108, 0.85), rgba(43, 88, 118, 0.85));
+      z-index: -1;
     }
 
     .logo {
-      width: 120px;
-      height: 120px;
-      background-color: rgba(255, 255, 255, 0.95);
+      width: 150px;
+      height: 150px;
+      background-color: rgba(255,255,255,0.9);
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 25px;
-      animation: pulse 1.5s infinite;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+      margin-bottom: 30px;
+      animation: pulse 2s infinite;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transition: var(--transition);
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     .logo i {
-      font-size: 50px;
+      font-size: 70px;
       color: var(--primary);
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      transition: var(--transition);
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(253, 187, 45, 0.7); }
+      70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(253, 187, 45, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(253, 187, 45, 0); }
     }
 
     #splash-screen h1 {
       color: white;
-      font-size: 2.5rem;
+      font-size: 3.5rem;
       font-weight: 700;
       margin-bottom: 20px;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
-      animation: fadeIn 1s ease-in;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    .splash-subtitle {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      text-align: center;
+      max-width: 600px;
+      animation: fadeIn 2s ease-in;
     }
 
     .loader {
       width: 120px;
-      height: 4px;
+      height: 6px;
       background-color: rgba(255, 255, 255, 0.3);
       border-radius: 3px;
       margin-top: 20px;
       overflow: hidden;
+      position: relative;
     }
 
     .loader-bar {
       height: 100%;
       width: 0%;
-      background: linear-gradient(to right, var(--accent), var(--accent-light));
-      animation: loading 2s ease-in-out;
+      background: linear-gradient(to right, var(--accent), #ff5e62);
+      animation: loading 2.5s ease-in-out;
       border-radius: 3px;
     }
 
@@ -120,16 +138,15 @@
     #main-website {
       display: none;
       opacity: 0;
-      transition: opacity 0.8s ease-in;
+      transition: opacity 1s ease-in;
     }
 
-    /* Header with slight glassmorphism effect */
+    /* Header */
     header {
-      background: rgba(26, 42, 108, 0.95);
-      backdrop-filter: blur(10px);
+      background: linear-gradient(to right, var(--primary), var(--secondary));
       color: white;
       padding: 15px 0;
-      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+      box-shadow: var(--shadow);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -148,13 +165,19 @@
     }
 
     .site-title {
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: 700;
+      display: flex;
+      align-items: center;
     }
 
     .site-title span {
       color: var(--accent);
-      font-weight: 800;
+    }
+
+    .site-title i {
+      margin-right: 10px;
+      font-size: 1.8rem;
     }
 
     nav ul {
@@ -164,6 +187,7 @@
 
     nav ul li {
       margin-left: 20px;
+      position: relative;
     }
 
     nav ul li a {
@@ -173,17 +197,31 @@
       transition: var(--transition);
       padding: 8px 12px;
       border-radius: 6px;
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
 
-    nav ul li a:hover,
-    nav ul li a.active {
+    nav ul li a:hover, nav ul li a.active {
       color: var(--accent);
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255,255,255,0.1);
     }
 
-    /* Mobile menu button */
-    .menu-toggle {
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 50%;
+      background-color: var(--accent);
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover::after {
+      width: 70%;
+      left: 15%;
+    }
+
+    .mobile-menu-btn {
       display: none;
       background: none;
       border: none;
@@ -192,29 +230,13 @@
       cursor: pointer;
     }
 
-    /* Page Header with improved gradient */
+    /* Page Header */
     .page-header {
-      background: linear-gradient(135deg, rgba(26,42,108,0.85), rgba(43,88,118,0.85)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      background: linear-gradient(to right, rgba(26, 42, 108, 0.8), rgba(43, 88, 118, 0.8)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
       padding: 100px 0;
       text-align: center;
       color: white;
       position: relative;
-    }
-
-    .page-header::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100px;
-      background: linear-gradient(to top, var(--light), transparent);
-      z-index: 1;
-    }
-
-    .page-header .container {
-      position: relative;
-      z-index: 2;
     }
 
     .page-header h1 {
@@ -264,9 +286,9 @@
 
     .tip-card {
       background: white;
-      border-radius: var(--border-radius);
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: var(--box-shadow);
+      box-shadow: var(--shadow);
       transition: var(--transition);
       position: relative;
     }
@@ -277,7 +299,7 @@
     }
 
     .tip-icon {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      background: linear-gradient(to right, var(--primary), var(--secondary));
       color: white;
       font-size: 1.8rem;
       padding: 25px 0;
@@ -318,15 +340,15 @@
     }
 
     .tip-content p {
-      color: var(--gray);
+      color: var(--text-light);
       line-height: 1.6;
     }
 
-    /* Tips Table with improved design */
+    /* Tips Table */
     .table-container {
       overflow-x: auto;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
       margin: 40px 0;
     }
 
@@ -345,11 +367,9 @@
     }
 
     .tips-table th {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      background: linear-gradient(to right, var(--primary), var(--secondary));
       color: white;
       font-weight: 600;
-      position: sticky;
-      top: 0;
     }
 
     .tips-table tr:last-child td {
@@ -378,167 +398,202 @@
     }
 
     .category-safety {
-      background-color: var(--danger);
+      background-color: #e74c3c;
     }
 
     .category-planning {
-      background-color: var(--success);
+      background-color: #2ecc71;
     }
 
     .category-money {
-      background-color: var(--warning);
+      background-color: #f39c12;
     }
 
-    /* Back to top button */
+    /* Footer */
+    footer {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      padding: 60px 0 30px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-column h3 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+
+    .footer-column p {
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      transition: var(--transition);
+      opacity: 0.9;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      padding-left: 5px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .social-icons a:hover {
+      background: var(--accent);
+      transform: translateY(-5px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .student-info {
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    /* Back to Top Button */
     .back-to-top {
       position: fixed;
       bottom: 30px;
       right: 30px;
       width: 50px;
       height: 50px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      background: var(--accent);
       color: white;
       border-radius: 50%;
       display: flex;
-      justify-content: center;
       align-items: center;
-      cursor: pointer;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
       opacity: 0;
       visibility: hidden;
-      transition: var(--transition);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
       z-index: 99;
     }
 
-    .back-to-top.show {
+    .back-to-top.visible {
       opacity: 1;
       visibility: visible;
     }
 
     .back-to-top:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
-
-    /* Footer */
-    footer {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      padding: 50px 0 30px;
-      text-align: center;
-    }
-
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .social-icons {
-      margin-bottom: 25px;
-    }
-
-    .social-icons a {
-      color: white;
-      font-size: 1.3rem;
-      margin: 0 12px;
-      transition: var(--transition);
-      display: inline-block;
-    }
-
-    .social-icons a:hover {
-      color: var(--accent);
+      background: var(--primary);
       transform: translateY(-5px);
     }
 
-    .student-info {
-      font-size: 0.9rem;
-      opacity: 0.85;
-      max-width: 800px;
-      line-height: 1.6;
-    }
-
-    /* Responsive Design Improvements */
+    /* Responsive */
     @media (max-width: 992px) {
-      .page-header h1 {
-        font-size: 2.5rem;
+      .header-content {
+        flex-direction: column;
+        text-align: center;
       }
       
-      .tips-grid {
-        gap: 20px;
+      nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      nav ul li {
+        margin: 5px 10px;
       }
     }
 
     @media (max-width: 768px) {
-      .header-content {
-        flex-direction: row;
-        justify-content: space-between;
+      .site-title {
+        font-size: 1.8rem;
       }
       
-      .menu-toggle {
+      .page-header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .mobile-menu-btn {
         display: block;
+        position: absolute;
+        right: 20px;
+        top: 20px;
       }
       
       nav {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 80%;
-        height: calc(100vh - 70px);
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        transition: var(--transition);
-        z-index: 99;
-        box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+        display: none;
+        width: 100%;
+        margin-top: 15px;
       }
       
-      nav.active {
-        left: 0;
+      nav.show {
+        display: block;
       }
       
       nav ul {
         flex-direction: column;
-        padding: 30px;
       }
       
       nav ul li {
-        margin: 15px 0;
-      }
-      
-      .page-header {
-        padding: 80px 0;
-      }
-      
-      .page-header h1 {
-        font-size: 2.2rem;
-      }
-      
-      .page-header p {
-        font-size: 1.1rem;
-      }
-      
-      .tips-section {
-        padding: 60px 0;
+        margin: 8px 0;
       }
     }
 
     @media (max-width: 576px) {
-      .site-title {
-        font-size: 1.5rem;
+      #splash-screen h1 {
+        font-size: 2.5rem;
       }
       
       .page-header h1 {
         font-size: 2rem;
       }
       
-      .tip-card {
-        margin-bottom: 15px;
-      }
-      
-      .back-to-top {
-        bottom: 20px;
-        right: 20px;
-        width: 45px;
-        height: 45px;
+      .page-header p {
+        font-size: 1rem;
       }
     }
   </style>
@@ -550,6 +605,7 @@
       <i class="fas fa-globe-americas"></i>
     </div>
     <h1>Wanderlust Adventures</h1>
+    <p class="splash-subtitle">Discover the world's most beautiful destinations and create unforgettable memories</p>
     <div class="loader">
       <div class="loader-bar"></div>
     </div>
@@ -560,11 +616,11 @@
     <header>
       <div class="container">
         <div class="header-content">
-          <div class="site-title">Wanderlust <span>Adventures</span></div>
-          <button class="menu-toggle" id="menuToggle">
+          <div class="site-title"><i class="fas fa-globe-americas"></i>Wanderlust <span>Adventures</span></div>
+          <button class="mobile-menu-btn" id="mobile-menu-btn">
             <i class="fas fa-bars"></i>
           </button>
-          <nav id="mainNav">
+          <nav id="main-nav">
             <ul>
               <li><a href="index.html">Home</a></li>
               <li><a href="countries.html">Countries</a></li>
@@ -752,12 +808,45 @@
     <footer>
       <div class="container">
         <div class="footer-content">
-          <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-pinterest"></i></a>
+          <div class="footer-column">
+            <h3>About Us</h3>
+            <p>Wanderlust Adventures is dedicated to helping travelers discover the world's most beautiful destinations and create unforgettable memories.</p>
+            <div class="social-icons">
+              <a href="fb.com"><i class="fab fa-facebook-f"></i></a>
+              <a href="x.com"><i class="fab fa-twitter"></i></a>
+              <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+              <a href="pinterest.com"><i class="fab fa-pinterest"></i></a>
+            </div>
           </div>
+          <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="countries.html">Destinations</a></li>
+              <li><a href="blog.html">Travel Blog</a></li>
+              <li><a href="travel.html">Travel Tips</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contacts.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Popular Destinations</h3>
+            <ul class="footer-links">
+              <li><a href="italy.html">Italy</a></li>
+              <li><a href="japan.html">Japan</a></li>
+              <li><a href="australia.html">Australia</a></li>
+              <li><a href="brazil.html">Brazil</a></li>
+              <li><a href="egypt.html">Egypt</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Contact Info</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Lot 6 block 89, Susan street, Quezon City</p>
+            <p><i class="fas fa-phone"></i> +1 234 567 8900</p>
+            <p><i class="fas fa-envelope"></i> info@wanderlustadventures.com</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
           <div class="student-info">
             <p>Student Name: Arvin Esmena | Course: Web System and Technology | Section: IT3G | Year: 2025-2026</p>
           </div>
@@ -765,10 +854,9 @@
       </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <div class="back-to-top" id="backToTop">
+    <a href="#" class="back-to-top" id="back-to-top">
       <i class="fas fa-arrow-up"></i>
-    </div>
+    </a>
   </div>
 
   <script>
@@ -782,51 +870,23 @@
           setTimeout(function() {
             document.getElementById('main-website').style.opacity = '1';
           }, 50);
-        }, 600);
-      }, 2000); // Reduced from 3s to 2s for better UX
+        }, 800);
+      }, 2500); 
     });
 
     // Mobile menu toggle
-    document.getElementById('menuToggle').addEventListener('click', function() {
-      document.getElementById('mainNav').classList.toggle('active');
-      
-      // Change icon based on menu state
-      const icon = this.querySelector('i');
-      if (document.getElementById('mainNav').classList.contains('active')) {
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-times');
-      } else {
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
-      }
+    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+      document.getElementById('main-nav').classList.toggle('show');
     });
 
     // Back to top button
-    const backToTopButton = document.getElementById('backToTop');
-    
     window.addEventListener('scroll', function() {
+      var backToTop = document.getElementById('back-to-top');
       if (window.pageYOffset > 300) {
-        backToTopButton.classList.add('show');
+        backToTop.classList.add('visible');
       } else {
-        backToTopButton.classList.remove('show');
+        backToTop.classList.remove('visible');
       }
-    });
-    
-    backToTopButton.addEventListener('click', function() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-
-    // Close mobile menu when clicking on a link
-    const navLinks = document.querySelectorAll('nav ul li a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        document.getElementById('mainNav').classList.remove('active');
-        document.querySelector('#menuToggle i').classList.remove('fa-times');
-        document.querySelector('#menuToggle i').classList.add('fa-bars');
-      });
     });
   </script>
 </body>
