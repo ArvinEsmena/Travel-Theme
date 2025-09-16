@@ -5,25 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wanderlust Adventures | Japan</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    :root {
+      --primary-red: #ac2b37;
+      --primary-black: #2d2926;
+      --primary-gold: #d9a62e;
+      --primary-white: #f8f4f0;
+      --secondary-beige: #e8dcca;
+      --secondary-dark-red: #8a1f28;
+      --text-dark: #333;
+      --text-light: #777;
     }
 
     body {
-      background-color: #f9f9f9;
-      color: #333;
+      background-color: var(--primary-white);
+      color: var(--text-dark);
       line-height: 1.6;
+      font-family: 'Noto Sans JP', sans-serif;
+      position: relative;
+      overflow-x: hidden;
     }
 
+    /* Japanese Pattern Background */
+    .japan-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.03;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50C50 30.5 65.5 15 85 15C95 15 100 20 100 30C100 50 85 65 65 65C55 65 50 60 50 50ZM50 50C50 69.5 34.5 85 15 85C5 85 0 80 0 70C0 50 15 35 35 35C45 35 50 40 50 50Z' fill='%23ac2b37'/%3E%3C/svg%3E");
+      background-size: 200px;
+      z-index: -1;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--primary-black);
+    }
+
+    /* Header Styles */
     header {
-      background: linear-gradient(to right, #1a2a6c, #2b5876);
-      color: white;
-      padding: 20px 0;
+      background: linear-gradient(to right, var(--primary-black), var(--secondary-dark-red));
+      color: var(--primary-white);
+      padding: 15px 0;
       box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .container {
@@ -39,12 +79,21 @@
     }
 
     .site-title {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 700;
+      display: flex;
+      align-items: center;
     }
 
     .site-title span {
-      color: #fdbb2d;
+      color: var(--primary-gold);
+      margin-left: 5px;
+    }
+
+    .site-title::before {
+      content: "🗾";
+      margin-right: 10px;
+      font-size: 1.8rem;
     }
 
     nav ul {
@@ -54,60 +103,189 @@
 
     nav ul li {
       margin-left: 25px;
+      position: relative;
     }
 
     nav ul li a {
-      color: white;
+      color: var(--primary-white);
       text-decoration: none;
       font-weight: 500;
       transition: all 0.3s;
       padding: 8px 12px;
       border-radius: 6px;
+      font-size: 0.95rem;
     }
 
     nav ul li a:hover, nav ul li a.active {
-      color: #fdbb2d;
+      color: var(--primary-gold);
       background-color: rgba(255,255,255,0.1);
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--primary-gold);
+      transition: all 0.3s;
+      transform: translateX(-50%);
+    }
+
+    nav ul li a:hover::after {
+      width: 70%;
     }
 
     /* Page Title */
     .page-title {
       text-align: center;
-      padding: 70px 20px;
-      background: linear-gradient(to right, rgba(26, 42, 108, 0.75), rgba(43, 88, 118, 0.75)),
-                  url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-      color: white;
+      padding: 100px 20px;
+      background: linear-gradient(to right, rgba(45, 41, 38, 0.85), rgba(138, 31, 40, 0.85)),
+                  url('https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      color: var(--primary-white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-title::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23f8f4f0' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+      opacity: 0.2;
     }
 
     .page-title h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       margin-bottom: 15px;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      position: relative;
+      display: inline-block;
+    }
+
+    .page-title h1::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--primary-gold);
+      border-radius: 2px;
     }
 
     .page-title p {
       font-size: 1.2rem;
       max-width: 700px;
-      margin: 0 auto;
+      margin: 30px auto 0;
+      opacity: 0.95;
+      font-weight: 300;
+    }
+
+    /* Quick Facts Section */
+    .quick-facts {
+      background: var(--primary-red);
+      color: var(--primary-white);
+      padding: 30px 0;
+    }
+
+    .facts-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .fact-item {
+      text-align: center;
+      padding: 15px;
+      min-width: 200px;
+    }
+
+    .fact-item i {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: var(--primary-gold);
+    }
+
+    .fact-item h3 {
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+      color: var(--primary-white);
+    }
+
+    .fact-item p {
+      font-size: 0.9rem;
       opacity: 0.9;
     }
 
     /* Country Intro */
     .country-intro {
-      padding: 50px 0;
+      padding: 70px 0;
       text-align: center;
+      background: var(--secondary-beige);
+      position: relative;
+    }
+
+    .country-intro::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 15px;
+      background: repeating-linear-gradient(45deg, var(--primary-red), var(--primary-red) 10px, var(--primary-black) 10px, var(--primary-black) 20px);
     }
 
     .country-intro p {
       max-width: 800px;
       margin: 0 auto;
       font-size: 1.1rem;
-      color: #555;
+      color: var(--text-dark);
+      line-height: 1.8;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      display: inline-block;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .section-title h2::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary-red);
+      border-radius: 2px;
+    }
+
+    .section-title p {
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     /* Wonders Section */
     .wonders-section {
-      padding: 40px 0 70px;
+      padding: 70px 0;
+      background: var(--primary-white);
+      position: relative;
+      overflow: hidden;
     }
 
     .wonders-grid {
@@ -121,21 +299,39 @@
       background-color: white;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
       transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
     }
 
     .wonder-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
     }
 
     .wonder-image {
-      height: 220px;
+      height: 240px;
       background-position: center;
       background-size: cover;
       position: relative;
       cursor: pointer;
+      overflow: hidden;
+    }
+
+    .wonder-image::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .wonder-card:hover .wonder-image::after {
+      opacity: 0.6;
     }
 
     .wonder-name {
@@ -143,45 +339,62 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
       padding: 20px 15px 15px;
+      z-index: 2;
     }
 
     .wonder-name h3 {
       color: white;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       margin: 0;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
     }
 
     .wonder-info {
-      padding: 20px;
+      padding: 25px;
     }
 
     .wonder-info p {
       color: #555;
-      margin-bottom: 15px;
-      line-height: 1.6;
+      margin-bottom: 20px;
+      line-height: 1.7;
     }
 
     .btn {
-      display: inline-block;
-      background-color: #fdbb2d;
-      color: #1a2a6c;
-      padding: 10px 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--primary-red);
+      color: var(--primary-white);
+      padding: 12px 28px;
       text-decoration: none;
       border-radius: 30px;
       font-weight: 600;
       font-size: 0.95rem;
       transition: all 0.3s;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 12px rgba(172, 43, 55, 0.25);
       border: none;
       cursor: pointer;
+      gap: 8px;
     }
 
     .btn:hover {
-      background-color: #1a2a6c;
+      background-color: var(--secondary-dark-red);
       color: white;
       transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(172, 43, 55, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary-red);
+      color: var(--primary-red);
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-red);
+      color: white;
     }
 
     /* Hotels Section */
@@ -192,18 +405,24 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .hotel-card {
-      background-color: #f5f7fa;
+      background-color: #f9f3e9;
       border-radius: 8px;
-      padding: 15px;
+      padding: 20px;
       margin-bottom: 15px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+    }
+
+    .hotel-card:hover {
+      transform: translateX(5px);
     }
 
     .hotel-info {
@@ -211,8 +430,9 @@
     }
 
     .hotel-info h4 {
-      color: #1a2a6c;
-      margin-bottom: 5px;
+      color: var(--primary-black);
+      margin-bottom: 8px;
+      font-size: 1.1rem;
     }
 
     .hotel-details {
@@ -224,18 +444,62 @@
 
     .hotel-price {
       font-weight: bold;
-      color: #1a2a6c;
-      font-size: 1.1rem;
+      color: var(--primary-red);
+      font-size: 1.2rem;
     }
 
     .hotel-rating {
-      color: #fdbb2d;
+      color: var(--primary-gold);
     }
 
-    footer {
-      background: linear-gradient(to right, #1a2a6c, #2b5876);
+    /* Cultural Tips Section */
+    .cultural-tips {
+      padding: 70px 0;
+      background: var(--secondary-beige);
+    }
+
+    .tips-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .tip-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .tip-icon {
+      background: var(--primary-red);
       color: white;
-      padding: 40px 0;
+      font-size: 1.8rem;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .tip-content {
+      padding: 25px;
+    }
+
+    .tip-content h3 {
+      margin-bottom: 15px;
+      color: var(--primary-black);
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    .tip-content p {
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+
+    footer {
+      background: linear-gradient(to right, var(--primary-black), var(--secondary-dark-red));
+      color: var(--primary-white);
+      padding: 60px 0 30px;
       text-align: center;
     }
 
@@ -245,53 +509,140 @@
       align-items: center;
     }
 
-    .social-icons {
+    .footer-logo {
+      font-size: 2.5rem;
       margin-bottom: 20px;
+      color: var(--primary-white);
+    }
+
+    .social-icons {
+      margin-bottom: 30px;
     }
 
     .social-icons a {
-      color: white;
-      font-size: 1.5rem;
-      margin: 0 12px;
-      transition: color 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background: rgba(255,255,255,0.1);
+      color: var(--primary-white);
+      font-size: 1.2rem;
+      margin: 0 10px;
+      border-radius: 50%;
+      transition: all 0.3s;
     }
 
     .social-icons a:hover {
-      color: #fdbb2d;
+      background: var(--primary-gold);
+      color: var(--primary-black);
+      transform: translateY(-5px);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+
+    .footer-links a {
+      color: var(--primary-white);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-gold);
     }
 
     .student-info {
       font-size: 0.95rem;
       opacity: 0.85;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 20px;
+      width: 100%;
     }
 
     /* Back Button */
     .back-button {
-      margin: 30px 0;
+      margin: 40px 0;
     }
 
-    /* Cherry Blossom Decoration */
+    /* Cherry Blossom Decoration - UPDATED */
+    .cherry-blossom-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 2;
+    }
+    
     .cherry-blossom {
       position: absolute;
-      font-size: 1.5rem;
-      color: #ffc6d3;
+      font-size: 1.8rem;
+      color: #ffb7c5;
       opacity: 0.7;
       z-index: 1;
-      animation: fall 10s linear infinite;
+      animation: fall 15s linear infinite;
+      pointer-events: none;
     }
 
     @keyframes fall {
       0% {
-        transform: translateY(-10px) rotate(0deg);
+        transform: translateY(-10px) translateX(0) rotate(0deg);
         opacity: 0.7;
       }
       100% {
-        transform: translateY(100vh) rotate(360deg);
+        transform: translateY(600px) translateX(30px) rotate(360deg);
         opacity: 0;
       }
     }
 
+    /* Floating CTA */
+    .floating-cta {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--primary-red);
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 5px 15px rgba(172, 43, 55, 0.4);
+      z-index: 99;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .floating-cta:hover {
+      transform: scale(1.1);
+      background: var(--secondary-dark-red);
+    }
+
     /* Responsive */
+    @media (max-width: 992px) {
+      .page-title h1 {
+        font-size: 2.8rem;
+      }
+      
+      .facts-container {
+        justify-content: center;
+      }
+      
+      .fact-item {
+        flex: 0 0 50%;
+      }
+    }
+
     @media (max-width: 768px) {
       .header-content {
         flex-direction: column;
@@ -325,10 +676,47 @@
       .hotel-price {
         align-self: flex-end;
       }
+      
+      .newsletter-form {
+        flex-direction: column;
+      }
+      
+      .newsletter-form input {
+        border-radius: 30px;
+        margin-bottom: 10px;
+      }
+      
+      .newsletter-form button {
+        border-radius: 30px;
+        padding: 15px;
+      }
+      
+      .fact-item {
+        flex: 0 0 100%;
+      }
+      
+      /* Adjust cherry blossom animation for mobile */
+      @keyframes fall {
+        0% {
+          transform: translateY(-10px) translateX(0) rotate(0deg);
+          opacity: 0.7;
+        }
+        100% {
+          transform: translateY(400px) translateX(30px) rotate(360deg);
+          opacity: 0;
+        }
+      }
     }
   </style>
 </head>
 <body>
+  <div class="japan-pattern"></div>
+  
+  <!-- Floating CTA -->
+  <div class="floating-cta">
+    <i class="fas fa-plane"></i>
+  </div>
+
   <!-- Main Website Content -->
   <div id="main-website">
     <header>
@@ -338,7 +726,7 @@
           <nav>
             <ul>
               <li><a href="index.html">Home</a></li>
-              <li><a href="countries.html">Countries</a></li>
+              <li><a href="countries.html" class="active">Countries</a></li>
               <li><a href="#">Blog</a></li>
               <li><a href="#">Travel Tips</a></li>
               <li><a href="#">About</a></li>
@@ -350,9 +738,37 @@
     </header>
 
     <section class="page-title">
+      <div class="cherry-blossom-container" id="title-blossoms"></div>
       <div class="container">
-        <h1>Beautiful Japan</h1>
-        <p>Discover the perfect blend of ancient traditions and cutting-edge technology in the Land of the Rising Sun.</p>
+        <h1>Discover Japan</h1>
+        <p>Experience the perfect harmony of ancient traditions and cutting-edge innovation in the Land of the Rising Sun.</p>
+      </div>
+    </section>
+
+    <section class="quick-facts">
+      <div class="container">
+        <div class="facts-container">
+          <div class="fact-item">
+            <i class="fas fa-language"></i>
+            <h3>Language</h3>
+            <p>Japanese</p>
+          </div>
+          <div class="fact-item">
+            <i class="fas fa-yen-sign"></i>
+            <h3>Currency</h3>
+            <p>Yen (JPY)</p>
+          </div>
+          <div class="fact-item">
+            <i class="fas fa-users"></i>
+            <h3>Population</h3>
+            <p>125.8 million</p>
+          </div>
+          <div class="fact-item">
+            <i class="fas fa-plane"></i>
+            <h3>Best Time to Visit</h3>
+            <p>March-May, September-November</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -362,11 +778,19 @@
       </div>
 
       <section class="country-intro">
-        <p>Japan offers a unique travel experience where ancient temples stand beside neon skyscrapers. From the serene beauty of Mount Fuji to the bustling streets of Tokyo, Japan captivates visitors with its perfect harmony of tradition and innovation, exquisite cuisine, and unparalleled natural beauty.</p>
+        <div class="section-title">
+          <h2>Welcome to Japan</h2>
+          <p>Where ancient traditions meet modern innovation</p>
+        </div>
+        <p>Japan offers a unique travel experience where ancient temples stand beside neon skyscrapers. From the serene beauty of Mount Fuji to the bustling streets of Tokyo, Japan captivates visitors with its perfect harmony of tradition and innovation, exquisite cuisine, and unparalleled natural beauty. Experience the tranquility of Zen gardens, the excitement of high-speed bullet trains, and the warmth of omotenashi (Japanese hospitality).</p>
       </section>
 
       <section class="wonders-section">
-        <h2 style="text-align: center; margin-bottom: 20px; color: #1a2a6c;">Japan's Wonders</h2>
+        <div class="cherry-blossom-container" id="wonders-blossoms"></div>
+        <div class="section-title">
+          <h2>Japan's Wonders</h2>
+          <p>Discover the must-see destinations across Japan</p>
+        </div>
         <div class="wonders-grid">
           <!-- Wonder 1 -->
           <div class="wonder-card">
@@ -376,14 +800,14 @@
               </div>
             </div>
             <div class="wonder-info">
-              <p>Japan's tallest peak and an active volcano, Mount Fuji is one of the country's most iconic symbols. Its nearly perfect symmetrical cone has inspired artists and pilgrims for centuries.</p>
-              <button class="btn" onclick="toggleHotels('fuji-hotels')">Find Nearby Hotels</button>
+              <p>Japan's tallest peak and an active volcano, Mount Fuji is one of the country's most iconic symbols. Its nearly perfect symmetrical cone has inspired artists and pilgrims for centuries. Designated a UNESCO World Heritage site in 2013, it's considered one of Japan's 3 Sacred Mountains.</p>
+              <button class="btn" onclick="toggleHotels('fuji-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
               <div id="fuji-hotels" class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
                     <h4>Fuji View Hotel</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">5 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 5 miles away</span>
                       <span class="hotel-rating">★★★★☆</span>
                     </div>
                   </div>
@@ -393,7 +817,7 @@
                   <div class="hotel-info">
                     <h4>Lakeside Resort</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">7 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 7 miles away</span>
                       <span class="hotel-rating">★★★★★</span>
                     </div>
                   </div>
@@ -403,7 +827,7 @@
                   <div class="hotel-info">
                     <h4>Mountain Retreat</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">10 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 10 miles away</span>
                       <span class="hotel-rating">★★★☆☆</span>
                     </div>
                   </div>
@@ -421,14 +845,14 @@
               </div>
             </div>
             <div class="wonder-info">
-              <p>Famous for its thousands of vibrant red torii gates that wind through the forests of Kyoto's sacred Mount Inari. This Shinto shrine is dedicated to the god of rice and prosperity.</p>
-              <button class="btn" onclick="toggleHotels('fushimi-hotels')">Find Nearby Hotels</button>
+              <p>Famous for its thousands of vibrant red torii gates that wind through the forests of Kyoto's sacred Mount Inari. This Shinto shrine is dedicated to the god of rice and prosperity. The hike to the summit takes about 2-3 hours and passes through thousands of torii gates donated by businesses and individuals.</p>
+              <button class="btn" onclick="toggleHotels('fushimi-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
               <div id="fushimi-hotels" class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
                     <h4>Kyoto Traditional Inn</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">0.5 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.5 miles away</span>
                       <span class="hotel-rating">★★★★☆</span>
                     </div>
                   </div>
@@ -438,7 +862,7 @@
                   <div class="hotel-info">
                     <h4>Inari View Ryokan</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">0.3 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.3 miles away</span>
                       <span class="hotel-rating">★★★★★</span>
                     </div>
                   </div>
@@ -448,7 +872,7 @@
                   <div class="hotel-info">
                     <h4>Kyoto Central Hotel</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">1.2 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 1.2 miles away</span>
                       <span class="hotel-rating">★★★☆☆</span>
                     </div>
                   </div>
@@ -466,14 +890,14 @@
               </div>
             </div>
             <div class="wonder-info">
-              <p>Also known as the Atomic Bomb Dome, this haunting structure is a UNESCO World Heritage Site that stands as a powerful symbol of peace and a reminder of the devastation of nuclear weapons.</p>
-              <button class="btn" onclick="toggleHotels('hiroshima-hotels')">Find Nearby Hotels</button>
+              <p>Also known as the Atomic Bomb Dome, this haunting structure is a UNESCO World Heritage Site that stands as a powerful symbol of peace and a reminder of the devastation of nuclear weapons. It was one of the few buildings to partially survive the atomic bomb explosion on August 6, 1945.</p>
+              <button class="btn" onclick="toggleHotels('hiroshima-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
               <div id="hiroshima-hotels" class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
                     <h4>Hiroshima Peace Hotel</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">0.2 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.2 miles away</span>
                       <span class="hotel-rating">★★★★☆</span>
                     </div>
                   </div>
@@ -483,7 +907,7 @@
                   <div class="hotel-info">
                     <h4>Memorial View Inn</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">0.4 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.4 miles away</span>
                       <span class="hotel-rating">★★★☆☆</span>
                     </div>
                   </div>
@@ -493,7 +917,7 @@
                   <div class="hotel-info">
                     <h4>Riverfront Suites</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">0.6 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.6 miles away</span>
                       <span class="hotel-rating">★★★★★</span>
                     </div>
                   </div>
@@ -504,17 +928,58 @@
           </div>
         </div>
       </section>
+
+      <section class="cultural-tips">
+        <div class="section-title">
+          <h2>Cultural Tips</h2>
+          <p>Understanding Japanese customs and etiquette</p>
+        </div>
+        <div class="tips-container">
+          <div class="tip-card">
+            <div class="tip-icon">
+              <i class="fas fa-hands"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Bowing</h3>
+              <p>Bowing is an important custom in Japan used to show respect, gratitude, or apology. The depth and duration of the bow depends on the situation and relationship between people.</p>
+            </div>
+          </div>
+          <div class="tip-card">
+            <div class="tip-icon">
+              <i class="fas fa-shoe-prints"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Removing Shoes</h3>
+              <p>It's customary to remove your shoes when entering homes, temples, traditional inns (ryokan), and even some restaurants. Look for slippers provided by the establishment.</p>
+            </div>
+          </div>
+          <div class="tip-card">
+            <div class="tip-icon">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Dining Etiquette</h3>
+              <p>When eating with chopsticks, never stick them upright in rice (associated with funerals). It's polite to say "itadakimasu" before eating and "gochisosama deshita" after finishing.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
 
     <footer>
       <div class="container">
         <div class="footer-content">
+          <div class="footer-logo">
+            <i class="fas fa-mountain"></i>
+          </div>
           <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-pinterest"></i></a>
+            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
           </div>
+
           <div class="student-info">
             <p>Student Name: Arvin Esmena | Course: Web System and Technology | Section: IT3G | Year: 2025-2026</p>
           </div>
@@ -543,24 +1008,38 @@
       }
     }
 
-    // Create cherry blossom effect
-    function createCherryBlossom() {
+    // Create cherry blossom effect for specific containers
+    function createCherryBlossom(containerId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      
       const blossom = document.createElement('div');
       blossom.classList.add('cherry-blossom');
       blossom.innerHTML = '🌸';
-      blossom.style.left = Math.random() * 100 + 'vw';
-      blossom.style.animationDuration = (Math.random() * 10 + 5) + 's';
-      blossom.style.fontSize = (Math.random() * 15 + 10) + 'px';
-      document.body.appendChild(blossom);
+      blossom.style.left = Math.random() * 100 + '%';
+      blossom.style.animationDuration = (Math.random() * 10 + 8) + 's';
+      blossom.style.fontSize = (Math.random() * 20 + 15) + 'px';
+      blossom.style.opacity = Math.random() * 0.5 + 0.3;
+      container.appendChild(blossom);
       
       // Remove the element after animation completes
       setTimeout(() => {
-        blossom.remove();
+        if (blossom.parentNode) {
+          blossom.parentNode.removeChild(blossom);
+        }
       }, 15000);
     }
     
-    // Generate cherry blossoms periodically
-    setInterval(createCherryBlossom, 300);
+    // Generate cherry blossoms periodically for title section
+    setInterval(() => createCherryBlossom('title-blossoms'), 500);
+    
+    // Generate cherry blossoms periodically for wonders section
+    setInterval(() => createCherryBlossom('wonders-blossoms'), 600);
+
+    // Floating CTA action
+    document.querySelector('.floating-cta').addEventListener('click', function() {
+      document.querySelector('.newsletter').scrollIntoView({ behavior: 'smooth' });
+    });
   </script>
 </body>
 </html>
