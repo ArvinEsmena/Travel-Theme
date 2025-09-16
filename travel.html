@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wanderlust Adventures | Travel Tips</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Splash Screen */
+    #splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.8s ease-out;
+    }
+
+    #splash-screen::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: -1;
+    }
+
+    .logo {
+      width: 150px;
+      height: 150px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+      animation: pulse 2s infinite;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .logo i {
+      font-size: 70px;
+      color: #1a2a6c;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    #splash-screen h1 {
+      color: white;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+      animation: fadeIn 2s ease-in;
+    }
+
+    .loader {
+      width: 100px;
+      height: 6px;
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 3px;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+
+    .loader-bar {
+      height: 100%;
+      width: 0%;
+      background-color: #fdbb2d;
+      animation: loading 3s ease-in-out;
+      border-radius: 3px;
+    }
+
+    @keyframes loading {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Main Website */
+    #main-website {
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease-in;
+    }
+
+    header {
+      background: linear-gradient(to right, #1a2a6c, #2b5876);
+      color: white;
+      padding: 20px 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    .site-title span {
+      color: #fdbb2d;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin-left: 25px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #fdbb2d;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(to right, rgba(26,42,108,0.8), rgba(43,88,118,0.8)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      padding: 80px 0;
+      text-align: center;
+      color: white;
+    }
+
+    .page-header h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    }
+
+    .page-header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Tips Section */
+    .tips-section {
+      padding: 60px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #1a2a6c;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, #1a2a6c, #fdbb2d);
+      border-radius: 2px;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .tip-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .tip-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .tip-icon {
+      background: linear-gradient(to right, #1a2a6c, #2b5876);
+      color: white;
+      font-size: 2rem;
+      padding: 25px 0;
+      text-align: center;
+    }
+
+    .tip-content {
+      padding: 25px;
+    }
+
+    .tip-content h3 {
+      color: #1a2a6c;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+
+    .tip-content p {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Tips Table */
+    .tips-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 40px 0;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .tips-table th,
+    .tips-table td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    .tips-table th {
+      background: linear-gradient(to right, #1a2a6c, #2b5876);
+      color: white;
+      font-weight: 600;
+    }
+
+    .tips-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .tips-table tr:hover {
+      background-color: #f5f9ff;
+    }
+
+    .category {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: white;
+    }
+
+    .category-packing {
+      background-color: #1a2a6c;
+    }
+
+    .category-safety {
+      background-color: #e74c3c;
+    }
+
+    .category-planning {
+      background-color: #2ecc71;
+    }
+
+    .category-money {
+      background-color: #f39c12;
+    }
+
+    footer {
+      background: linear-gradient(to right, #1a2a6c, #2b5876);
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .social-icons {
+      margin-bottom: 20px;
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 1.5rem;
+      margin: 0 12px;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #fdbb2d;
+    }
+
+    .student-info {
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      nav ul li {
+        margin: 5px 10px;
+      }
+      
+      .page-header h1 {
+        font-size: 2.2rem;
+      }
+      
+      .tips-table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div id="splash-screen">
+    <div class="logo">
+      <i class="fas fa-globe-americas"></i>
+    </div>
+    <h1>Wanderlust Adventures</h1>
+    <div class="loader">
+      <div class="loader-bar"></div>
+    </div>
+  </div>
+
+  <!-- Main Website Content -->
+  <div id="main-website">
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="site-title">Wanderlust <span>Adventures</span></div>
+          <nav>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="countries.html">Countries</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="tips.html" class="active">Travel Tips</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-header">
+      <div class="container">
+        <h1>Expert Travel Tips</h1>
+        <p>Make the most of your adventures with our curated collection of travel wisdom</p>
+      </div>
+    </div>
+
+    <section class="tips-section">
+      <div class="container">
+        <h2 class="section-title">Essential Travel Tips</h2>
+        
+        <div class="tips-grid">
+          <!-- Tip 1 -->
+          <div class="tip-card">
+            <div class="tip-icon">
+              <i class="fas fa-suitcase-rolling"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Pack Light & Smart</h3>
+              <p>Choose versatile clothing that can be layered and mixed. Roll clothes instead of folding to save space. Always leave room for souvenirs.</p>
+            </div>
+          </div>
+          
+          <!-- Tip 2 -->
+          <div class="tip-card">
+            <div class="tip-icon">
+              <i class="fas fa-passport"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Document Safety</h3>
+              <p>Make digital copies of your passport, ID, and important documents. Store them in cloud storage and email a copy to yourself.</p>
+            </div>
+          </div>
+          
+          <!-- Tip 3 -->
+          <div class="tip-card">
+            <div class="tip-icon">
+              <i class="fas fa-money-bill-wave"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Money Management</h3>
+              <p>Carry multiple forms of payment (cash, cards). Notify your bank of travel plans to avoid card freezes. Keep emergency cash separate.</p>
+            </div>
+          </div>
+          
+          <!-- Tip 4 -->
+          <div class="tip-card">
+            <div class="tip-icon">
+              <i class="fas fa-first-aid"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Travel Health Kit</h3>
+              <p>Pack essential medications, band-aids, pain relievers, and any prescription drugs. Include hand sanitizer and wet wipes.</p>
+            </div>
+          </div>
+          
+          <!-- Tip 5 -->
+          <div class="tip-card">
+            <div class="tip-icon">
+              <i class="fas fa-map-marked-alt"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Offline Maps</h3>
+              <p>Download offline maps and translation apps before you go. Save important addresses in both local language and English.</p>
+            </div>
+          </div>
+          
+          <!-- Tip 6 -->
+          <div class="tip-card">
+            <div class="tip-icon">
+              <i class="fas fa-lock"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Secure Your Belongings</h3>
+              <p>Use luggage locks, especially in hostels or shared accommodations. Consider anti-theft bags for crowded areas.</p>
+            </div>
+          </div>
+          
+          <!-- Tip 7 -->
+          <div class="tip-card">
+            <div class="tip-icon">
+              <i class="fas fa-cloud-sun"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Check Weather & Seasons</h3>
+              <p>Research the climate of your destination during your travel dates. Pack appropriate clothing and gear for expected conditions.</p>
+            </div>
+          </div>
+          
+          <!-- Tip 8 -->
+          <div class="tip-card">
+            <div class="tip-icon">
+              <i class="fas fa-wifi"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Stay Connected</h3>
+              <p>Research local SIM cards or international plans. Identify free WiFi spots but use VPN for security on public networks.</p>
+            </div>
+          </div>
+          
+          <!-- Tip 9 -->
+          <div class="tip-card">
+            <div class="tip-icon">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Eat Like a Local</h3>
+              <p>Avoid tourist trap restaurants. Look for places filled with locals. Try street food but ensure it's prepared hygienically.</p>
+            </div>
+          </div>
+          
+          <!-- Tip 10 -->
+          <div class="tip-card">
+            <div class="tip-icon">
+              <i class="fas fa-smile"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Learn Basic Phrases</h3>
+              <p>Learn simple greetings, please, thank you, and numbers in the local language. Locals appreciate the effort.</p>
+            </div>
+          </div>
+        </div>
+        
+        <h2 class="section-title">Travel Tips Overview</h2>
+        
+        <table class="tips-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Tip</th>
+              <th>Importance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="category category-packing">Packing</span></td>
+              <td>Use packing cubes to organize your luggage</td>
+              <td>High</td>
+            </tr>
+            <tr>
+              <td><span class="category category-safety">Safety</span></td>
+              <td>Share your itinerary with family/friends back home</td>
+              <td>High</td>
+            </tr>
+            <tr>
+              <td><span class="category category-money">Money</span></td>
+              <td>Have local currency upon arrival for immediate expenses</td>
+              <td>Medium</td>
+            </tr>
+            <tr>
+              <td><span class="category category-planning">Planning</span></td>
+              <td>Check visa requirements well in advance</td>
+              <td>High</td>
+            </tr>
+            <tr>
+              <td><span class="category category-packing">Packing</span></td>
+              <td>Pack a reusable water bottle to stay hydrated</td>
+              <td>Medium</td>
+            </tr>
+            <tr>
+              <td><span class="category category-safety">Safety</span></td>
+              <td>Research local emergency numbers</td>
+              <td>High</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+          </div>
+          <div class="student-info">
+            <p>Student Name: Arvin Esmena | Course: Web System and Technology | Section: IT3G | Year: 2025-2026</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Splash screen functionality
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('splash-screen').style.opacity = '0';
+        setTimeout(function() {
+          document.getElementById('splash-screen').style.display = 'none';
+          document.getElementById('main-website').style.display = 'block';
+          setTimeout(function() {
+            document.getElementById('main-website').style.opacity = '1';
+          }, 50);
+        }, 800);
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
