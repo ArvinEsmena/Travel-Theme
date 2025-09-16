@@ -5,25 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wanderlust Adventures | Egypt</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    :root {
+      --primary-gold: #d4af37;
+      --primary-blue: #1e3a8a;
+      --primary-terracotta: #cc5533;
+      --primary-white: #f8f4f0;
+      --secondary-beige: #e8dcca;
+      --secondary-dark-blue: #0f2a5f;
+      --text-dark: #333;
+      --text-light: #777;
     }
 
     body {
-      background-color: #f9f9f9;
-      color: #333;
+      background-color: var(--primary-white);
+      color: var(--text-dark);
       line-height: 1.6;
+      font-family: 'Open Sans', sans-serif;
+      position: relative;
+      overflow-x: hidden;
     }
 
+    /* Italian Pattern Background */
+    .italian-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.03;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23cc5533' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+      background-size: 200px;
+      z-index: -1;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Lora', serif;
+      font-weight: 700;
+      color: var(--primary-blue);
+    }
+
+    /* Header Styles */
     header {
-      background: linear-gradient(to right, #1a2a6c, #2b5876);
-      color: white;
-      padding: 20px 0;
+      background: linear-gradient(to right, var(--primary-blue), var(--secondary-dark-blue));
+      color: var(--primary-white);
+      padding: 15px 0;
       box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .container {
@@ -39,12 +79,21 @@
     }
 
     .site-title {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 700;
+      display: flex;
+      align-items: center;
     }
 
     .site-title span {
-      color: #fdbb2d;
+      color: var(--primary-gold);
+      margin-left: 5px;
+    }
+
+    .site-title::before {
+      content: "🏛️";
+      margin-right: 10px;
+      font-size: 1.8rem;
     }
 
     nav ul {
@@ -54,60 +103,189 @@
 
     nav ul li {
       margin-left: 25px;
+      position: relative;
     }
 
     nav ul li a {
-      color: white;
+      color: var(--primary-white);
       text-decoration: none;
       font-weight: 500;
       transition: all 0.3s;
       padding: 8px 12px;
       border-radius: 6px;
+      font-size: 0.95rem;
     }
 
     nav ul li a:hover, nav ul li a.active {
-      color: #fdbb2d;
+      color: var(--primary-gold);
       background-color: rgba(255,255,255,0.1);
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--primary-gold);
+      transition: all 0.3s;
+      transform: translateX(-50%);
+    }
+
+    nav ul li a:hover::after {
+      width: 70%;
     }
 
     /* Page Title */
     .page-title {
       text-align: center;
-      padding: 70px 20px;
-      background: linear-gradient(to right, rgba(26, 42, 108, 0.75), rgba(43, 88, 118, 0.75)),
+      padding: 100px 20px;
+      background: linear-gradient(to right, rgba(30, 58, 138, 0.85), rgba(204, 85, 51, 0.85)),
                   url('https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-      color: white;
+      color: var(--primary-white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-title::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50C50 30.5 65.5 15 85 15C95 15 100 20 100 30C100 50 85 65 65 65C55 65 50 60 50 50ZM50 50C50 69.5 34.5 85 15 85C5 85 0 80 0 70C0 50 15 35 35 35C45 35 50 40 50 50Z' fill='%23d4af37' fill-opacity='0.1'/%3E%3C/svg%3E");
+      opacity: 0.2;
     }
 
     .page-title h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       margin-bottom: 15px;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      position: relative;
+      display: inline-block;
+    }
+
+    .page-title h1::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--primary-gold);
+      border-radius: 2px;
     }
 
     .page-title p {
       font-size: 1.2rem;
       max-width: 700px;
-      margin: 0 auto;
+      margin: 30px auto 0;
+      opacity: 0.95;
+      font-weight: 300;
+    }
+
+    /* Quick Facts Section */
+    .quick-facts {
+      background: var(--primary-terracotta);
+      color: var(--primary-white);
+      padding: 30px 0;
+    }
+
+    .facts-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .fact-item {
+      text-align: center;
+      padding: 15px;
+      min-width: 200px;
+    }
+
+    .fact-item i {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: var(--primary-gold);
+    }
+
+    .fact-item h3 {
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+      color: var(--primary-white);
+    }
+
+    .fact-item p {
+      font-size: 0.9rem;
       opacity: 0.9;
     }
 
     /* Country Intro */
     .country-intro {
-      padding: 50px 0;
+      padding: 70px 0;
       text-align: center;
+      background: var(--secondary-beige);
+      position: relative;
+    }
+
+    .country-intro::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 15px;
+      background: repeating-linear-gradient(45deg, var(--primary-terracotta), var(--primary-terracotta) 10px, var(--primary-blue) 10px, var(--primary-blue) 20px);
     }
 
     .country-intro p {
       max-width: 800px;
       margin: 0 auto;
       font-size: 1.1rem;
-      color: #555;
+      color: var(--text-dark);
+      line-height: 1.8;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      display: inline-block;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .section-title h2::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary-terracotta);
+      border-radius: 2px;
+    }
+
+    .section-title p {
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     /* Wonders Section */
     .wonders-section {
-      padding: 40px 0 70px;
+      padding: 70px 0;
+      background: var(--primary-white);
+      position: relative;
+      overflow: hidden;
     }
 
     .wonders-grid {
@@ -121,21 +299,39 @@
       background-color: white;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
       transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
     }
 
     .wonder-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
     }
 
     .wonder-image {
-      height: 220px;
+      height: 240px;
       background-position: center;
       background-size: cover;
       position: relative;
       cursor: pointer;
+      overflow: hidden;
+    }
+
+    .wonder-image::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .wonder-card:hover .wonder-image::after {
+      opacity: 0.6;
     }
 
     .wonder-name {
@@ -143,45 +339,62 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
       padding: 20px 15px 15px;
+      z-index: 2;
     }
 
     .wonder-name h3 {
       color: white;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       margin: 0;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
     }
 
     .wonder-info {
-      padding: 20px;
+      padding: 25px;
     }
 
     .wonder-info p {
       color: #555;
-      margin-bottom: 15px;
-      line-height: 1.6;
+      margin-bottom: 20px;
+      line-height: 1.7;
     }
 
     .btn {
-      display: inline-block;
-      background-color: #fdbb2d;
-      color: #1a2a6c;
-      padding: 10px 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--primary-terracotta);
+      color: var(--primary-white);
+      padding: 12px 28px;
       text-decoration: none;
       border-radius: 30px;
       font-weight: 600;
       font-size: 0.95rem;
       transition: all 0.3s;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 12px rgba(204, 85, 51, 0.25);
       border: none;
       cursor: pointer;
+      gap: 8px;
     }
 
     .btn:hover {
-      background-color: #1a2a6c;
+      background-color: var(--primary-blue);
       color: white;
       transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(30, 58, 138, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary-terracotta);
+      color: var(--primary-terracotta);
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-terracotta);
+      color: white;
     }
 
     /* Hotels Section */
@@ -192,18 +405,24 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .hotel-card {
-      background-color: #f5f7fa;
+      background-color: #f9f3e9;
       border-radius: 8px;
-      padding: 15px;
+      padding: 20px;
       margin-bottom: 15px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+    }
+
+    .hotel-card:hover {
+      transform: translateX(5px);
     }
 
     .hotel-info {
@@ -211,8 +430,9 @@
     }
 
     .hotel-info h4 {
-      color: #1a2a6c;
-      margin-bottom: 5px;
+      color: var(--primary-blue);
+      margin-bottom: 8px;
+      font-size: 1.1rem;
     }
 
     .hotel-details {
@@ -224,18 +444,62 @@
 
     .hotel-price {
       font-weight: bold;
-      color: #1a2a6c;
-      font-size: 1.1rem;
+      color: var(--primary-terracotta);
+      font-size: 1.2rem;
     }
 
     .hotel-rating {
-      color: #fdbb2d;
+      color: var(--primary-gold);
     }
 
-    footer {
-      background: linear-gradient(to right, #1a2a6c, #2b5876);
+    /* Cultural Tips Section */
+    .cultural-tips {
+      padding: 70px 0;
+      background: var(--secondary-beige);
+    }
+
+    .tips-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .tip-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .tip-icon {
+      background: var(--primary-terracotta);
       color: white;
-      padding: 40px 0;
+      font-size: 1.8rem;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .tip-content {
+      padding: 25px;
+    }
+
+    .tip-content h3 {
+      margin-bottom: 15px;
+      color: var(--primary-blue);
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .tip-content p {
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+
+    footer {
+      background: linear-gradient(to right, var(--primary-blue), var(--secondary-dark-blue));
+      color: var(--primary-white);
+      padding: 60px 0 30px;
       text-align: center;
     }
 
@@ -245,40 +509,140 @@
       align-items: center;
     }
 
-    .social-icons {
+    .footer-logo {
+      font-size: 2.5rem;
       margin-bottom: 20px;
+      color: var(--primary-white);
+    }
+
+    .social-icons {
+      margin-bottom: 30px;
     }
 
     .social-icons a {
-      color: white;
-      font-size: 1.5rem;
-      margin: 0 12px;
-      transition: color 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background: rgba(255,255,255,0.1);
+      color: var(--primary-white);
+      font-size: 1.2rem;
+      margin: 0 10px;
+      border-radius: 50%;
+      transition: all 0.3s;
     }
 
     .social-icons a:hover {
-      color: #fdbb2d;
+      background: var(--primary-gold);
+      color: var(--primary-blue);
+      transform: translateY(-5px);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+
+    .footer-links a {
+      color: var(--primary-white);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-gold);
     }
 
     .student-info {
       font-size: 0.95rem;
       opacity: 0.85;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 20px;
+      width: 100%;
     }
 
     /* Back Button */
     .back-button {
-      margin: 30px 0;
+      margin: 40px 0;
     }
 
-    /* Egyptian Pattern Decoration */
-    .egyptian-pattern {
-      height: 30px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="20" viewBox="0 0 40 20"><path d="M0,0 L40,0 L40,20 L0,20 Z" fill="%23D4AF37"/><path d="M5,5 L35,5 L35,15 L5,15 Z" fill="%231a2a6c"/><circle cx="20" cy="10" r="3" fill="%23fdbb2d"/></svg>') repeat-x;
-      margin: 20px 0;
-      opacity: 0.8;
+    /* Italian Vine Decoration */
+    .vine-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 2;
+    }
+    
+    .vine {
+      position: absolute;
+      font-size: 1.8rem;
+      color: var(--primary-gold);
+      opacity: 0.5;
+      z-index: 1;
+      animation: fall 15s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10px) translateX(0) rotate(0deg);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(600px) translateX(30px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Floating CTA */
+    .floating-cta {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--primary-terracotta);
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 5px 15px rgba(204, 85, 51, 0.4);
+      z-index: 99;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .floating-cta:hover {
+      transform: scale(1.1);
+      background: var(--primary-blue);
     }
 
     /* Responsive */
+    @media (max-width: 992px) {
+      .page-title h1 {
+        font-size: 2.8rem;
+      }
+      
+      .facts-container {
+        justify-content: center;
+      }
+      
+      .fact-item {
+        flex: 0 0 50%;
+      }
+    }
+
     @media (max-width: 768px) {
       .header-content {
         flex-direction: column;
@@ -312,10 +676,47 @@
       .hotel-price {
         align-self: flex-end;
       }
+      
+      .newsletter-form {
+        flex-direction: column;
+      }
+      
+      .newsletter-form input {
+        border-radius: 30px;
+        margin-bottom: 10px;
+      }
+      
+      .newsletter-form button {
+        border-radius: 30px;
+        padding: 15px;
+      }
+      
+      .fact-item {
+        flex: 0 0 100%;
+      }
+      
+      /* Adjust vine animation for mobile */
+      @keyframes fall {
+        0% {
+          transform: translateY(-10px) translateX(0) rotate(0deg);
+          opacity: 0.7;
+        }
+        100% {
+          transform: translateY(400px) translateX(30px) rotate(360deg);
+          opacity: 0;
+        }
+      }
     }
   </style>
 </head>
 <body>
+  <div class="italian-pattern"></div>
+  
+  <!-- Floating CTA -->
+  <div class="floating-cta">
+    <i class="fas fa-plane"></i>
+  </div>
+
   <!-- Main Website Content -->
   <div id="main-website">
     <header>
@@ -325,7 +726,7 @@
           <nav>
             <ul>
               <li><a href="index.html">Home</a></li>
-              <li><a href="countries.html">Countries</a></li>
+              <li><a href="countries.html" class="active">Countries</a></li>
               <li><a href="#">Blog</a></li>
               <li><a href="#">Travel Tips</a></li>
               <li><a href="#">About</a></li>
@@ -337,9 +738,37 @@
     </header>
 
     <section class="page-title">
+      <div class="vine-container" id="title-vines"></div>
       <div class="container">
-        <h1>Ancient Egypt</h1>
-        <p>Walk in the footsteps of pharaohs and explore ancient wonders along the Nile.</p>
+        <h1>Discover Egypt</h1>
+        <p>Journey through millennia of history and marvel at ancient wonders in the land of Pharaohs and pyramids.</p>
+      </div>
+    </section>
+
+    <section class="quick-facts">
+      <div class="container">
+        <div class="facts-container">
+          <div class="fact-item">
+            <i class="fas fa-language"></i>
+            <h3>Language</h3>
+            <p>Arabic</p>
+          </div>
+          <div class="fact-item">
+            <i class="fas fa-pound-sign"></i>
+            <h3>Currency</h3>
+            <p>Egyptian Pound (EGP)</p>
+          </div>
+          <div class="fact-item">
+            <i class="fas fa-users"></i>
+            <h3>Population</h3>
+            <p>109 million</p>
+          </div>
+          <div class="fact-item">
+            <i class="fas fa-plane"></i>
+            <h3>Best Time to Visit</h3>
+            <p>October to April</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -349,13 +778,19 @@
       </div>
 
       <section class="country-intro">
-        <p>Egypt is home to some of the world's most iconic ancient monuments, with a history spanning over 5,000 years. From the magnificent pyramids to the majestic Nile River, Egypt offers a fascinating journey through time, where ancient pharaohs, mysterious hieroglyphs, and monumental temples await discovery.</p>
+        <div class="section-title">
+          <h2>Welcome to Egypt</h2>
+          <p>Where ancient wonders meet timeless beauty</p>
+        </div>
+        <p>Egypt offers an unparalleled journey through time, where colossal temples and mysterious pyramids stand as testaments to one of history's greatest civilizations. From cruising the legendary Nile River to exploring vibrant bazaars filled with spices and treasures, Egypt captivates visitors with its rich heritage, warm hospitality, and breathtaking landscapes. Experience the magic of the desert, the mystery of the Pharaohs, and the vibrant culture that has flourished along the Nile for thousands of years.</p>
       </section>
 
-      <div class="egyptian-pattern"></div>
-
       <section class="wonders-section">
-        <h2 style="text-align: center; margin-bottom: 20px; color: #1a2a6c;">Egypt's Wonders</h2>
+        <div class="vine-container" id="wonders-vines"></div>
+        <div class="section-title">
+          <h2>Egypt's Wonders</h2>
+          <p>Discover the must-see destinations across Egypt</p>
+        </div>
         <div class="wonders-grid">
           <!-- Wonder 1 -->
           <div class="wonder-card">
@@ -365,59 +800,14 @@
               </div>
             </div>
             <div class="wonder-info">
-              <p>The last surviving of the Seven Wonders of the Ancient World, these monumental tombs were built for pharaohs over 4,500 years ago and continue to awe visitors with their scale and precision.</p>
-              <button class="btn" onclick="toggleHotels('pyramids-hotels')">Find Nearby Hotels</button>
+              <p>The last surviving wonder of the ancient world, the Pyramids of Giza have stood for over 4,500 years. This complex includes the Great Pyramid of Khufu, the Pyramid of Khafre, the Pyramid of Menkaure, and the Great Sphinx. These architectural marvels continue to awe visitors with their scale and precision.</p>
+              <button class="btn" onclick="toggleHotels('pyramids-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
               <div id="pyramids-hotels" class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
                     <h4>Mena House Hotel</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">0.5 miles away</span>
-                      <span class="hotel-rating">★★★★★</span>
-                    </div>
-                  </div>
-                  <div class="hotel-price">$220/night</div>
-                </div>
-                <div class="hotel-card">
-                  <div class="hotel-info">
-                    <h4>Pyramids View Inn</h4>
-                    <div class="hotel-details">
-                      <span class="hotel-distance">0.8 miles away</span>
-                      <span class="hotel-rating">★★★★☆</span>
-                    </div>
-                  </div>
-                  <div class="hotel-price">$150/night</div>
-                </div>
-                <div class="hotel-card">
-                  <div class="hotel-info">
-                    <h4>Sphinx Resort</h4>
-                    <div class="hotel-details">
-                      <span class="hotel-distance">1.2 miles away</span>
-                      <span class="hotel-rating">★★★☆☆</span>
-                    </div>
-                  </div>
-                  <div class="hotel-price">$100/night</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Wonder 2 -->
-          <div class="wonder-card">
-            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1597212617715-e8267136e140?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('sphinx-hotels')">
-              <div class="wonder-name">
-                <h3>Great Sphinx of Giza</h3>
-              </div>
-            </div>
-            <div class="wonder-info">
-              <p>This monumental limestone statue with the body of a lion and the head of a human is one of the world's largest and oldest statues, guarding the Giza Plateau for over 4,500 years.</p>
-              <button class="btn" onclick="toggleHotels('sphinx-hotels')">Find Nearby Hotels</button>
-              <div id="sphinx-hotels" class="hotels-container">
-                <div class="hotel-card">
-                  <div class="hotel-info">
-                    <h4>Sphinx Palace Hotel</h4>
-                    <div class="hotel-details">
-                      <span class="hotel-distance">0.3 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.5 miles away</span>
                       <span class="hotel-rating">★★★★☆</span>
                     </div>
                   </div>
@@ -425,19 +815,19 @@
                 </div>
                 <div class="hotel-card">
                   <div class="hotel-info">
-                    <h4>Desert Oasis Resort</h4>
+                    <h4>Pyramids View Inn</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">0.6 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 1 mile away</span>
                       <span class="hotel-rating">★★★★★</span>
                     </div>
                   </div>
-                  <div class="hotel-price">$250/night</div>
+                  <div class="hotel-price">$220/night</div>
                 </div>
                 <div class="hotel-card">
                   <div class="hotel-info">
-                    <h4>Nile View Hotel</h4>
+                    <h4>Desert Oasis Resort</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">1.5 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 2 miles away</span>
                       <span class="hotel-rating">★★★☆☆</span>
                     </div>
                   </div>
@@ -447,22 +837,32 @@
             </div>
           </div>
 
-          <!-- Wonder 3 -->
+          <!-- Wonder 2 -->
           <div class="wonder-card">
-            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1580502304784-8985b7eb7260?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('luxor-hotels')">
+            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1566272245286-69154901e6d9?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('luxor-hotels')">
               <div class="wonder-name">
                 <h3>Valley of the Kings</h3>
               </div>
             </div>
             <div class="wonder-info">
-              <p>The burial place of Egypt's New Kingdom pharaohs, including the famous Tutankhamun. This valley contains over 60 elaborate tombs carved deep into the desert mountains near Luxor.</p>
-              <button class="btn" onclick="toggleHotels('luxor-hotels')">Find Nearby Hotels</button>
+              <p>The burial place of Egypt's New Kingdom pharaohs, the Valley of the Kings contains 63 magnificent royal tombs, including that of the famous Tutankhamun. Located on the west bank of the Nile near Luxor, this UNESCO World Heritage site features elaborately decorated tombs carved deep into the desert rock.</p>
+              <button class="btn" onclick="toggleHotels('luxor-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
               <div id="luxor-hotels" class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
                     <h4>Winter Palace Hotel</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">3 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 3 miles away</span>
+                      <span class="hotel-rating">★★★★☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$150/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Nile View Resort</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 2 miles away</span>
                       <span class="hotel-rating">★★★★★</span>
                     </div>
                   </div>
@@ -470,25 +870,96 @@
                 </div>
                 <div class="hotel-card">
                   <div class="hotel-info">
-                    <h4>Nile Valley Resort</h4>
+                    <h4>Luxor Temple Hotel</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">4 miles away</span>
-                      <span class="hotel-rating">★★★★☆</span>
-                    </div>
-                  </div>
-                  <div class="hotel-price">$160/night</div>
-                </div>
-                <div class="hotel-card">
-                  <div class="hotel-info">
-                    <h4>Kings' Retreat</h4>
-                    <div class="hotel-details">
-                      <span class="hotel-distance">5 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 4 miles away</span>
                       <span class="hotel-rating">★★★☆☆</span>
                     </div>
                   </div>
-                  <div class="hotel-price">$110/night</div>
+                  <div class="hotel-price">$90/night</div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <!-- Wonder 3 -->
+          <div class="wonder-card">
+            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1580502304784-8985b7eb7260?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('abu-simbel-hotels')">
+              <div class="wonder-name">
+                <h3>Abu Simbel Temples</h3>
+              </div>
+            </div>
+            <div class="wonder-info">
+              <p>The massive rock-cut temples of Abu Simbel, built by Ramesses II in the 13th century BCE, stand as a monumental feat of ancient engineering. The complex was miraculously relocated in the 1960s to save it from rising waters caused by the Aswan High Dam. The temples are famous for their colossal statues and precise alignment with the sun.</p>
+              <button class="btn" onclick="toggleHotels('abu-simbel-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
+              <div id="abu-simbel-hotels" class="hotels-container">
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Nefertari Hotel</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.3 miles away</span>
+                      <span class="hotel-rating">★★★★☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$130/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Ramesses Resort</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.5 miles away</span>
+                      <span class="hotel-rating">★★★☆☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$100/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Lake Nasser View</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 1 mile away</span>
+                      <span class="hotel-rating">★★★★★</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">$180/night</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cultural-tips">
+        <div class="section-title">
+          <h2>Cultural Tips</h2>
+          <p>Understanding Egyptian customs and etiquette</p>
+        </div>
+        <div class="tips-container">
+          <div class="tip-card">
+            <div class="tip-icon">
+              <i class="fas fa-tshirt"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Dress Modestly</h3>
+              <p>Egypt is a predominantly Muslim country, so it's respectful to dress modestly, especially when visiting religious sites. Women should cover their shoulders and knees, and both men and women should avoid revealing clothing.</p>
+            </div>
+          </div>
+          <div class="tip-card">
+            <div class="tip-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Greetings</h3>
+              <p>Egyptians are generally warm and friendly. A handshake is the common greeting, but close friends and family may exchange kisses on the cheek. Always use your right hand for eating and greeting.</p>
+            </div>
+          </div>
+          <div class="tip-card">
+            <div class="tip-icon">
+              <i class="fas fa-coins"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Bargaining</h3>
+              <p>Bargaining is expected in markets and with street vendors. Start by offering about half the asking price and negotiate politely. Remember that bargaining is a social interaction, not a confrontation.</p>
             </div>
           </div>
         </div>
@@ -498,12 +969,17 @@
     <footer>
       <div class="container">
         <div class="footer-content">
+          <div class="footer-logo">
+            <i class="fas fa-mountain"></i>
+          </div>
           <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-pinterest"></i></a>
+            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
           </div>
+
           <div class="student-info">
             <p>Student Name: Arvin Esmena | Course: Web System and Technology | Section: IT3G | Year: 2025-2026</p>
           </div>
@@ -531,6 +1007,39 @@
         hotelElement.style.display = 'block';
       }
     }
+
+    // Create vine effect for specific containers
+    function createVine(containerId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      
+      const vine = document.createElement('div');
+      vine.classList.add('vine');
+      vine.innerHTML = '🐫';
+      vine.style.left = Math.random() * 100 + '%';
+      vine.style.animationDuration = (Math.random() * 10 + 8) + 's';
+      vine.style.fontSize = (Math.random() * 20 + 15) + 'px';
+      vine.style.opacity = Math.random() * 0.5 + 0.3;
+      container.appendChild(vine);
+      
+      // Remove the element after animation completes
+      setTimeout(() => {
+        if (vine.parentNode) {
+          vine.parentNode.removeChild(vine);
+        }
+      }, 15000);
+    }
+    
+    // Generate vines periodically for title section
+    setInterval(() => createVine('title-vines'), 500);
+    
+    // Generate vines periodically for wonders section
+    setInterval(() => createVine('wonders-vines'), 600);
+
+    // Floating CTA action
+    document.querySelector('.floating-cta').addEventListener('click', function() {
+      document.querySelector('.newsletter').scrollIntoView({ behavior: 'smooth' });
+    });
   </script>
 </body>
 </html>
