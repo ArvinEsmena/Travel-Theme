@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wanderlust Adventures | Contact Us</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Splash Screen */
+    #splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.8s ease-out;
+    }
+
+    #splash-screen::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: -1;
+    }
+
+    .logo {
+      width: 150px;
+      height: 150px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+      animation: pulse 2s infinite;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .logo i {
+      font-size: 70px;
+      color: #1a2a6c;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    #splash-screen h1 {
+      color: white;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+      animation: fadeIn 2s ease-in;
+    }
+
+    .loader {
+      width: 100px;
+      height: 6px;
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 3px;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+
+    .loader-bar {
+      height: 100%;
+      width: 0%;
+      background-color: #fdbb2d;
+      animation: loading 3s ease-in-out;
+      border-radius: 3px;
+    }
+
+    @keyframes loading {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Main Website */
+    #main-website {
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease-in;
+    }
+
+    header {
+      background: linear-gradient(to right, #1a2a6c, #2b5876);
+      color: white;
+      padding: 20px 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    .site-title span {
+      color: #fdbb2d;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin-left: 25px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #fdbb2d;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(to right, rgba(26,42,108,0.8), rgba(43,88,118,0.8)), url('https://images.unsplash.com/photo-1516387938699-a93567ec168e?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      padding: 80px 0;
+      text-align: center;
+      color: white;
+    }
+
+    .page-header h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    }
+
+    .page-header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Contact Content */
+    .contact-content {
+      padding: 60px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #1a2a6c;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, #1a2a6c, #fdbb2d);
+      border-radius: 2px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .contact-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .contact-icon {
+      background: linear-gradient(to right, #1a2a6c, #2b5876);
+      color: white;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 20px;
+      font-size: 1.8rem;
+    }
+
+    .contact-card h3 {
+      color: #1a2a6c;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+
+    .contact-card p {
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .contact-card a {
+      color: #1a2a6c;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-card a:hover {
+      color: #fdbb2d;
+    }
+
+    .social-contact {
+      display: flex;
+      justify-content: center;
+      margin-top: 15px;
+    }
+
+    .social-contact a {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #f0f0f0;
+      color: #1a2a6c;
+      margin: 0 5px;
+      transition: all 0.3s;
+    }
+
+    .social-contact a:hover {
+      background: #1a2a6c;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .availability {
+      background: linear-gradient(to right, #1a2a6c, #2b5876);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .map-section {
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .map-container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+
+    .map-placeholder {
+      background: #f0f0f0;
+      height: 300px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #666;
+      font-weight: 500;
+    }
+
+    footer {
+      background: linear-gradient(to right, #1a2a6c, #2b5876);
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .social-icons {
+      margin-bottom: 20px;
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 1.5rem;
+      margin: 0 12px;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #fdbb2d;
+    }
+
+    .student-info {
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      nav ul li {
+        margin: 5px 10px;
+      }
+      
+      .page-header h1 {
+        font-size: 2.2rem;
+      }
+      
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div id="splash-screen">
+    <div class="logo">
+      <i class="fas fa-globe-americas"></i>
+    </div>
+    <h1>Wanderlust Adventures</h1>
+    <div class="loader">
+      <div class="loader-bar"></div>
+    </div>
+  </div>
+
+  <!-- Main Website Content -->
+  <div id="main-website">
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="site-title">Wanderlust <span>Adventures</span></div>
+          <nav>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="countries.html">Countries</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="tips.html">Travel Tips</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-header">
+      <div class="container">
+        <h1>Get In Touch</h1>
+        <p>We'd love to hear from you! Reach out with any questions or travel inquiries.</p>
+      </div>
+    </div>
+
+    <section class="contact-content">
+      <div class="container">
+        <h2 class="section-title">Contact Information</h2>
+        
+        <div class="contact-grid">
+          <!-- Email -->
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <h3>Email</h3>
+            <p><a href="mailto:esmenaarvinrey@gmail.com">esmenaarvinrey@gmail.com</a></p>
+            <p>Send us an email anytime</p>
+          </div>
+          
+          <!-- Phone -->
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>Phone</h3>
+            <p><a href="tel:09787787878">09787787878</a></p>
+            <p>Mobile / WhatsApp</p>
+          </div>
+          
+          <!-- Telephone -->
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <h3>Telephone</h3>
+            <p><a href="tel:21469086">21469086</a></p>
+            <p>Landline</p>
+          </div>
+          
+          <!-- Social Media -->
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-hashtag"></i>
+            </div>
+            <h3>Social Media</h3>
+            <p>Connect with us on social platforms</p>
+            <div class="social-contact">
+              <a href="https://fb.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://x.com" target="_blank"><i class="fab fa-twitter"></i></a>
+              <a href="https://ig.com" target="_blank"><i class="fab fa-instagram"></i></a>
+              <a href="https://github.com/ArvinEsmena" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          
+          <!-- Address -->
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h3>Address</h3>
+            <p>Lot 6 block 89, Susan street</p>
+            <p>Quezon City, Philippines</p>
+          </div>
+          
+          <!-- Availability -->
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <h3>Availability</h3>
+            <p>Best time to reach me:</p>
+            <div class="availability">Wednesdays and Weekends</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="social-icons">
+            <a href="https://fb.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://x.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://ig.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/ArvinEsmena" target="_blank"><i class="fab fa-github"></i></a>
+          </div>
+          <div class="student-info">
+            <p>Student Name: Arvin Esmena | Course: Web System and Technology | Section: IT3G | Year: 2025-2026</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Splash screen functionality
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('splash-screen').style.opacity = '0';
+        setTimeout(function() {
+          document.getElementById('splash-screen').style.display = 'none';
+          document.getElementById('main-website').style.display = 'block';
+          setTimeout(function() {
+            document.getElementById('main-website').style.opacity = '1';
+          }, 50);
+        }, 800);
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
