@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wanderlust Adventures | Bella Italia</title>
+  <title>Wanderlust Adventures | Italy</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:ital@0;1&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -16,57 +16,54 @@
     }
 
     :root {
-      --italy-green: #008C45;
-      --italy-white: #F4F5F0;
-      --italy-red: #CD212A;
-      --gold: #D4AF37;
-      --dark-blue: #1a2a6c;
-      --light-beige: #F8F5F0;
+      --primary-green: #008C45;
+      --primary-white: #F4F5F0;
+      --primary-red: #CD212A;
+      --primary-black: #333333;
+      --secondary-beige: #F5EBDC;
+      --secondary-dark-green: #005C2F;
       --text-dark: #333;
-      --text-light: #666;
+      --text-light: #777;
     }
 
     body {
-      background-color: var(--light-beige);
+      background-color: var(--primary-white);
       color: var(--text-dark);
       line-height: 1.6;
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Lato', sans-serif;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Italian Pattern Background */
+    .italy-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.03;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,50c0-13.81,11.19-25,25-25c5.52,0,10,4.48,10,10c0,15-12.5,27.5-27.5,27.5C52.5,62.5,50,60,50,50z M50,50c0,13.81-11.19,25-25,25c-5.52,0-10-4.48-10-10c0-15,12.5-27.5,27.5-27.5C47.5,37.5,50,40,50,50z' fill='%23008C45'/%3E%3Cpath d='M30,20c1.105,0,2-0.895,2-2s-0.895-2-2-2s-2,0.895-2,2S28.895,20,30,20z M70,80c1.105,0,2-0.895,2-2s-0.895-2-2-2s-2,0.895-2,2S68.895,80,70,80z M20,70c1.105,0,2-0.895,2-2s-0.895-2-2-2s-2,0.895-2,2S18.895,70,20,70z M80,30c1.105,0,2-0.895,2-2s-0.895-2-2-2s-2,0.895-2,2S78.895,30,80,30z' fill='%23CD212A'/%3E%3C/svg%3E");
+      background-size: 200px;
+      z-index: -1;
     }
 
     h1, h2, h3, h4 {
       font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--primary-black);
     }
 
-    .italic {
-      font-style: italic;
-      font-family: 'Lora', serif;
-    }
-
+    /* Header Styles */
     header {
-      background: linear-gradient(to right, var(--italy-green), var(--italy-white), var(--italy-red));
-      color: white;
+      background: linear-gradient(to right, var(--primary-green), var(--secondary-dark-green));
+      color: var(--primary-white);
       padding: 15px 0;
       box-shadow: 0 2px 12px rgba(0,0,0,0.15);
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: repeating-linear-gradient(
-        45deg,
-        var(--italy-green),
-        var(--italy-green) 10px,
-        var(--italy-white) 10px,
-        var(--italy-white) 20px,
-        var(--italy-red) 20px,
-        var(--italy-red) 30px
-      );
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .container {
@@ -82,13 +79,21 @@
     }
 
     .site-title {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 700;
-      color: var(--dark-blue);
+      display: flex;
+      align-items: center;
     }
 
     .site-title span {
-      color: var(--gold);
+      color: var(--primary-white);
+      margin-left: 5px;
+    }
+
+    .site-title::before {
+      content: "🇮🇹";
+      margin-right: 10px;
+      font-size: 1.8rem;
     }
 
     nav ul {
@@ -102,28 +107,45 @@
     }
 
     nav ul li a {
-      color: var(--dark-blue);
+      color: var(--primary-white);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 500;
       transition: all 0.3s;
       padding: 8px 12px;
       border-radius: 6px;
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
 
     nav ul li a:hover, nav ul li a.active {
-      color: var(--italy-red);
-      background-color: rgba(255,255,255,0.7);
+      color: var(--primary-red);
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--primary-red);
+      transition: all 0.3s;
+      transform: translateX(-50%);
+    }
+
+    nav ul li a:hover::after {
+      width: 70%;
     }
 
     /* Page Title */
     .page-title {
       text-align: center;
-      padding: 80px 20px;
-      background: linear-gradient(to right, rgba(0, 140, 69, 0.7), rgba(244, 245, 240, 0.7), rgba(205, 33, 42, 0.7)),
+      padding: 100px 20px;
+      background: linear-gradient(to right, rgba(0, 140, 69, 0.85), rgba(205, 33, 42, 0.85)),
                   url('https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-      color: var(--dark-blue);
+      color: var(--primary-white);
       position: relative;
+      overflow: hidden;
     }
 
     .page-title::before {
@@ -131,74 +153,139 @@
       position: absolute;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50L0 25L50 0L100 25L50 50ZM50 50L0 75L50 100L100 75L50 50Z' fill='%23F4F5F0' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,50c0-13.81,11.19-25,25-25c5.52,0,10,4.48,10,10c0,15-12.5,27.5-27.5,27.5C52.5,62.5,50,60,50,50z M50,50c0,13.81-11.19,25-25,25c-5.52,0-10-4.48-10-10c0-15,12.5-27.5,27.5-27.5C47.5,37.5,50,40,50,50z' fill='%23F4F5F0' fill-opacity='0.1'/%3E%3C/svg%3E");
+      opacity: 0.2;
     }
 
     .page-title h1 {
       font-size: 3.5rem;
       margin-bottom: 15px;
-      text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
       position: relative;
+      display: inline-block;
+    }
+
+    .page-title h1::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--primary-white);
+      border-radius: 2px;
     }
 
     .page-title p {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       max-width: 700px;
-      margin: 0 auto;
-      font-weight: 500;
+      margin: 30px auto 0;
+      opacity: 0.95;
+      font-weight: 300;
+    }
+
+    /* Quick Facts Section */
+    .quick-facts {
+      background: var(--primary-red);
+      color: var(--primary-white);
+      padding: 30px 0;
+    }
+
+    .facts-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .fact-item {
+      text-align: center;
+      padding: 15px;
+      min-width: 200px;
+    }
+
+    .fact-item i {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: var(--primary-white);
+    }
+
+    .fact-item h3 {
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+      color: var(--primary-white);
+    }
+
+    .fact-item p {
+      font-size: 0.9rem;
+      opacity: 0.9;
     }
 
     /* Country Intro */
     .country-intro {
-      padding: 60px 0;
+      padding: 70px 0;
       text-align: center;
+      background: var(--secondary-beige);
       position: relative;
+    }
+
+    .country-intro::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 15px;
+      background: repeating-linear-gradient(90deg, var(--primary-green), var(--primary-green) 33%, var(--primary-white) 33%, var(--primary-white) 66%, var(--primary-red) 66%, var(--primary-red) 100%);
     }
 
     .country-intro p {
       max-width: 800px;
       margin: 0 auto;
-      font-size: 1.2rem;
-      color: var(--text-light);
+      font-size: 1.1rem;
+      color: var(--text-dark);
       line-height: 1.8;
-    }
-
-    .divider {
-      width: 100px;
-      height: 3px;
-      background: linear-gradient(to right, var(--italy-green), var(--italy-white), var(--italy-red));
-      margin: 25px auto;
-      border-radius: 3px;
-    }
-
-    /* Wonders Section */
-    .wonders-section {
-      padding: 40px 0 70px;
     }
 
     .section-title {
       text-align: center;
-      margin-bottom: 40px;
-      color: var(--dark-blue);
+      margin-bottom: 50px;
       position: relative;
-      display: inline-block;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 0 20px;
     }
 
-    .section-title::after {
+    .section-title h2 {
+      font-size: 2.5rem;
+      display: inline-block;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .section-title h2::after {
       content: "";
       position: absolute;
-      bottom: -10px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(to right, var(--italy-green), var(--italy-white), var(--italy-red));
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary-red);
       border-radius: 2px;
+    }
+
+    .section-title p {
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Wonders Section */
+    .wonders-section {
+      padding: 70px 0;
+      background: var(--primary-white);
+      position: relative;
+      overflow: hidden;
     }
 
     .wonders-grid {
@@ -212,7 +299,7 @@
       background-color: white;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
       transition: transform 0.3s, box-shadow 0.3s;
       position: relative;
     }
@@ -228,11 +315,23 @@
       background-size: cover;
       position: relative;
       cursor: pointer;
-      transition: transform 0.5s;
+      overflow: hidden;
     }
 
-    .wonder-card:hover .wonder-image {
-      transform: scale(1.05);
+    .wonder-image::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .wonder-card:hover .wonder-image::after {
+      opacity: 0.6;
     }
 
     .wonder-name {
@@ -240,14 +339,15 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
       padding: 20px 15px 15px;
+      z-index: 2;
     }
 
     .wonder-name h3 {
       color: white;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       margin: 0;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
     }
 
     .wonder-info {
@@ -255,7 +355,7 @@
     }
 
     .wonder-info p {
-      color: var(--text-light);
+      color: #555;
       margin-bottom: 20px;
       line-height: 1.7;
     }
@@ -263,23 +363,38 @@
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: linear-gradient(to right, var(--italy-green), var(--italy-red));
-      color: white;
-      padding: 12px 26px;
+      justify-content: center;
+      background-color: var(--primary-red);
+      color: var(--primary-white);
+      padding: 12px 28px;
       text-decoration: none;
       border-radius: 30px;
       font-weight: 600;
       font-size: 0.95rem;
       transition: all 0.3s;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 12px rgba(205, 33, 42, 0.25);
       border: none;
       cursor: pointer;
+      gap: 8px;
     }
 
     .btn:hover {
+      background-color: var(--primary-green);
+      color: white;
       transform: translateY(-3px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      box-shadow: 0 6px 15px rgba(0, 140, 69, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary-red);
+      color: var(--primary-red);
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-red);
+      color: white;
     }
 
     /* Hotels Section */
@@ -287,8 +402,6 @@
       margin-top: 20px;
       display: none;
       animation: fadeIn 0.5s ease-in;
-      border-left: 3px solid var(--italy-green);
-      padding-left: 15px;
     }
 
     @keyframes fadeIn {
@@ -297,20 +410,19 @@
     }
 
     .hotel-card {
-      background-color: #f9f9f9;
+      background-color: #f9f3e9;
       border-radius: 8px;
-      padding: 18px;
+      padding: 20px;
       margin-bottom: 15px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
       transition: transform 0.2s;
-      border: 1px solid #eee;
     }
 
     .hotel-card:hover {
       transform: translateX(5px);
-      background-color: #f5f5f5;
     }
 
     .hotel-info {
@@ -318,7 +430,7 @@
     }
 
     .hotel-info h4 {
-      color: var(--dark-blue);
+      color: var(--primary-black);
       margin-bottom: 8px;
       font-size: 1.1rem;
     }
@@ -327,43 +439,68 @@
       display: flex;
       gap: 15px;
       font-size: 0.9rem;
-      color: var(--text-light);
+      color: #666;
     }
 
     .hotel-price {
       font-weight: bold;
-      color: var(--italy-green);
-      font-size: 1.1rem;
+      color: var(--primary-red);
+      font-size: 1.2rem;
     }
 
     .hotel-rating {
-      color: var(--gold);
+      color: var(--primary-green);
     }
+
+    /* Cultural Tips Section */
+    .cultural-tips {
+      padding: 70px 0;
+      background: var(--secondary-beige);
+    }
+
+    .tips-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .tip-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .tip-icon {
+      background: var(--primary-red);
+      color: white;
+      font-size: 1.8rem;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .tip-content {
+      padding: 25px;
+    }
+
+    .tip-content h3 {
+      margin-bottom: 15px;
+      color: var(--primary-black);
+      font-family: 'Lato', sans-serif;
+    }
+
+    .tip-content p {
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
 
     footer {
-      background: linear-gradient(to right, var(--italy-green), var(--italy-white), var(--italy-red));
-      color: var(--dark-blue);
-      padding: 40px 0;
+      background: linear-gradient(to right, var(--primary-green), var(--secondary-dark-green));
+      color: var(--primary-white);
+      padding: 60px 0 30px;
       text-align: center;
-      position: relative;
-    }
-
-    footer::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: repeating-linear-gradient(
-        45deg,
-        var(--italy-green),
-        var(--italy-green) 10px,
-        var(--italy-white) 10px,
-        var(--italy-white) 20px,
-        var(--italy-red) 20px,
-        var(--italy-red) 30px
-      );
     }
 
     .footer-content {
@@ -372,62 +509,140 @@
       align-items: center;
     }
 
-    .social-icons {
+    .footer-logo {
+      font-size: 2.5rem;
       margin-bottom: 20px;
+      color: var(--primary-white);
+    }
+
+    .social-icons {
+      margin-bottom: 30px;
     }
 
     .social-icons a {
-      color: var(--dark-blue);
-      font-size: 1.5rem;
-      margin: 0 12px;
-      transition: color 0.3s, transform 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background: rgba(255,255,255,0.1);
+      color: var(--primary-white);
+      font-size: 1.2rem;
+      margin: 0 10px;
+      border-radius: 50%;
+      transition: all 0.3s;
     }
 
     .social-icons a:hover {
-      color: var(--italy-red);
-      transform: translateY(-3px);
+      background: var(--primary-red);
+      color: var(--primary-white);
+      transform: translateY(-5px);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+
+    .footer-links a {
+      color: var(--primary-white);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-red);
     }
 
     .student-info {
       font-size: 0.95rem;
       opacity: 0.85;
-      background: rgba(255,255,255,0.7);
-      padding: 10px 20px;
-      border-radius: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 20px;
+      width: 100%;
     }
 
     /* Back Button */
     .back-button {
-      margin: 30px 0;
+      margin: 40px 0;
     }
 
-    /* Italian pattern background */
-    .italian-pattern {
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23008C45' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    /* Olive Branch Decoration */
+    .olive-branch-container {
       position: absolute;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
+      width: 100%;
+      height: 100%;
       pointer-events: none;
+      overflow: hidden;
+      z-index: 2;
     }
-
-    .pattern-overlay {
-      position: relative;
-    }
-
-    .pattern-overlay::before {
-      content: "";
+    
+    .olive-branch {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23008C45' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      font-size: 1.5rem;
+      color: #8A9A5B;
+      opacity: 0.5;
+      z-index: 1;
+      animation: fall 15s linear infinite;
       pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10px) translateX(0) rotate(0deg);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(600px) translateX(30px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Floating CTA */
+    .floating-cta {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--primary-red);
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 5px 15px rgba(205, 33, 42, 0.4);
+      z-index: 99;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .floating-cta:hover {
+      transform: scale(1.1);
+      background: var(--primary-green);
     }
 
     /* Responsive */
+    @media (max-width: 992px) {
+      .page-title h1 {
+        font-size: 2.8rem;
+      }
+      
+      .facts-container {
+        justify-content: center;
+      }
+      
+      .fact-item {
+        flex: 0 0 50%;
+      }
+    }
+
     @media (max-width: 768px) {
       .header-content {
         flex-direction: column;
@@ -449,7 +664,7 @@
       }
 
       .page-title h1 {
-        font-size: 2.5rem;
+        font-size: 2.3rem;
       }
       
       .hotel-card {
@@ -461,10 +676,47 @@
       .hotel-price {
         align-self: flex-end;
       }
+      
+      .newsletter-form {
+        flex-direction: column;
+      }
+      
+      .newsletter-form input {
+        border-radius: 30px;
+        margin-bottom: 10px;
+      }
+      
+      .newsletter-form button {
+        border-radius: 30px;
+        padding: 15px;
+      }
+      
+      .fact-item {
+        flex: 0 0 100%;
+      }
+      
+      /* Adjust olive branch animation for mobile */
+      @keyframes fall {
+        0% {
+          transform: translateY(-10px) translateX(0) rotate(0deg);
+          opacity: 0.7;
+        }
+        100% {
+          transform: translateY(400px) translateX(30px) rotate(360deg);
+          opacity: 0;
+        }
+      }
     }
   </style>
 </head>
 <body>
+  <div class="italy-pattern"></div>
+  
+  <!-- Floating CTA -->
+  <div class="floating-cta">
+    <i class="fas fa-plane"></i>
+  </div>
+
   <!-- Main Website Content -->
   <div id="main-website">
     <header>
@@ -474,7 +726,7 @@
           <nav>
             <ul>
               <li><a href="index.html">Home</a></li>
-              <li><a href="countries.html">Countries</a></li>
+              <li><a href="countries.html" class="active">Countries</a></li>
               <li><a href="#">Blog</a></li>
               <li><a href="#">Travel Tips</a></li>
               <li><a href="#">About</a></li>
@@ -485,10 +737,38 @@
       </div>
     </header>
 
-    <section class="page-title pattern-overlay">
+    <section class="page-title">
+      <div class="olive-branch-container" id="title-olives"></div>
       <div class="container">
-        <h1>Bella Italia</h1>
-        <p>Discover Italy's rich history, stunning architecture, and world-renowned cuisine</p>
+        <h1>Discover Italy</h1>
+        <p>Experience la dolce vita in a country where ancient history, breathtaking art, and exquisite cuisine come together in perfect harmony.</p>
+      </div>
+    </section>
+
+    <section class="quick-facts">
+      <div class="container">
+        <div class="facts-container">
+          <div class="fact-item">
+            <i class="fas fa-language"></i>
+            <h3>Language</h3>
+            <p>Italian</p>
+          </div>
+          <div class="fact-item">
+            <i class="fas fa-euro-sign"></i>
+            <h3>Currency</h3>
+            <p>Euro (EUR)</p>
+          </div>
+          <div class="fact-item">
+            <i class="fas fa-users"></i>
+            <h3>Population</h3>
+            <p>59.1 million</p>
+          </div>
+          <div class="fact-item">
+            <i class="fas fa-plane"></i>
+            <h3>Best Time to Visit</h3>
+            <p>April-June, September-October</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -497,55 +777,61 @@
         <a href="countries.html" class="btn"><i class="fas fa-arrow-left"></i> Back to Countries</a>
       </div>
 
-      <section class="country-intro pattern-overlay">
-        <p class="italic">"Italy is a dream that keeps returning for the rest of your life." - Anna Akhmatova</p>
-        <div class="divider"></div>
-        <p>Italy offers an unparalleled journey through history, art, and culinary excellence. From the ancient ruins of Rome to the Renaissance art of Florence and the romantic canals of Venice, Italy captivates visitors with its diverse beauty and cultural treasures.</p>
+      <section class="country-intro">
+        <div class="section-title">
+          <h2>Welcome to Italy</h2>
+          <p>Where history, art, and cuisine create la dolce vita</p>
+        </div>
+        <p>Italy offers an unforgettable journey through time, from the ancient Roman Empire to the Renaissance and beyond. From the romantic canals of Venice to the rolling hills of Tuscany, Italy captivates visitors with its stunning landscapes, world-renowned art, and the warm hospitality of its people. Indulge in authentic pasta and pizza, sip wine in centuries-old vineyards, and immerse yourself in a culture that celebrates the beautiful things in life.</p>
       </section>
 
       <section class="wonders-section">
-        <h2 class="section-title">Italy's Wonders</h2>
+        <div class="olive-branch-container" id="wonders-olives"></div>
+        <div class="section-title">
+          <h2>Italy's Wonders</h2>
+          <p>Discover the must-see destinations across Italy</p>
+        </div>
         <div class="wonders-grid">
           <!-- Wonder 1 -->
           <div class="wonder-card">
-            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1552832230-c0197046a8d2?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('colosseum-hotels')">
+            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1552832230-c0197048ad4d?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('colosseum-hotels')">
               <div class="wonder-name">
                 <h3>Colosseum</h3>
               </div>
             </div>
             <div class="wonder-info">
-              <p>An iconic symbol of Imperial Rome, this ancient amphitheater is the largest ever built and could hold up to 80,000 spectators for gladiatorial contests.</p>
+              <p>The iconic symbol of Imperial Rome, this ancient amphitheater is the largest ever built. Completed in 80 AD, it could hold between 50,000 and 80,000 spectators who watched gladiatorial contests, animal hunts, and dramatic performances. Today, it stands as a magnificent ruin and testament to Roman engineering.</p>
               <button class="btn" onclick="toggleHotels('colosseum-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
               <div id="colosseum-hotels" class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
-                    <h4>Hotel Colosseum</h4>
+                    <h4>Roman Forum Hotel</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">0.3 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.3 miles away</span>
                       <span class="hotel-rating">★★★★☆</span>
                     </div>
                   </div>
-                  <div class="hotel-price">$180/night</div>
+                  <div class="hotel-price">€180/night</div>
                 </div>
                 <div class="hotel-card">
                   <div class="hotel-info">
-                    <h4>Roman Forum Hotel</h4>
+                    <h4>Imperial Palace</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">0.5 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.5 miles away</span>
                       <span class="hotel-rating">★★★★★</span>
                     </div>
                   </div>
-                  <div class="hotel-price">$220/night</div>
+                  <div class="hotel-price">€250/night</div>
                 </div>
                 <div class="hotel-card">
                   <div class="hotel-info">
-                    <h4>Imperial Suites</h4>
+                    <h4>Centro Storico Suites</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">0.7 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.8 miles away</span>
                       <span class="hotel-rating">★★★☆☆</span>
                     </div>
                   </div>
-                  <div class="hotel-price">$130/night</div>
+                  <div class="hotel-price">€120/night</div>
                 </div>
               </div>
             </div>
@@ -553,44 +839,44 @@
 
           <!-- Wonder 2 -->
           <div class="wonder-card">
-            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1517101724602-c257fe568157?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('leaning-tower-hotels')">
+            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1514890547357-a9ee288728e0?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('venice-hotels')">
               <div class="wonder-name">
-                <h3>Leaning Tower of Pisa</h3>
+                <h3>Venice Canals</h3>
               </div>
             </div>
             <div class="wonder-info">
-              <p>Famous for its nearly four-degree lean, this freestanding bell tower is one of the most recognizable structures in the world and a masterpiece of Romanesque architecture.</p>
-              <button class="btn" onclick="toggleHotels('leaning-tower-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
-              <div id="leaning-tower-hotels" class="hotels-container">
+              <p>Built on 118 small islands separated by canals and linked by over 400 bridges, Venice is a city unlike any other. The Grand Canal snakes through the city, past Renaissance palaces and under iconic bridges. A gondola ride through these waterways offers a unique perspective of this magical city that seems to float on water.</p>
+              <button class="btn" onclick="toggleHotels('venice-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
+              <div id="venice-hotels" class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
-                    <h4>Pisa Plaza Hotel</h4>
+                    <h4>Canal View Residence</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">0.2 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> On the Grand Canal</span>
                       <span class="hotel-rating">★★★★☆</span>
                     </div>
                   </div>
-                  <div class="hotel-price">$160/night</div>
+                  <div class="hotel-price">€220/night</div>
                 </div>
                 <div class="hotel-card">
                   <div class="hotel-info">
-                    <h4>Tower View Inn</h4>
+                    <h4>Piazza San Marco Hotel</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">0.4 miles away</span>
-                      <span class="hotel-rating">★★★☆☆</span>
-                    </div>
-                  </div>
-                  <div class="hotel-price">$110/night</div>
-                </div>
-                <div class="hotel-card">
-                  <div class="hotel-info">
-                    <h4>Campo dei Miracoli Resort</h4>
-                    <div class="hotel-details">
-                      <span class="hotel-distance">0.6 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.2 miles from Piazza</span>
                       <span class="hotel-rating">★★★★★</span>
                     </div>
                   </div>
-                  <div class="hotel-price">$250/night</div>
+                  <div class="hotel-price">€290/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Venetian Retreat</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.5 miles from center</span>
+                      <span class="hotel-rating">★★★☆☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">€150/night</div>
                 </div>
               </div>
             </div>
@@ -598,46 +884,82 @@
 
           <!-- Wonder 3 -->
           <div class="wonder-card">
-            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('venice-canals-hotels')">
+            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1543429258-8e411a3d46e5?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('florence-hotels')">
               <div class="wonder-name">
-                <h3>Venice Canals</h3>
+                <h3>Florence Duomo</h3>
               </div>
             </div>
             <div class="wonder-info">
-              <p>A breathtaking network of canals that serve as the streets of Venice, connected by beautiful bridges and traveled by traditional gondolas and water taxis.</p>
-              <button class="btn" onclick="toggleHotels('venice-canals-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
-              <div id="venice-canals-hotels" class="hotels-container">
+              <p>The Cattedrale di Santa Maria del Fiore, known simply as the Duomo, is the iconic landmark of Florence. Its magnificent dome, engineered by Filippo Brunelleschi, was the largest in the world when completed in 1436. The exterior is faced with polychrome marble panels in shades of green and pink, bordered by white, creating a stunning visual effect.</p>
+              <button class="btn" onclick="toggleHotels('florence-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
+              <div id="florence-hotels" class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
-                    <h4>Canal Grande Hotel</h4>
+                    <h4>Duomo View Hotel</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">Direct canal access</span>
-                      <span class="hotel-rating">★★★★★</span>
-                    </div>
-                  </div>
-                  <div class="hotel-price">$280/night</div>
-                </div>
-                <div class="hotel-card">
-                  <div class="hotel-info">
-                    <h4>Gondola View Suites</h4>
-                    <div class="hotel-details">
-                      <span class="hotel-distance">0.1 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.1 miles away</span>
                       <span class="hotel-rating">★★★★☆</span>
                     </div>
                   </div>
-                  <div class="hotel-price">$190/night</div>
+                  <div class="hotel-price">€160/night</div>
                 </div>
                 <div class="hotel-card">
                   <div class="hotel-info">
-                    <h4>Rialto Bridge Inn</h4>
+                    <h4>Renaissance Palace</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance">0.3 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.3 miles away</span>
+                      <span class="hotel-rating">★★★★★</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">€230/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Arno River Suites</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.6 miles away</span>
                       <span class="hotel-rating">★★★☆☆</span>
                     </div>
                   </div>
-                  <div class="hotel-price">$140/night</div>
+                  <div class="hotel-price">€130/night</div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cultural-tips">
+        <div class="section-title">
+          <h2>Cultural Tips</h2>
+          <p>Understanding Italian customs and etiquette</p>
+        </div>
+        <div class="tips-container">
+          <div class="tip-card">
+            <div class="tip-icon">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Dining Etiquette</h3>
+              <p>Italians take their food seriously. Never ask for cheese to put on seafood pasta – it's considered a culinary crime. Cappuccino is only drunk in the morning, and dinner is typically later, around 8-9 PM. Always say "buon appetito" before eating.</p>
+            </div>
+          </div>
+          <div class="tip-card">
+            <div class="tip-icon">
+              <i class="fas fa-tshirt"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Dress Code</h3>
+              <p>Italians are known for their style. When visiting churches or religious sites, make sure to cover your shoulders and knees. Avoid wearing shorts or sleeveless tops in these sacred spaces. Bring a scarf to cover up if needed.</p>
+            </div>
+          </div>
+          <div class="tip-card">
+            <div class="tip-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Greetings</h3>
+              <p>Italians are generally warm and expressive. A light kiss on both cheeks is common between friends and acquaintances. Handshakes are appropriate in formal situations. Always greet shopkeepers when entering small stores with a "buongiorno" or "buonasera".</p>
             </div>
           </div>
         </div>
@@ -647,12 +969,17 @@
     <footer>
       <div class="container">
         <div class="footer-content">
+          <div class="footer-logo">
+            <i class="fas fa-umbrella-beach"></i>
+          </div>
           <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-pinterest"></i></a>
+            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
           </div>
+
           <div class="student-info">
             <p>Student Name: Arvin Esmena | Course: Web System and Technology | Section: IT3G | Year: 2025-2026</p>
           </div>
@@ -662,35 +989,56 @@
   </div>
 
   <script>
-    let currentlyOpen = null;
-    
     function toggleHotels(hotelId) {
       const hotelElement = document.getElementById(hotelId);
+      const allHotels = document.querySelectorAll('.hotels-container');
       
-      // If there's already an open hotel section and it's not this one, close it
-      if (currentlyOpen && currentlyOpen !== hotelElement) {
-        currentlyOpen.style.display = 'none';
-      }
+      // Close all other hotel containers
+      allHotels.forEach(hotel => {
+        if (hotel.id !== hotelId && hotel.style.display === 'block') {
+          hotel.style.display = 'none';
+        }
+      });
       
       // Toggle the clicked hotel container
       if (hotelElement.style.display === 'block') {
         hotelElement.style.display = 'none';
-        currentlyOpen = null;
       } else {
         hotelElement.style.display = 'block';
-        currentlyOpen = hotelElement;
-        
-        // Smoothly scroll to the hotels section
-        hotelElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
     }
+
+    // Create olive branch effect for specific containers
+    function createOliveBranch(containerId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      
+      const branch = document.createElement('div');
+      branch.classList.add('olive-branch');
+      branch.innerHTML = '🍃';
+      branch.style.left = Math.random() * 100 + '%';
+      branch.style.animationDuration = (Math.random() * 10 + 8) + 's';
+      branch.style.fontSize = (Math.random() * 20 + 15) + 'px';
+      branch.style.opacity = Math.random() * 0.5 + 0.3;
+      container.appendChild(branch);
+      
+      // Remove the element after animation completes
+      setTimeout(() => {
+        if (branch.parentNode) {
+          branch.parentNode.removeChild(branch);
+        }
+      }, 15000);
+    }
     
-    // Close hotel sections when clicking outside
-    document.addEventListener('click', function(event) {
-      if (currentlyOpen && !event.target.closest('.wonder-card')) {
-        currentlyOpen.style.display = 'none';
-        currentlyOpen = null;
-      }
+    // Generate olive branches periodically for title section
+    setInterval(() => createOliveBranch('title-olives'), 500);
+    
+    // Generate olive branches periodically for wonders section
+    setInterval(() => createOliveBranch('wonders-olives'), 600);
+
+    // Floating CTA action
+    document.querySelector('.floating-cta').addEventListener('click', function() {
+      document.querySelector('.newsletter').scrollIntoView({ behavior: 'smooth' });
     });
   </script>
 </body>
