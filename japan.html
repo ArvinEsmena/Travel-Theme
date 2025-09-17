@@ -52,7 +52,14 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      transition: opacity 0.8s ease-out;
+      animation: hideSplash 0.8s ease-out 2.5s forwards;
+    }
+
+    @keyframes hideSplash {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
     }
 
     #splash-screen::after {
@@ -126,7 +133,7 @@
       height: 100%;
       width: 0%;
       background: linear-gradient(to right, var(--accent), var(--japan-red));
-      animation: loading 2.5s ease-in-out;
+      animation: loading 2.5s ease-in-out forwards;
       border-radius: 3px;
     }
 
@@ -142,9 +149,14 @@
 
     /* Main Website */
     #main-website {
-      display: none;
       opacity: 0;
-      transition: opacity 1s ease-in;
+      animation: showMain 1s ease-in 2.5s forwards;
+    }
+
+    @keyframes showMain {
+      to {
+        opacity: 1;
+      }
     }
 
     /* Header */
@@ -208,7 +220,7 @@
 
     nav ul li a:hover, nav ul li a.active {
       color: var(--japan-white);
-     background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.1);
     }
 
     nav ul li a::after {
@@ -435,7 +447,6 @@
       background-position: center;
       background-size: cover;
       position: relative;
-      cursor: pointer;
       overflow: hidden;
     }
 
@@ -524,7 +535,8 @@
     .country-btn:hover {
        background: var(--japan-dark-red);
     }
-	.country-navigation {
+    
+    .country-navigation {
        display: flex;
        justify-content: center;
        flex-wrap: wrap;
@@ -704,7 +716,7 @@
     }
 
     .social-icons a:hover {
-     background: var(--japan-red);
+      background: var(--japan-red);
       transform: translateY(-5px);
     }
 
@@ -735,14 +747,7 @@
       text-decoration: none;
       box-shadow: var(--shadow);
       transition: var(--transition);
-      opacity: 0;
-      visibility: hidden;
       z-index: 99;
-    }
-
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
     }
 
     .back-to-top:hover {
@@ -757,39 +762,6 @@
       flex-wrap: wrap;
       gap: 10px;
       margin: 30px 0;
-    }
-
-    /* Cherry Blossom Decoration */
-    .cherry-blossom-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 2;
-    }
-    
-    .cherry-blossom {
-      position: absolute;
-      font-size: 1.5rem;
-      color: #ffb7c5;
-      opacity: 0.5;
-      z-index: 1;
-      animation: fall 15s linear infinite;
-      pointer-events: none;
-    }
-
-    @keyframes fall {
-      0% {
-        transform: translateY(-10px) translateX(0) rotate(0deg);
-        opacity: 0.7;
-      }
-      100% {
-        transform: translateY(600px) translateX(30px) rotate(360deg);
-        opacity: 0;
-      }
     }
 
     /* Japanese pattern overlay */
@@ -832,18 +804,6 @@
       padding: 20px;
     }
     
-    /* Japanese flag animation */
-    .flag-circle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 80px;
-      height: 80px;
-      background: var(--japan-red);
-      border-radius: 50%;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      z-index: 5;
-    }
     
     /* Japanese phrase guide */
     .phrase-guide {
@@ -876,6 +836,29 @@
       justify-content: center;
       margin-left: 10px;
       cursor: pointer;
+    }
+
+    /* CSS-only hotel toggle */
+    .hotel-toggle {
+      display: none;
+    }
+    
+    .hotel-toggle-label {
+      cursor: pointer;
+    }
+    
+    .hotel-toggle:checked ~ .hotels-container {
+      display: block;
+      animation: fadeIn 0.5s ease-in;
+    }
+    
+    /* CSS-only mobile menu */
+    .menu-toggle {
+      display: none;
+    }
+    
+    .menu-toggle:checked ~ nav {
+      display: block;
     }
 
     /* Responsive */
@@ -959,18 +942,6 @@
       .fact-item {
         flex: 0 0 100%;
       }
-      
-      /* Adjust cherry blossom animation for mobile */
-      @keyframes fall {
-        0% {
-          transform: translateY(-10px) translateX(0) rotate(0deg);
-          opacity: 0.7;
-        }
-        100% {
-          transform: translateY(400px) translateX(30px) rotate(360deg);
-          opacity: 0;
-        }
-      }
     }
 
     @media (max-width: 576px) {
@@ -1013,10 +984,11 @@
       <div class="container">
         <div class="header-content">
           <div class="site-title"><i class="fas fa-globe-asia"></i>Wanderlust <span>Adventures</span></div>
-          <button class="mobile-menu-btn" id="mobile-menu-btn">
+          <input type="checkbox" id="mobile-menu-toggle" class="menu-toggle">
+          <label for="mobile-menu-toggle" class="mobile-menu-btn">
             <i class="fas fa-bars"></i>
-          </button>
-          <nav id="main-nav">
+          </label>
+          <nav>
             <ul>
               <li><a href="index.html">Home</a></li>
               <li><a href="countries.html" class="active">Countries</a></li>
@@ -1031,8 +1003,6 @@
     </header>
 
     <section class="page-title">
-      <div class="flag-circle"></div>
-      <div class="cherry-blossom-container" id="title-blossoms"></div>
       <div class="container">
         <h1>Discover Japan</h1>
         <p class="japanese-phrase">日本へようこそ - Land of the Rising Sun</p>
@@ -1090,9 +1060,7 @@
         <p><em>("Fall seven times, stand up eight")</em></p>
       </section>
 
-
       <section class="wonders-section">
-        <div class="cherry-blossom-container" id="wonders-blossoms"></div>
         <div class="section-title">
           <h2>Japan's Wonders <span class="japanese-phrase">(日本の驚異)</span></h2>
           <p>Discover the must-see destinations across Japan</p>
@@ -1100,15 +1068,16 @@
         <div class="wonders-grid">
           <!-- Wonder 1 -->
           <div class="wonder-card">
-            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('fuji-hotels')">
+            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?auto=format&fit=crop&w=1350&q=80');">
               <div class="wonder-name">
                 <h3>Mount Fuji <span class="japanese-phrase">(富士山)</span></h3>
               </div>
             </div>
             <div class="wonder-info">
               <p>Japan's tallest peak and an active volcano, Mount Fuji is one of the country's most iconic symbols. Its nearly perfect symmetrical cone has inspired artists and pilgrims for centuries. Designated a UNESCO World Heritage site in 2013, it's considered one of Japan's 3 Sacred Mountains.</p>
-              <button class="btn" onclick="toggleHotels('fuji-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
-              <div id="fuji-hotels" class="hotels-container">
+              <input type="checkbox" id="fuji-toggle" class="hotel-toggle">
+              <label for="fuji-toggle" class="btn hotel-toggle-label"><i class="fas fa-hotel"></i> Find Nearby Hotels</label>
+              <div class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
                     <h4>Fuji View Hotel</h4>
@@ -1145,15 +1114,16 @@
 
           <!-- Wonder 2 -->
           <div class="wonder-card">
-            <div class="wonder-image" style="background-image: url('img/Fushimi.jpg');" onclick="toggleHotels('fushimi-hotels')">
+            <div class="wonder-image" style="background-image: url('img/Fushimi.jpg');">
               <div class="wonder-name">
                 <h3>Fushimi Inari Shrine <span class="japanese-phrase">(伏見稲荷大社)</span></h3>
               </div>
             </div>
             <div class="wonder-info">
               <p>Famous for its thousands of vibrant red torii gates that wind through the forests of Kyoto's sacred Mount Inari. This Shinto shrine is dedicated to the god of rice and prosperity. The hike to the summit takes about 2-3 hours and passes through thousands of torii gates donated by businesses and individuals.</p>
-              <button class="btn" onclick="toggleHotels('fushimi-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
-              <div id="fushimi-hotels" class="hotels-container">
+              <input type="checkbox" id="fushimi-toggle" class="hotel-toggle">
+              <label for="fushimi-toggle" class="btn hotel-toggle-label"><i class="fas fa-hotel"></i> Find Nearby Hotels</label>
+              <div class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
                     <h4>Kyoto Traditional Inn</h4>
@@ -1190,15 +1160,16 @@
 
           <!-- Wonder 3 -->
           <div class="wonder-card">
-            <div class="wonder-image" style="background-image: url('img/Kinkaku-ji.jpg');" onclick="toggleHotels('kyoto-hotels')">
+            <div class="wonder-image" style="background-image: url('img/Kinkaku-ji.jpg');">
               <div class="wonder-name">
                 <h3>Kinkaku-ji <span class="japanese-phrase">(金閣寺)</span></h3>
               </div>
             </div>
             <div class="wonder-info">
               <p>Also known as the Golden Pavilion, this Zen Buddhist temple in Kyoto is one of Japan's most famous buildings. The top two floors are completely covered in gold leaf, reflecting beautifully in the surrounding pond. Originally built in 1397 as a retirement villa for shogun Ashikaga Yoshimitsu, it was converted into a temple after his death.</p>
-              <button class="btn" onclick="toggleHotels('kyoto-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
-              <div id="kyoto-hotels" class="hotels-container">
+              <input type="checkbox" id="kyoto-toggle" class="hotel-toggle">
+              <label for="kyoto-toggle" class="btn hotel-toggle-label"><i class="fas fa-hotel"></i> Find Nearby Hotels</label>
+              <div class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
                     <h4>Golden Pavilion Inn</h4>
@@ -1277,27 +1248,27 @@
         </div>
         
         <div class="phrase-item">
-          <h3>Hello <span class="japanese-phrase">こんにちは (Konnichiwa)</span> <button class="play-audio" onclick="playAudio('konnichiwa')"><i class="fas fa-volume-up"></i></button></h3>
+          <h3>Hello <span class="japanese-phrase">こんにちは (Konnichiwa)</span></h3>
           <p>Standard greeting used during the day.</p>
         </div>
         
         <div class="phrase-item">
-          <h3>Thank you <span class="japanese-phrase">ありがとう (Arigatou)</span> <button class="play-audio" onclick="playAudio('arigatou')"><i class="fas fa-volume-up"></i></button></h3>
+          <h3>Thank you <span class="japanese-phrase">ありがとう (Arigatou)</span></h3>
           <p>Essential polite phrase for any situation.</p>
         </div>
         
         <div class="phrase-item">
-          <h3>Please <span class="japanese-phrase">お願いします (Onegaishimasu)</span> <button class="play-audio" onclick="playAudio('onegaishimasu')"><i class="fas fa-volume-up"></i></button></h3>
+          <h3>Please <span class="japanese-phrase">お願いします (Onegaishimasu)</span></h3>
           <p>Used when making a request or ordering.</p>
         </div>
         
         <div class="phrase-item">
-          <h3>Excuse me <span class="japanese-phrase">すみません (Sumimasen)</span> <button class="play-audio" onclick="playAudio('sumimasen')"><i class="fas fa-volume-up"></i></button></h3>
+          <h3>Excuse me <span class="japanese-phrase">すみません (Sumimasen)</span></h3>
           <p>Used to get attention or apologize.</p>
         </div>
         
         <div class="phrase-item">
-          <h3>Delicious <span class="japanese-phrase">美味しい (Oishii)</span> <button class="play-audio" onclick="playAudio('oishii')"><i class="fas fa-volume-up"></i></button></h3>
+          <h3>Delicious <span class="japanese-phrase">美味しい (Oishii)</span></h3>
           <p>Essential when enjoying Japanese food.</p>
         </div>
       </section>
@@ -1346,10 +1317,10 @@
             <h3>About Us</h3>
             <p>Wanderlust Adventures is dedicated to helping travelers discover the world's most beautiful destinations and create unforgettable memories.</p>
             <div class="social-icons">
-              <a href="fb.com"><i class="fab fa-facebook-f"></i></a>
-              <a href="x.com"><i class="fab fa-twitter"></i></a>
-              <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-              <a href="pinterest.com"><i class="fab fa-pinterest"></i></a>
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-pinterest"></i></a>
             </div>
           </div>
           <div class="footer-column">
@@ -1388,117 +1359,9 @@
       </div>
     </footer>
 
-    <a href="#" class="back-to-top" id="back-to-top">
+    <a href="#" class="back-to-top">
       <i class="fas fa-arrow-up"></i>
     </a>
   </div>
-
-  <script>
-    // Splash screen functionality
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('splash-screen').style.opacity = '0';
-        setTimeout(function() {
-          document.getElementById('splash-screen').style.display = 'none';
-          document.getElementById('main-website').style.display = 'block';
-          setTimeout(function() {
-            document.getElementById('main-website').style.opacity = '1';
-          }, 50);
-        }, 800);
-      }, 2500); 
-    });
-
-    // Mobile menu toggle
-    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-      document.getElementById('main-nav').classList.toggle('show');
-    });
-
-    // Back to top button
-    window.addEventListener('scroll', function() {
-      var backToTop = document.getElementById('back-to-top');
-      if (window.pageYOffset > 300) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-    });
-
-    function toggleHotels(hotelId) {
-      const hotelElement = document.getElementById(hotelId);
-      const allHotels = document.querySelectorAll('.hotels-container');
-      
-      // Close all other hotel containers
-      allHotels.forEach(hotel => {
-        if (hotel.id !== hotelId && hotel.style.display === 'block') {
-          hotel.style.display = 'none';
-        }
-      });
-      
-      // Toggle the clicked hotel container
-      if (hotelElement.style.display === 'block') {
-        hotelElement.style.display = 'none';
-      } else {
-        hotelElement.style.display = 'block';
-      }
-    }
-
-    // Create cherry blossom effect for specific containers
-    function createCherryBlossom(containerId) {
-      const container = document.getElementById(containerId);
-      if (!container) return;
-      
-      const blossom = document.createElement('div');
-      blossom.classList.add('cherry-blossom');
-      blossom.innerHTML = '🌸';
-      blossom.style.left = Math.random() * 100 + '%';
-      blossom.style.animationDuration = (Math.random() * 10 + 8) + 's';
-      blossom.style.fontSize = (Math.random() * 20 + 15) + 'px';
-      blossom.style.opacity = Math.random() * 0.5 + 0.3;
-      container.appendChild(blossom);
-      
-      // Remove the element after animation completes
-      setTimeout(() => {
-        if (blossom.parentNode) {
-          blossom.parentNode.removeChild(blossom);
-        }
-      }, 15000);
-    }
-    
-    // Generate cherry blossoms periodically for title section
-    setInterval(() => createCherryBlossom('title-blossoms'), 500);
-    
-    // Generate cherry blossoms periodically for wonders section
-    setInterval(() => createCherryBlossom('wonders-blossoms'), 600);
-    
-    // Simple audio pronunciation for Japanese phrases
-    function playAudio(phrase) {
-      const speech = new SpeechSynthesisUtterance();
-      
-      switch(phrase) {
-        case 'konnichiwa':
-          speech.text = 'konnichiwa';
-          speech.lang = 'ja-JP';
-          break;
-        case 'arigatou':
-          speech.text = 'arigatou';
-          speech.lang = 'ja-JP';
-          break;
-        case 'onegaishimasu':
-          speech.text = 'onegaishimasu';
-          speech.lang = 'ja-JP';
-          break;
-        case 'sumimasen':
-          speech.text = 'sumimasen';
-          speech.lang = 'ja-JP';
-          break;
-        case 'oishii':
-          speech.text = 'oishii';
-          speech.lang = 'ja-JP';
-          break;
-      }
-      
-      window.speechSynthesis.speak(speech);
-    }
-  </script>
 </body>
 </html>
