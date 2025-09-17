@@ -33,7 +33,7 @@
       overflow-x: hidden;
     }
 
-    /* Splash Screen */
+    /* Splash Screen - CSS-only version */
     #splash-screen {
       position: fixed;
       top: 0;
@@ -46,7 +46,8 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      transition: opacity 0.8s ease-out;
+      animation: hideSplash 0.1s forwards;
+      animation-delay: 2.5s;
     }
 
     #splash-screen::after {
@@ -86,6 +87,13 @@
       0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(253, 187, 45, 0.7); }
       70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(253, 187, 45, 0); }
       100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(253, 187, 45, 0); }
+    }
+
+    @keyframes hideSplash {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
     }
 
     #splash-screen h1 {
@@ -134,11 +142,9 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Main Website */
+    /* Main Website - Always visible with CSS approach */
     #main-website {
-      display: none;
-      opacity: 0;
-      transition: opacity 1s ease-in;
+      opacity: 1;
     }
 
     /* Header */
@@ -221,6 +227,7 @@
       left: 15%;
     }
 
+    /* Mobile menu with checkbox hack (no JavaScript) */
     .mobile-menu-btn {
       display: none;
       background: none;
@@ -228,6 +235,10 @@
       color: white;
       font-size: 1.5rem;
       cursor: pointer;
+    }
+
+    #mobile-menu-toggle {
+      display: none;
     }
 
     /* Page Header */
@@ -457,7 +468,7 @@
       opacity: 0.85;
     }
 
-    /* Back to Top Button */
+    /* Back to Top Button - CSS-only approach */
     .back-to-top {
       position: fixed;
       bottom: 30px;
@@ -478,7 +489,8 @@
       z-index: 99;
     }
 
-    .back-to-top.visible {
+    /* Make back-to-top link always visible but non-functional without JS */
+    .back-to-top {
       opacity: 1;
       visibility: visible;
     }
@@ -522,14 +534,15 @@
         top: 20px;
       }
       
+      /* CSS-only mobile menu using checkbox hack */
+      #mobile-menu-toggle:checked ~ nav {
+        display: block;
+      }
+      
       nav {
         display: none;
         width: 100%;
         margin-top: 15px;
-      }
-      
-      nav.show {
-        display: block;
       }
       
       nav ul {
@@ -561,7 +574,7 @@
   </style>
 </head>
 <body>
-  <!-- Splash Screen -->
+  <!-- Splash Screen - CSS-only version -->
   <div id="splash-screen">
     <div class="logo">
       <i class="fas fa-globe-americas"></i>
@@ -579,9 +592,11 @@
       <div class="container">
         <div class="header-content">
           <div class="site-title"><i class="fas fa-globe-americas"></i>Wanderlust <span>Adventures</span></div>
-          <button class="mobile-menu-btn" id="mobile-menu-btn">
+          <!-- Checkbox for mobile menu toggle (CSS-only approach) -->
+          <input type="checkbox" id="mobile-menu-toggle" style="display: none;">
+          <label for="mobile-menu-toggle" class="mobile-menu-btn">
             <i class="fas fa-bars"></i>
-          </button>
+          </label>
           <nav id="main-nav">
             <ul>
               <li><a href="index.html">Home</a></li>
@@ -718,40 +733,10 @@
       </div>
     </footer>
 
-    <a href="#" class="back-to-top" id="back-to-top">
+    <!-- Back to top button - now always visible but non-functional without JS -->
+    <a href="#" class="back-to-top">
       <i class="fas fa-arrow-up"></i>
     </a>
   </div>
-
-  <script>
-    // Splash screen functionality
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('splash-screen').style.opacity = '0';
-        setTimeout(function() {
-          document.getElementById('splash-screen').style.display = 'none';
-          document.getElementById('main-website').style.display = 'block';
-          setTimeout(function() {
-            document.getElementById('main-website').style.opacity = '1';
-          }, 50);
-        }, 800);
-      }, 2500); 
-    });
-
-    // Mobile menu toggle
-    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-      document.getElementById('main-nav').classList.toggle('show');
-    });
-
-    // Back to top button
-    window.addEventListener('scroll', function() {
-      var backToTop = document.getElementById('back-to-top');
-      if (window.pageYOffset > 300) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-    });
-  </script>
 </body>
 </html>
