@@ -46,7 +46,14 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      transition: opacity 0.8s ease-out;
+      animation: hideSplash 0.8s ease-out 2.5s forwards;
+    }
+
+    @keyframes hideSplash {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
     }
 
     #splash-screen::after {
@@ -136,9 +143,14 @@
 
     /* Main Website */
     #main-website {
-      display: none;
       opacity: 0;
-      transition: opacity 1s ease-in;
+      animation: showMain 1s ease-in 3.3s forwards;
+    }
+
+    @keyframes showMain {
+      to {
+        opacity: 1;
+      }
     }
 
     /* Header */
@@ -162,6 +174,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
     }
 
     .site-title {
@@ -221,7 +234,7 @@
       left: 15%;
     }
 
-    /* Mobile menu checkbox hack - replaces JS toggle */
+    /* Mobile menu checkbox hack */
     #mobile-menu-toggle {
       display: none;
     }
@@ -233,6 +246,10 @@
       color: white;
       font-size: 1.5rem;
       cursor: pointer;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     /* Hero Section */
@@ -392,7 +409,7 @@
       opacity: 0.85;
     }
 
-    /* Back to Top Button */
+    /* Back to Top Button - Always visible since we can't detect scroll with CSS */
     .back-to-top {
       position: fixed;
       bottom: 30px;
@@ -408,14 +425,9 @@
       text-decoration: none;
       box-shadow: var(--shadow);
       transition: var(--transition);
-      opacity: 0;
-      visibility: hidden;
-      z-index: 99;
-    }
-
-    .back-to-top.visible {
       opacity: 1;
       visibility: visible;
+      z-index: 99;
     }
 
     .back-to-top:hover {
@@ -452,19 +464,16 @@
       
       .mobile-menu-btn {
         display: block;
-        position: absolute;
-        right: 20px;
-        top: 20px;
       }
       
-      /* Mobile menu using checkbox hack */
-      #main-nav {
+      nav {
         display: none;
         width: 100%;
         margin-top: 15px;
       }
       
-      #mobile-menu-toggle:checked ~ #main-nav {
+      /* Show menu when checkbox is checked */
+      #mobile-menu-toggle:checked ~ nav {
         display: block;
       }
       
@@ -511,11 +520,13 @@
       <div class="container">
         <div class="header-content">
           <div class="site-title"><i class="fas fa-globe-americas"></i>Wanderlust <span>Adventures</span></div>
-          <!-- Checkbox for mobile menu toggle (CSS-only solution) -->
-          <input type="checkbox" id="mobile-menu-toggle" style="display: none;">
-          <label for="mobile-menu-toggle" class="mobile-menu-btn" id="mobile-menu-btn">
+          
+          <!-- Checkbox for mobile menu toggle -->
+          <input type="checkbox" id="mobile-menu-toggle">
+          <label for="mobile-menu-toggle" class="mobile-menu-btn">
             <i class="fas fa-bars"></i>
           </label>
+          
           <nav id="main-nav">
             <ul>
               <li><a href="index.html" class="active">Home</a></li>
@@ -593,31 +604,5 @@
       <i class="fas fa-arrow-up"></i>
     </a>
   </div>
-
-  <script>
-    // Splash screen functionality - needs to remain in JS
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('splash-screen').style.opacity = '0';
-        setTimeout(function() {
-          document.getElementById('splash-screen').style.display = 'none';
-          document.getElementById('main-website').style.display = 'block';
-          setTimeout(function() {
-            document.getElementById('main-website').style.opacity = '1';
-          }, 50);
-        }, 800);
-      }, 2500); 
-    });
-
-    // Back to top button - needs to remain in JS for scroll detection
-    window.addEventListener('scroll', function() {
-      var backToTop = document.getElementById('back-to-top');
-      if (window.pageYOffset > 300) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-    });
-  </script>
 </body>
 </html>
