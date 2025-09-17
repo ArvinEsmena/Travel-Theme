@@ -6,7 +6,7 @@
   <title>Wanderlust Adventures | Italy</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
+    <style>
     :root {
       --primary: #1a2a6c;
       --secondary: #2b5876;
@@ -891,6 +891,108 @@
         font-size: 1rem;
       }
     }
+    
+    /* Italian phrase styling */
+    .italian-phrase {
+      font-style: italic;
+      color: var(--italy-green);
+      font-weight: 500;
+      margin: 5px 0;
+    }
+    
+    /* Italian pattern overlay */
+    .italian-pattern-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23008C45' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    /* Italian cuisine section */
+    .cuisine-section {
+      padding: 70px 0;
+      background: linear-gradient(to bottom, #fff, #F5EBDC);
+    }
+    
+    .food-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+    
+    .food-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .food-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .food-info {
+      padding: 20px;
+    }
+    
+    /* Italian flag animation */
+    .flag-wave {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 60px;
+      background: linear-gradient(to right, var(--italy-green) 33%, var(--italy-white) 33%, var(--italy-white) 66%, var(--italy-red) 66%);
+      border-radius: 4px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      animation: wave 3s infinite;
+      z-index: 5;
+    }
+    
+    @keyframes wave {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(3deg); }
+    }
+    
+
+    
+    /* Italian phrase guide */
+    .phrase-guide {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      margin: 40px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    
+    .phrase-item {
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .phrase-item:last-child {
+      border-bottom: none;
+    }
+    
+    .play-audio {
+      background: var(--italy-green);
+      color: white;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 10px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -908,6 +1010,9 @@
 
   <!-- Italian Pattern Background -->
   <div class="italy-pattern"></div>
+  
+  <!-- Italian pattern overlay -->
+  <div class="italian-pattern-overlay"></div>
 
   <!-- Main Website Content -->
   <div id="main-website">
@@ -933,9 +1038,11 @@
     </header>
 
     <section class="page-title">
+      <div class="flag-wave"></div>
       <div class="olive-branch-container" id="title-olives"></div>
       <div class="container">
         <h1>Discover Italy</h1>
+        <p class="italian-phrase">Benvenuti in Italia - La Dolce Vita</p>
         <p>Experience la dolce vita in a country where ancient history, breathtaking art, and exquisite cuisine come together in perfect harmony.</p>
       </div>
     </section>
@@ -947,21 +1054,25 @@
             <i class="fas fa-language"></i>
             <h3>Language</h3>
             <p>Italian</p>
+            <p class="italian-phrase">Italiano</p>
           </div>
           <div class="fact-item">
             <i class="fas fa-euro-sign"></i>
             <h3>Currency</h3>
             <p>Euro (EUR)</p>
+            <p class="italian-phrase">Euro</p>
           </div>
           <div class="fact-item">
             <i class="fas fa-users"></i>
             <h3>Population</h3>
             <p>59.1 million</p>
+            <p class="italian-phrase">59,1 milioni</p>
           </div>
           <div class="fact-item">
             <i class="fas fa-plane"></i>
             <h3>Best Time to Visit</h3>
             <p>April-June, September-October</p>
+            <p class="italian-phrase">Aprile-Giugno, Settembre-Ottobre</p>
           </div>
         </div>
       </div>
@@ -978,24 +1089,27 @@
 
       <section class="country-intro">
         <div class="section-title">
-          <h2>Welcome to Italy</h2>
+          <h2>Welcome to Italy <span class="italian-phrase">(Benvenuti in Italia)</span></h2>
           <p>Where history, art, and cuisine create la dolce vita</p>
         </div>
         <p>Italy offers an unforgettable journey through time, from the ancient Roman Empire to the Renaissance and beyond. From the romantic canals of Venice to the rolling hills of Tuscany, Italy captivates visitors with its stunning landscapes, world-renowned art, and the warm hospitality of its people. Indulge in authentic pasta and pizza, sip wine in centuries-old vineyards, and immerse yourself in a culture that celebrates the beautiful things in life.</p>
+        <p class="italian-phrase">"La vita è una combinazione di magia e pasta" - Federico Fellini</p>
+        <p><em>("Life is a combination of magic and pasta")</em></p>
       </section>
+
 
       <section class="wonders-section">
         <div class="olive-branch-container" id="wonders-olives"></div>
         <div class="section-title">
-          <h2>Italy's Wonders</h2>
+          <h2>Italy's Wonders <span class="italian-phrase">(Meraviglie d'Italia)</span></h2>
           <p>Discover the must-see destinations across Italy</p>
         </div>
         <div class="wonders-grid">
           <!-- Wonder 1 -->
           <div class="wonder-card">
-            <div class="wonder-image" style="background-image: url('img/Colosseum.jpg');" onclick="toggleHotels('colosseum-hotels')">
+            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1552832230-c0197045d904?auto=format&fit=crop&w=800&q=80');" onclick="toggleHotels('colosseum-hotels')">
               <div class="wonder-name">
-                <h3>Colosseum</h3>
+                <h3>Colosseum <span class="italian-phrase">(Colosseo)</span></h3>
               </div>
             </div>
             <div class="wonder-info">
@@ -1038,9 +1152,9 @@
 
           <!-- Wonder 2 -->
           <div class="wonder-card">
-            <div class="wonder-image" style="background-image: url('img/Venice.jpg');" onclick="toggleHotels('venice-hotels')">
+            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1514890547357-a9ee288728e0?auto=format&fit=crop&w=800&q=80');" onclick="toggleHotels('venice-hotels')">
               <div class="wonder-name">
-                <h3>Venice Canals</h3>
+                <h3>Venice Canals <span class="italian-phrase">(Venezia)</span></h3>
               </div>
             </div>
             <div class="wonder-info">
@@ -1083,9 +1197,9 @@
 
           <!-- Wonder 3 -->
           <div class="wonder-card">
-            <div class="wonder-image" style="background-image: url('img/Florence.jpg');" onclick="toggleHotels('florence-hotels')">
+            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1570585429634-1cbed14c5e7e?auto=format&fit=crop&w=800&q=80');" onclick="toggleHotels('florence-hotels')">
               <div class="wonder-name">
-                <h3>Florence Duomo</h3>
+                <h3>Florence Duomo <span class="italian-phrase">(Duomo di Firenze)</span></h3>
               </div>
             </div>
             <div class="wonder-info">
@@ -1128,9 +1242,76 @@
         </div>
       </section>
 
+      <!-- Italian Cuisine Section -->
+      <section class="cuisine-section">
+        <div class="section-title">
+          <h2>Taste of Italy <span class="italian-phrase">(Gusto d'Italia)</span></h2>
+          <p>Discover Italy's world-renowned culinary traditions</p>
+        </div>
+        
+        <div class="wonders-grid">
+          <div class="food-card">
+            <div class="food-image" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="food-info">
+              <h3>Pizza Napoletana</h3>
+              <p>Authentic Neapolitan pizza with San Marzano tomatoes, mozzarella di bufala, fresh basil, and extra virgin olive oil.</p>
+            </div>
+          </div>
+          
+          <div class="food-card">
+            <div class="food-image" style="background-image: url('https://images.unsplash.com/photo-1611270629569-8b357cb3082c?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="food-info">
+              <h3>Fresh Pasta</h3>
+              <p>Handmade pasta varies by region - from tagliatelle in Emilia-Romagna to orecchiette in Puglia.</p>
+            </div>
+          </div>
+          
+          <div class="food-card">
+            <div class="food-image" style="background-image: url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="food-info">
+              <h3>Italian Wines</h3>
+              <p>From Chianti in Tuscany to Barolo in Piedmont, Italy produces some of the world's finest wines.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Italian Phrase Guide -->
+      <section class="phrase-guide">
+        <div class="section-title">
+          <h2>Italian Phrases <span class="italian-phrase">(Frasi Italiane)</span></h2>
+          <p>Essential phrases for your Italian adventure</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>Hello / Goodbye <span class="italian-phrase">Ciao</span> <button class="play-audio" onclick="playAudio('ciao')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Used for both hello and goodbye in informal settings.</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>Good morning <span class="italian-phrase">Buongiorno</span> <button class="play-audio" onclick="playAudio('buongiorno')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Used as a greeting until early afternoon.</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>Thank you <span class="italian-phrase">Grazie</span> <button class="play-audio" onclick="playAudio('grazie')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Essential polite phrase for any situation.</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>Please <span class="italian-phrase">Per favore</span> <button class="play-audio" onclick="playAudio('perfavore')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Used when making a request.</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>I would like... <span class="italian-phrase">Vorrei...</span> <button class="play-audio" onclick="playAudio('vorrei')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Useful when ordering food or making requests.</p>
+        </div>
+      </section>
+
       <section class="cultural-tips">
         <div class="section-title">
-          <h2>Cultural Tips</h2>
+          <h2>Cultural Tips <span class="italian-phrase">(Consigli Culturali)</span></h2>
           <p>Understanding Italian customs and etiquette</p>
         </div>
         <div class="tips-container">
@@ -1275,7 +1456,9 @@
       
       const branch = document.createElement('div');
       branch.classList.add('olive-branch');
-      branch.innerHTML = '🍃';
+      // Use Italian-themed elements (olives, grapes, etc.)
+      const items = ['🍃', '🫒', '🍇', '🌿'];
+      branch.innerHTML = items[Math.floor(Math.random() * items.length)];
       branch.style.left = Math.random() * 100 + '%';
       branch.style.animationDuration = (Math.random() * 10 + 8) + 's';
       branch.style.fontSize = (Math.random() * 20 + 15) + 'px';
@@ -1290,11 +1473,44 @@
       }, 15000);
     }
     
-    // Generate olive branches periodically for title section
+
     setInterval(() => createOliveBranch('title-olives'), 500);
     
-    // Generate olive branches periodically for wonders section
+
     setInterval(() => createOliveBranch('wonders-olives'), 600);
+    
+
+    
+    // Simple audio pronunciation for Italian phrases
+    function playAudio(phrase) {
+
+      const speech = new SpeechSynthesisUtterance();
+      
+      switch(phrase) {
+        case 'ciao':
+          speech.text = 'ciao';
+          speech.lang = 'it-IT';
+          break;
+        case 'buongiorno':
+          speech.text = 'buongiorno';
+          speech.lang = 'it-IT';
+          break;
+        case 'grazie':
+          speech.text = 'grazie';
+          speech.lang = 'it-IT';
+          break;
+        case 'perfavore':
+          speech.text = 'per favore';
+          speech.lang = 'it-IT';
+          break;
+        case 'vorrei':
+          speech.text = 'vorrei';
+          speech.lang = 'it-IT';
+          break;
+      }
+      
+      window.speechSynthesis.speak(speech);
+    }
   </script>
 </body>
 </html>
