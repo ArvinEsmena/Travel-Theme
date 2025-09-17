@@ -5,37 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wanderlust Adventures | Brazil</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-green: #009c3b;
-      --primary-yellow: #ffdf00;
-      --primary-blue: #002776;
-      --primary-white: #f8f4f0;
-      --secondary-beige: #e8dcca;
-      --secondary-dark-green: #006b32;
-      --text-dark: #333;
-      --text-light: #777;
+      --primary: #009c3b;
+      --secondary: #ffdf00;
+      --accent: #002776;
+      --light: #f8f4f0;
+      --dark: #212529;
+      --text: #333;
+      --text-light: #6c757d;
       --shadow: 0 5px 15px rgba(0,0,0,0.1);
       --transition: all 0.3s ease;
+      --brazil-green: #009c3b;
+      --brazil-yellow: #ffdf00;
+      --brazil-blue: #002776;
+      --brazil-dark-green: #006b32;
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      color: var(--primary-blue);
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
-      background-color: var(--primary-white);
-      color: var(--text-dark);
+      background-color: var(--light);
+      color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
     }
@@ -47,7 +44,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+        background: linear-gradient(to right, rgba(0, 156, 59, 0.85), rgba(255, 223, 0, 0.85)),
+                  url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -85,7 +83,7 @@
 
     .logo i {
       font-size: 70px;
-      color: var(--primary-blue);
+      color: var(--primary);
       transition: var(--transition);
     }
 
@@ -126,7 +124,7 @@
     .loader-bar {
       height: 100%;
       width: 0%;
-      background: linear-gradient(to right, var(--primary-yellow), var(--primary-green));
+      background: linear-gradient(to right, var(--secondary), var(--accent));
       animation: loading 2.5s ease-in-out;
       border-radius: 3px;
     }
@@ -148,24 +146,10 @@
       transition: opacity 1s ease-in;
     }
 
-    /* Brazilian Pattern Background */
-    .brazil-pattern {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.03;
-      pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='40' fill='%23009c3b' fill-opacity='0.2'/%3E%3Cpath d='M30,50 L70,50 M50,30 L50,70' stroke='%23ffdf00' stroke-width='2'/%3E%3C/svg%3E");
-      background-size: 200px;
-      z-index: -1;
-    }
-
     /* Header */
     header {
-      background: linear-gradient(to right, var(--primary-blue), var(--primary-green));
-      color: var(--primary-white);
+      background: linear-gradient(to right, var(--brazil-green), var(--brazil-dark-green));
+      color: white;
       padding: 15px 0;
       box-shadow: var(--shadow);
       position: sticky;
@@ -193,7 +177,7 @@
     }
 
     .site-title span {
-      color: var(--primary-yellow);
+      color: var(--brazil-yellow);
     }
 
     .site-title i {
@@ -212,7 +196,7 @@
     }
 
     nav ul li a {
-      color: var(--primary-white);
+      color: white;
       text-decoration: none;
       font-weight: 500;
       transition: var(--transition);
@@ -222,8 +206,8 @@
     }
 
     nav ul li a:hover, nav ul li a.active {
-      color: var(--primary-yellow);
-      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+     background-color: rgba(255, 255, 255, 0.1);
     }
 
     nav ul li a::after {
@@ -233,7 +217,7 @@
       height: 2px;
       bottom: 0;
       left: 50%;
-      background-color: var(--primary-yellow);
+      background-color: var(--brazil-yellow);
       transition: var(--transition);
     }
 
@@ -246,18 +230,44 @@
       display: none;
       background: none;
       border: none;
-      color: var(--primary-white);
+      color: white;
       font-size: 1.5rem;
       cursor: pointer;
+    }
+
+    /* Brazilian Pattern Background */
+    .brazil-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.03;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='40' fill='%23009c3b' fill-opacity='0.2'/%3E%3Cpath d='M30,50 L70,50 M50,30 L50,70' stroke='%23ffdf00' stroke-width='2'/%3E%3C/svg%3E");
+      background-size: 200px;
+      z-index: -1;
+    }
+
+    /* Brazilian pattern overlay */
+    .brazilian-pattern-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23009c3b' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
     }
 
     /* Page Title */
     .page-title {
       text-align: center;
       padding: 100px 20px;
-      background: linear-gradient(to right, rgba(0, 39, 118, 0.85), rgba(0, 156, 59, 0.85)),
+      background: linear-gradient(to right, rgba(0, 156, 59, 0.85), rgba(255, 223, 0, 0.85)),
                   url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-      color: var(--primary-white);
+      color: white;
       position: relative;
       overflow: hidden;
     }
@@ -269,7 +279,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23f8f4f0' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,50c0-13.81,11.19-25,25-25c5.52,0,10,4.48,10,10c0,15-12.5,27.5-27.5,27.5C52.5,62.5,50,60,50,50z M50,50c0,13.81-11.19,25-25,25c-5.52,0-10-4.48-10-10c0-15,12.5-27.5,27.5-27.5C47.5,37.5,50,40,50,50z' fill='%23f8f4f0' fill-opacity='0.1'/%3E%3C/svg%3E");
       opacity: 0.2;
     }
 
@@ -289,7 +299,7 @@
       transform: translateX(-50%);
       width: 100px;
       height: 4px;
-      background: var(--primary-yellow);
+      background: white;
       border-radius: 2px;
     }
 
@@ -303,8 +313,8 @@
 
     /* Quick Facts Section */
     .quick-facts {
-      background: var(--primary-green);
-      color: var(--primary-white);
+      background: var(--brazil-blue);
+      color: white;
       padding: 30px 0;
     }
 
@@ -323,13 +333,13 @@
     .fact-item i {
       font-size: 2rem;
       margin-bottom: 10px;
-      color: var(--primary-yellow);
+      color: white;
     }
 
     .fact-item h3 {
       font-size: 1.8rem;
       margin-bottom: 5px;
-      color: var(--primary-white);
+      color: white;
     }
 
     .fact-item p {
@@ -341,7 +351,7 @@
     .country-intro {
       padding: 70px 0;
       text-align: center;
-      background: var(--secondary-beige);
+      background: #F5EBDC;
       position: relative;
     }
 
@@ -352,14 +362,14 @@
       left: 0;
       right: 0;
       height: 15px;
-      background: repeating-linear-gradient(45deg, var(--primary-green), var(--primary-green) 10px, var(--primary-yellow) 10px, var(--primary-yellow) 20px, var(--primary-blue) 20px, var(--primary-blue) 30px);
+      background: repeating-linear-gradient(90deg, var(--brazil-green), var(--brazil-green) 33%, var(--brazil-yellow) 33%, var(--brazil-yellow) 66%, var(--brazil-blue) 66%, var(--brazil-blue) 100%);
     }
 
     .country-intro p {
       max-width: 800px;
       margin: 0 auto;
       font-size: 1.1rem;
-      color: var(--text-dark);
+      color: var(--text);
       line-height: 1.8;
     }
 
@@ -384,7 +394,7 @@
       transform: translateX(-50%);
       width: 80px;
       height: 4px;
-      background: var(--primary-green);
+      background: var(--brazil-blue);
       border-radius: 2px;
     }
 
@@ -397,7 +407,7 @@
     /* Wonders Section */
     .wonders-section {
       padding: 70px 0;
-      background: var(--primary-white);
+      background: var(--light);
       position: relative;
       overflow: hidden;
     }
@@ -478,8 +488,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(to right, var(--primary-yellow), var(--primary-green));
-      color: var(--primary-white);
+      background: linear-gradient(to right, var(--secondary), var(--accent));
+      color: white;
       padding: 12px 28px;
       text-decoration: none;
       border-radius: 30px;
@@ -499,23 +509,23 @@
 
     .btn-outline {
       background: transparent;
-      border: 2px solid var(--primary-green);
-      color: var(--primary-green);
+      border: 2px solid var(--brazil-blue);
+      color: var(--brazil-blue);
       box-shadow: none;
     }
 
     .btn-outline:hover {
-      background: var(--primary-green);
+      background: var(--brazil-blue);
       color: white;
     }
 
     .country-btn {
-      background: var(--primary-green);
+      background: var(--brazil-blue);
       margin: 0 5px;
     }
 
     .country-btn:hover {
-       background: var(--secondary-dark-green);
+       background: var(--brazil-dark-green);
     }
 	.country-navigation {
        display: flex;
@@ -558,7 +568,7 @@
     }
 
     .hotel-info h4 {
-      color: var(--primary-blue);
+      color: var(--dark);
       margin-bottom: 8px;
       font-size: 1.1rem;
     }
@@ -572,18 +582,18 @@
 
     .hotel-price {
       font-weight: bold;
-      color: var(--primary-green);
+      color: var(--brazil-blue);
       font-size: 1.2rem;
     }
 
     .hotel-rating {
-      color: var(--primary-yellow);
+      color: var(--brazil-green);
     }
 
     /* Cultural Tips Section */
     .cultural-tips {
       padding: 70px 0;
-      background: var(--secondary-beige);
+      background: #F5EBDC;
     }
 
     .tips-container {
@@ -601,7 +611,7 @@
     }
 
     .tip-icon {
-      background: var(--primary-green);
+      background: var(--brazil-blue);
       color: white;
       font-size: 1.8rem;
       padding: 25px;
@@ -614,7 +624,7 @@
 
     .tip-content h3 {
       margin-bottom: 15px;
-      color: var(--primary-blue);
+      color: var(--dark);
     }
 
     .tip-content p {
@@ -624,8 +634,8 @@
 
     /* Footer */
     footer {
-      background: linear-gradient(to right, var(--primary-blue), var(--primary-green));
-      color: var(--primary-white);
+      background: linear-gradient(to right, var(--brazil-green), var(--brazil-dark-green));
+      color: white;
       padding: 60px 0 30px;
     }
 
@@ -650,7 +660,7 @@
       left: 0;
       width: 40px;
       height: 2px;
-      background-color: var(--primary-yellow);
+      background-color: var(--secondary);
     }
 
     .footer-column p {
@@ -667,14 +677,14 @@
     }
 
     .footer-links a {
-      color: var(--primary-white);
+      color: white;
       text-decoration: none;
       transition: var(--transition);
       opacity: 0.9;
     }
 
     .footer-links a:hover {
-      color: var(--primary-yellow);
+      color: var(--brazil-yellow);
       padding-left: 5px;
     }
 
@@ -691,14 +701,13 @@
       width: 40px;
       height: 40px;
       background: rgba(255, 255, 255, 0.1);
-      color: var(--primary-white);
+      color: white;
       border-radius: 50%;
       transition: var(--transition);
     }
 
     .social-icons a:hover {
-      background: var(--primary-yellow);
-      color: var(--primary-blue);
+     background: var(--brazil-blue);
       transform: translateY(-5px);
     }
 
@@ -720,8 +729,8 @@
       right: 30px;
       width: 50px;
       height: 50px;
-      background: var(--primary-yellow);
-      color: var(--primary-blue);
+      background: var(--secondary);
+      color: var(--brazil-blue);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -740,8 +749,7 @@
     }
 
     .back-to-top:hover {
-      background: var(--primary-green);
-      color: white;
+      background: var(--primary);
       transform: translateY(-5px);
     }
 
@@ -768,8 +776,8 @@
     
     .brazil-decoration {
       position: absolute;
-      font-size: 1.8rem;
-      color: var(--primary-yellow);
+      font-size: 1.5rem;
+      color: var(--brazil-yellow);
       opacity: 0.5;
       z-index: 1;
       animation: float 15s linear infinite;
@@ -787,6 +795,93 @@
       }
     }
 
+    /* Brazilian cuisine section */
+    .cuisine-section {
+      padding: 70px 0;
+      background: linear-gradient(to bottom, #fff, #F5EBDC);
+    }
+    
+    .food-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+    
+    .food-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .food-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .food-info {
+      padding: 20px;
+    }
+    
+    /* Brazilian flag animation */
+    .flag-wave {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 60px;
+      background: linear-gradient(to right, var(--brazil-green) 33%, var(--brazil-yellow) 33%, var(--brazil-yellow) 66%, var(--brazil-blue) 66%);
+      border-radius: 4px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      animation: wave 3s infinite;
+      z-index: 5;
+    }
+    
+    @keyframes wave {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(3deg); }
+    }
+    
+    /* Portuguese phrase guide */
+    .phrase-guide {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      margin: 40px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    
+    .phrase-item {
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .phrase-item:last-child {
+      border-bottom: none;
+    }
+    
+    .play-audio {
+      background: var(--brazil-green);
+      color: white;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    .portuguese-phrase {
+      font-style: italic;
+      color: var(--brazil-green);
+      font-weight: 500;
+      margin: 5px 0;
+    }
+    
     /* Responsive */
     @media (max-width: 992px) {
       .header-content {
@@ -912,6 +1007,9 @@
 
   <!-- Brazilian Pattern Background -->
   <div class="brazil-pattern"></div>
+  
+  <!-- Brazilian pattern overlay -->
+  <div class="brazilian-pattern-overlay"></div>
 
   <!-- Main Website Content -->
   <div id="main-website">
@@ -937,10 +1035,12 @@
     </header>
 
     <section class="page-title">
+      <div class="flag-wave"></div>
       <div class="brazil-decoration-container" id="title-decorations"></div>
       <div class="container">
         <h1>Discover Brazil</h1>
-        <p>Experience the vibrant culture, breathtaking landscapes, and infectious energy of the largest country in South America.</p>
+        <p class="portuguese-phrase">Bem-vindo ao Brasil - O País do Carnaval e do Futebol</p>
+        <p>Experience the vibrant energy, breathtaking landscapes, and rich cultural heritage of the largest country in South America.</p>
       </div>
     </section>
 
@@ -951,21 +1051,25 @@
             <i class="fas fa-language"></i>
             <h3>Language</h3>
             <p>Portuguese</p>
+            <p class="portuguese-phrase">Português</p>
           </div>
           <div class="fact-item">
             <i class="fas fa-money-bill-wave"></i>
             <h3>Currency</h3>
             <p>Real (BRL)</p>
+            <p class="portuguese-phrase">Real</p>
           </div>
           <div class="fact-item">
             <i class="fas fa-users"></i>
             <h3>Population</h3>
             <p>214 million</p>
+            <p class="portuguese-phrase">214 milhões</p>
           </div>
           <div class="fact-item">
             <i class="fas fa-plane"></i>
             <h3>Best Time to Visit</h3>
-            <p>December-March (Summer)</p>
+            <p>December-March</p>
+            <p class="portuguese-phrase">Dezembro a Março</p>
           </div>
         </div>
       </div>
@@ -982,16 +1086,19 @@
 
       <section class="country-intro">
         <div class="section-title">
-          <h2>Welcome to Brazil</h2>
+          <h2>Welcome to Brazil <span class="portuguese-phrase">(Bem-vindo ao Brasil)</span></h2>
           <p>Where vibrant culture meets natural wonders</p>
         </div>
         <p>Brazil offers an incredible diversity of experiences from the Amazon rainforest to pristine beaches, from the rhythm of samba to the excitement of football. As the fifth largest country in the world, Brazil boasts an incredible array of natural wonders, vibrant cities, and a rich cultural heritage that blends indigenous, African, and European influences. Experience the warmth of Brazilian hospitality, the flavors of its diverse cuisine, and the joy of its celebrations.</p>
+        <p class="portuguese-phrase">"O Brasil não é para principiantes" - Tom Jobim</p>
+        <p><em>("Brazil is not for beginners")</em></p>
       </section>
+
 
       <section class="wonders-section">
         <div class="brazil-decoration-container" id="wonders-decorations"></div>
         <div class="section-title">
-          <h2>Brazil's Wonders</h2>
+          <h2>Brazil's Wonders <span class="portuguese-phrase">(Maravilhas do Brasil)</span></h2>
           <p>Discover the must-see destinations across Brazil</p>
         </div>
         <div class="wonders-grid">
@@ -999,7 +1106,7 @@
           <div class="wonder-card">
             <div class="wonder-image" style="background-image: url('img/Christ.jpg');" onclick="toggleHotels('christ-hotels')">
               <div class="wonder-name">
-                <h3>Christ the Redeemer</h3>
+                <h3>Christ the Redeemer <span class="portuguese-phrase">(Cristo Redentor)</span></h3>
               </div>
             </div>
             <div class="wonder-info">
@@ -1014,7 +1121,7 @@
                       <span class="hotel-rating">★★★★★</span>
                     </div>
                   </div>
-                  <div class="hotel-price">$350/night</div>
+                  <div class="hotel-price">R$ 350/night</div>
                 </div>
                 <div class="hotel-card">
                   <div class="hotel-info">
@@ -1024,7 +1131,7 @@
                       <span class="hotel-rating">★★★★☆</span>
                     </div>
                   </div>
-                  <div class="hotel-price">$180/night</div>
+                  <div class="hotel-price">R$ 180/night</div>
                 </div>
                 <div class="hotel-card">
                   <div class="hotel-info">
@@ -1034,7 +1141,7 @@
                       <span class="hotel-rating">★★★☆☆</span>
                     </div>
                   </div>
-                  <div class="hotel-price">$120/night</div>
+                  <div class="hotel-price">R$ 120/night</div>
                 </div>
               </div>
             </div>
@@ -1044,7 +1151,7 @@
           <div class="wonder-card">
             <div class="wonder-image" style="background-image: url('img/Iguazu.jpg');" onclick="toggleHotels('iguazu-hotels')">
               <div class="wonder-name">
-                <h3>Iguazu Falls</h3>
+                <h3>Iguazu Falls <span class="portuguese-phrase">(Cataratas do Iguaçu)</span></h3>
               </div>
             </div>
             <div class="wonder-info">
@@ -1059,7 +1166,7 @@
                       <span class="hotel-rating">★★★★★</span>
                     </div>
                   </div>
-                  <div class="hotel-price">$400/night</div>
+                  <div class="hotel-price">R$ 400/night</div>
                 </div>
                 <div class="hotel-card">
                   <div class="hotel-info">
@@ -1069,7 +1176,7 @@
                       <span class="hotel-rating">★★★★☆</span>
                     </div>
                   </div>
-                  <div class="hotel-price">$150/night</div>
+                  <div class="hotel-price">R$ 150/night</div>
                 </div>
                 <div class="hotel-card">
                   <div class="hotel-info">
@@ -1079,7 +1186,7 @@
                       <span class="hotel-rating">★★★☆☆</span>
                     </div>
                   </div>
-                  <div class="hotel-price">$100/night</div>
+                  <div class="hotel-price">R$ 100/night</div>
                 </div>
               </div>
             </div>
@@ -1089,7 +1196,7 @@
           <div class="wonder-card">
             <div class="wonder-image" style="background-image: url('img/Amazon.jpg');" onclick="toggleHotels('amazon-hotels')">
               <div class="wonder-name">
-                <h3>Amazon Rainforest</h3>
+                <h3>Amazon Rainforest <span class="portuguese-phrase">(Floresta Amazônica)</span></h3>
               </div>
             </div>
             <div class="wonder-info">
@@ -1104,7 +1211,7 @@
                       <span class="hotel-rating">★★★★☆</span>
                     </div>
                   </div>
-                  <div class="hotel-price">$280/night</div>
+                  <div class="hotel-price">R$ 280/night</div>
                 </div>
                 <div class="hotel-card">
                   <div class="hotel-info">
@@ -1114,7 +1221,7 @@
                       <span class="hotel-rating">★★★☆☆</span>
                     </div>
                   </div>
-                  <div class="hotel-price">$160/night</div>
+                  <div class="hotel-price">R$ 160/night</div>
                 </div>
                 <div class="hotel-card">
                   <div class="hotel-info">
@@ -1124,7 +1231,7 @@
                       <span class="hotel-rating">★★★★☆</span>
                     </div>
                   </div>
-                  <div class="hotel-price">$220/night</div>
+                  <div class="hotel-price">R$ 220/night</div>
                 </div>
               </div>
             </div>
@@ -1132,9 +1239,76 @@
         </div>
       </section>
 
+      <!-- Brazilian Cuisine Section -->
+      <section class="cuisine-section">
+        <div class="section-title">
+          <h2>Taste of Brazil <span class="portuguese-phrase">(Sabores do Brasil)</span></h2>
+          <p>Discover Brazil's diverse culinary traditions</p>
+        </div>
+        
+        <div class="wonders-grid">
+          <div class="food-card">
+            <div class="food-image" style="background-image: url('img/Feijoada.jpg');"></div>
+            <div class="food-info">
+              <h3>Feijoada</h3>
+              <p>Brazil's national dish - a rich, flavorful stew of black beans with pork and beef, traditionally served with rice, collard greens, and orange slices.</p>
+            </div>
+          </div>
+          
+          <div class="food-card">
+            <div class="food-image" style="background-image: url('img/Churrasco.jpg');"></div>
+            <div class="food-info">
+              <h3>Churrasco</h3>
+              <p>Brazilian barbecue featuring various cuts of meat slow-roasted over open flames, a culinary tradition from the southern region.</p>
+            </div>
+          </div>
+          
+          <div class="food-card">
+            <div class="food-image" style="background-image: url('img/Caipirinha.jpg');"></div>
+            <div class="food-info">
+              <h3>Caipirinha</h3>
+              <p>Brazil's national cocktail made with cachaça, sugar, and lime - the perfect refreshment for warm days and festive nights.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Portuguese Phrase Guide -->
+      <section class="phrase-guide">
+        <div class="section-title">
+          <h2>Portuguese Phrases <span class="portuguese-phrase">(Frases em Português)</span></h2>
+          <p>Essential phrases for your Brazilian adventure</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>Hello <span class="portuguese-phrase">Olá</span> <button class="play-audio" onclick="playAudio('ola')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Standard greeting used throughout Brazil.</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>Good morning <span class="portuguese-phrase">Bom dia</span> <button class="play-audio" onclick="playAudio('bomdia')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Used as a greeting until noon.</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>Thank you <span class="portuguese-phrase">Obrigado/Obrigada</span> <button class="play-audio" onclick="playAudio('obrigado')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Men say "obrigado", women say "obrigada". Essential polite phrase for any situation.</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>Please <span class="portuguese-phrase">Por favor</span> <button class="play-audio" onclick="playAudio('porfavor')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Used when making a request.</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>How are you? <span class="portuguese-phrase">Tudo bem?</span> <button class="play-audio" onclick="playAudio('tudobem')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Common greeting meaning "Is everything well?".</p>
+        </div>
+      </section>
+
       <section class="cultural-tips">
         <div class="section-title">
-          <h2>Cultural Tips</h2>
+          <h2>Cultural Tips <span class="portuguese-phrase">(Dicas Culturais)</span></h2>
           <p>Understanding Brazilian customs and etiquette</p>
         </div>
         <div class="tips-container">
@@ -1281,7 +1455,7 @@
       decoration.classList.add('brazil-decoration');
       
       // Use Brazilian-themed emojis
-      const emojis = ['⚽', '🌴', '💃'];
+      const emojis = ['⚽', '🌴', '💃', '🌺'];
       decoration.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
       
       decoration.style.left = Math.random() * 100 + '%';
@@ -1290,7 +1464,7 @@
       decoration.style.opacity = Math.random() * 0.5 + 0.3;
       container.appendChild(decoration);
       
-      // Remove the element after animation completes
+
       setTimeout(() => {
         if (decoration.parentNode) {
           decoration.parentNode.removeChild(decoration);
@@ -1298,11 +1472,41 @@
       }, 15000);
     }
     
-    // Generate decorations periodically for title section
+
     setInterval(() => createBrazilDecoration('title-decorations'), 500);
     
-    // Generate decorations periodically for wonders section
+
     setInterval(() => createBrazilDecoration('wonders-decorations'), 600);
+    
+  
+    function playAudio(phrase) {
+      const speech = new SpeechSynthesisUtterance();
+      
+      switch(phrase) {
+        case 'ola':
+          speech.text = 'olá';
+          speech.lang = 'pt-BR';
+          break;
+        case 'bomdia':
+          speech.text = 'bom dia';
+          speech.lang = 'pt-BR';
+          break;
+        case 'obrigado':
+          speech.text = 'obrigado';
+          speech.lang = 'pt-BR';
+          break;
+        case 'porfavor':
+          speech.text = 'por favor';
+          speech.lang = 'pt-BR';
+          break;
+        case 'tudobem':
+          speech.text = 'tudo bem';
+          speech.lang = 'pt-BR';
+          break;
+      }
+      
+      window.speechSynthesis.speak(speech);
+    }
   </script>
 </body>
 </html>
