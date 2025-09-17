@@ -6,7 +6,7 @@
   <title>Wanderlust Adventures | Italy</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
+  <style>
     :root {
       --primary: #1a2a6c;
       --secondary: #2b5876;
@@ -44,14 +44,21 @@
       left: 0;
       width: 100%;
       height: 100%;
-        background: linear-gradient(to right, rgba(0, 140, 69, 0.85), rgba(205, 33, 42, 0.85)),
+      background: linear-gradient(to right, rgba(0, 140, 69, 0.85), rgba(205, 33, 42, 0.85)),
                   url('https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      transition: opacity 0.8s ease-out;
+      animation: hideSplash 0.8s ease-out 2.5s forwards;
+    }
+
+    @keyframes hideSplash {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
     }
 
     #splash-screen::after {
@@ -74,17 +81,11 @@
       margin-bottom: 30px;
       animation: pulse 2s infinite;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      transition: var(--transition);
-    }
-
-    .logo:hover {
-      transform: scale(1.05);
     }
 
     .logo i {
       font-size: 70px;
       color: var(--primary);
-      transition: var(--transition);
     }
 
     @keyframes pulse {
@@ -125,7 +126,7 @@
       height: 100%;
       width: 0%;
       background: linear-gradient(to right, var(--accent), #ff5e62);
-      animation: loading 2.5s ease-in-out;
+      animation: loading 2.5s ease-in-out forwards;
       border-radius: 3px;
     }
 
@@ -141,9 +142,14 @@
 
     /* Main Website */
     #main-website {
-      display: none;
       opacity: 0;
-      transition: opacity 1s ease-in;
+      animation: showMain 1s ease-in 2.5s forwards;
+    }
+
+    @keyframes showMain {
+      to {
+        opacity: 1;
+      }
     }
 
     /* Header */
@@ -207,7 +213,7 @@
 
     nav ul li a:hover, nav ul li a.active {
       color: var(--italy-white);
-     background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.1);
     }
 
     nav ul li a::after {
@@ -426,7 +432,6 @@
       background-position: center;
       background-size: cover;
       position: relative;
-      cursor: pointer;
       overflow: hidden;
     }
 
@@ -515,7 +520,8 @@
     .country-btn:hover {
        background: var(--italy-dark-green);
     }
-	.country-navigation {
+
+    .country-navigation {
        display: flex;
        justify-content: center;
        flex-wrap: wrap;
@@ -527,12 +533,6 @@
     .hotels-container {
       margin-top: 20px;
       display: none;
-      animation: fadeIn 0.5s ease-in;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     .hotel-card {
@@ -695,7 +695,7 @@
     }
 
     .social-icons a:hover {
-     background: var(--italy-red);
+      background: var(--italy-red);
       transform: translateY(-5px);
     }
 
@@ -726,14 +726,7 @@
       text-decoration: none;
       box-shadow: var(--shadow);
       transition: var(--transition);
-      opacity: 0;
-      visibility: hidden;
       z-index: 99;
-    }
-
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
     }
 
     .back-to-top:hover {
@@ -750,156 +743,6 @@
       margin: 30px 0;
     }
 
-    /* Olive Branch Decoration */
-    .olive-branch-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 2;
-    }
-    
-    .olive-branch {
-      position: absolute;
-      font-size: 1.5rem;
-      color: #8A9A5B;
-      opacity: 0.5;
-      z-index: 1;
-      animation: fall 15s linear infinite;
-      pointer-events: none;
-    }
-
-    @keyframes fall {
-      0% {
-        transform: translateY(-10px) translateX(0) rotate(0deg);
-        opacity: 0.7;
-      }
-      100% {
-        transform: translateY(600px) translateX(30px) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    /* Responsive */
-    @media (max-width: 992px) {
-      .header-content {
-        flex-direction: column;
-        text-align: center;
-      }
-      
-      nav ul {
-        margin-top: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      
-      nav ul li {
-        margin: 5px 10px;
-      }
-      
-      .facts-container {
-        justify-content: center;
-      }
-      
-      .fact-item {
-        flex: 0 0 50%;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .site-title {
-        font-size: 1.8rem;
-      }
-      
-      .page-title h1 {
-        font-size: 2.5rem;
-      }
-      
-      .mobile-menu-btn {
-        display: block;
-        position: absolute;
-        right: 20px;
-        top: 20px;
-      }
-      
-      nav {
-        display: none;
-        width: 100%;
-        margin-top: 15px;
-      }
-      
-      nav.show {
-        display: block;
-      }
-      
-      nav ul {
-        flex-direction: column;
-      }
-      
-      nav ul li {
-        margin: 8px 0;
-      }
-      
-      .wonders-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .page-title h1 {
-        font-size: 2.3rem;
-      }
-      
-      .hotel-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-      
-      .hotel-price {
-        align-self: flex-end;
-      }
-      
-      .fact-item {
-        flex: 0 0 100%;
-      }
-      
-      /* Adjust olive branch animation for mobile */
-      @keyframes fall {
-        0% {
-          transform: translateY(-10px) translateX(0) rotate(0deg);
-          opacity: 0.7;
-        }
-        100% {
-          transform: translateY(400px) translateX(30px) rotate(360deg);
-          opacity: 0;
-        }
-      }
-    }
-
-    @media (max-width: 576px) {
-      #splash-screen h1 {
-        font-size: 2.5rem;
-      }
-      
-      .page-title h1 {
-        font-size: 2rem;
-      }
-      
-      .page-title p {
-        font-size: 1rem;
-      }
-    }
-    
-    /* Italian phrase styling */
-    .italian-phrase {
-      font-style: italic;
-      color: var(--italy-green);
-      font-weight: 500;
-      margin: 5px 0;
-    }
-    
     /* Italian pattern overlay */
     .italian-pattern-overlay {
       position: absolute;
@@ -911,13 +754,13 @@
       pointer-events: none;
       z-index: 1;
     }
-    
+
     /* Italian cuisine section */
     .cuisine-section {
       padding: 70px 0;
       background: linear-gradient(to bottom, #fff, #F5EBDC);
     }
-    
+
     .food-card {
       background: white;
       border-radius: 10px;
@@ -925,21 +768,21 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.08);
       transition: transform 0.3s;
     }
-    
+
     .food-card:hover {
       transform: translateY(-5px);
     }
-    
+
     .food-image {
       height: 200px;
       background-size: cover;
       background-position: center;
     }
-    
+
     .food-info {
       padding: 20px;
     }
-    
+
     /* Italian flag animation */
     .flag-wave {
       position: absolute;
@@ -953,14 +796,12 @@
       animation: wave 3s infinite;
       z-index: 5;
     }
-    
+
     @keyframes wave {
       0%, 100% { transform: rotate(0deg); }
       50% { transform: rotate(3deg); }
     }
-    
 
-    
     /* Italian phrase guide */
     .phrase-guide {
       background: white;
@@ -969,17 +810,17 @@
       margin: 40px 0;
       box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     }
-    
+
     .phrase-item {
       margin-bottom: 15px;
       padding-bottom: 15px;
       border-bottom: 1px solid #eee;
     }
-    
+
     .phrase-item:last-child {
       border-bottom: none;
     }
-    
+
     .play-audio {
       background: var(--italy-green);
       color: white;
@@ -992,6 +833,134 @@
       justify-content: center;
       margin-left: 10px;
       cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      nav ul li {
+        margin: 5px 10px;
+      }
+
+      .facts-container {
+        justify-content: center;
+      }
+
+      .fact-item {
+        flex: 0 0 50%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .site-title {
+        font-size: 1.8rem;
+      }
+
+      .page-title h1 {
+        font-size: 2.5rem;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+      }
+
+      nav {
+        display: none;
+        width: 100%;
+        margin-top: 15px;
+      }
+
+      nav.show {
+        display: block;
+      }
+
+      nav ul {
+        flex-direction: column;
+      }
+
+      nav ul li {
+        margin: 8px 0;
+      }
+
+      .wonders-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page-title h1 {
+        font-size: 2.3rem;
+      }
+
+      .hotel-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .hotel-price {
+        align-self: flex-end;
+      }
+
+      .fact-item {
+        flex: 0 0 100%;
+      }
+    }
+
+    @media (max-width: 576px) {
+      #splash-screen h1 {
+        font-size: 2.5rem;
+      }
+
+      .page-title h1 {
+        font-size: 2rem;
+      }
+
+      .page-title p {
+        font-size: 1rem;
+      }
+    }
+
+    /* Italian phrase styling */
+    .italian-phrase {
+      font-style: italic;
+      color: var(--italy-green);
+      font-weight: 500;
+      margin: 5px 0;
+    }
+    
+    /* CSS-only hotel toggle */
+    .hotel-toggle {
+      display: none;
+    }
+    
+    .hotel-toggle-label {
+      cursor: pointer;
+    }
+    
+    .hotel-toggle:checked ~ .hotels-container {
+      display: block;
+      animation: fadeIn 0.5s ease-in;
+    }
+    
+    /* CSS-only mobile menu */
+    .menu-toggle {
+      display: none;
+    }
+    
+    .menu-toggle:checked ~ nav {
+      display: block;
     }
   </style>
 </head>
@@ -1010,7 +979,7 @@
 
   <!-- Italian Pattern Background -->
   <div class="italy-pattern"></div>
-  
+
   <!-- Italian pattern overlay -->
   <div class="italian-pattern-overlay"></div>
 
@@ -1020,10 +989,11 @@
       <div class="container">
         <div class="header-content">
           <div class="site-title"><i class="fas fa-globe-americas"></i>Wanderlust <span>Adventures</span></div>
-          <button class="mobile-menu-btn" id="mobile-menu-btn">
+          <input type="checkbox" id="mobile-menu-toggle" class="menu-toggle">
+          <label for="mobile-menu-toggle" class="mobile-menu-btn">
             <i class="fas fa-bars"></i>
-          </button>
-          <nav id="main-nav">
+          </label>
+          <nav>
             <ul>
               <li><a href="index.html">Home</a></li>
               <li><a href="countries.html" class="active">Countries</a></li>
@@ -1038,8 +1008,6 @@
     </header>
 
     <section class="page-title">
-      <div class="flag-wave"></div>
-      <div class="olive-branch-container" id="title-olives"></div>
       <div class="container">
         <h1>Discover Italy</h1>
         <p class="italian-phrase">Benvenuti in Italia - La Dolce Vita</p>
@@ -1097,9 +1065,7 @@
         <p><em>("Life is a combination of magic and pasta")</em></p>
       </section>
 
-
       <section class="wonders-section">
-        <div class="olive-branch-container" id="wonders-olives"></div>
         <div class="section-title">
           <h2>Italy's Wonders <span class="italian-phrase">(Meraviglie d'Italia)</span></h2>
           <p>Discover the must-see destinations across Italy</p>
@@ -1107,15 +1073,16 @@
         <div class="wonders-grid">
           <!-- Wonder 1 -->
           <div class="wonder-card">
-            <div class="wonder-image" style="background-image: url('img/Colosseum.jpg');" onclick="toggleHotels('colosseum-hotels')">
+            <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1552832230-c0197043a4d0?auto=format&fit=crop&w=800&q=80');">
               <div class="wonder-name">
                 <h3>Colosseum <span class="italian-phrase">(Colosseo)</span></h3>
               </div>
             </div>
             <div class="wonder-info">
               <p>The iconic symbol of Imperial Rome, this ancient amphitheater is the largest ever built. Completed in 80 AD, it could hold between 50,000 and 80,000 spectators who watched gladiatorial contests, animal hunts, and dramatic performances. Today, it stands as a magnificent ruin and testament to Roman engineering.</p>
-              <button class="btn" onclick="toggleHotels('colosseum-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
-              <div id="colosseum-hotels" class="hotels-container">
+              <input type="checkbox" id="colosseum-toggle" class="hotel-toggle">
+              <label for="colosseum-toggle" class="btn hotel-toggle-label"><i class="fas fa-hotel"></i> Find Nearby Hotels</label>
+              <div class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
                     <h4>Roman Forum Hotel</h4>
@@ -1152,15 +1119,16 @@
 
           <!-- Wonder 2 -->
           <div class="wonder-card">
-            <div class="wonder-image" style="background-image: url('img/Venice.jpg');" onclick="toggleHotels('venice-hotels')">
+            <div class="wonder-image" style="background-image: url('img/Venice.jpg');">
               <div class="wonder-name">
                 <h3>Venice Canals <span class="italian-phrase">(Venezia)</span></h3>
               </div>
             </div>
             <div class="wonder-info">
               <p>Built on 118 small islands separated by canals and linked by over 400 bridges, Venice is a city unlike any other. The Grand Canal snakes through the city, past Renaissance palaces and under iconic bridges. A gondola ride through these waterways offers a unique perspective of this magical city that seems to float on water.</p>
-              <button class="btn" onclick="toggleHotels('venice-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
-              <div id="venice-hotels" class="hotels-container">
+              <input type="checkbox" id="venice-toggle" class="hotel-toggle">
+              <label for="venice-toggle" class="btn hotel-toggle-label"><i class="fas fa-hotel"></i> Find Nearby Hotels</label>
+              <div class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
                     <h4>Canal View Residence</h4>
@@ -1197,15 +1165,16 @@
 
           <!-- Wonder 3 -->
           <div class="wonder-card">
-            <div class="wonder-image" style="background-image: url('img/Florence.jpg');" onclick="toggleHotels('florence-hotels')">
+            <div class="wonder-image" style="background-image: url('img/Florence.jpg');">
               <div class="wonder-name">
                 <h3>Florence Duomo <span class="italian-phrase">(Duomo di Firenze)</span></h3>
               </div>
             </div>
             <div class="wonder-info">
               <p>The Cattedrale di Santa Maria del Fiore, known simply as the Duomo, is the iconic landmark of Florence. Its magnificent dome, engineered by Filippo Brunelleschi, was the largest in the world when completed in 1436. The exterior is faced with polychrome marble panels in shades of green and pink, bordered by white, creating a stunning visual effect.</p>
-              <button class="btn" onclick="toggleHotels('florence-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
-              <div id="florence-hotels" class="hotels-container">
+              <input type="checkbox" id="florence-toggle" class="hotel-toggle">
+              <label for="florence-toggle" class="btn hotel-toggle-label"><i class="fas fa-hotel"></i> Find Nearby Hotels</label>
+              <div class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
                     <h4>Duomo View Hotel</h4>
@@ -1248,7 +1217,7 @@
           <h2>Taste of Italy <span class="italian-phrase">(Gusto d'Italia)</span></h2>
           <p>Discover Italy's world-renowned culinary traditions</p>
         </div>
-        
+
         <div class="wonders-grid">
           <div class="food-card">
             <div class="food-image" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80');"></div>
@@ -1257,7 +1226,7 @@
               <p>Authentic Neapolitan pizza with San Marzano tomatoes, mozzarella di bufala, fresh basil, and extra virgin olive oil.</p>
             </div>
           </div>
-          
+
           <div class="food-card">
             <div class="food-image" style="background-image: url('img/Fresh.jpg');"></div>
             <div class="food-info">
@@ -1265,7 +1234,7 @@
               <p>Handmade pasta varies by region - from tagliatelle in Emilia-Romagna to orecchiette in Puglia.</p>
             </div>
           </div>
-          
+
           <div class="food-card">
             <div class="food-image" style="background-image: url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=800&q=80');"></div>
             <div class="food-info">
@@ -1282,29 +1251,29 @@
           <h2>Italian Phrases <span class="italian-phrase">(Frasi Italiane)</span></h2>
           <p>Essential phrases for your Italian adventure</p>
         </div>
-        
+
         <div class="phrase-item">
-          <h3>Hello / Goodbye <span class="italian-phrase">Ciao</span> <button class="play-audio" onclick="playAudio('ciao')"><i class="fas fa-volume-up"></i></button></h3>
+          <h3>Hello / Goodbye <span class="italian-phrase">Ciao</span> </i></button></h3>
           <p>Used for both hello and goodbye in informal settings.</p>
         </div>
-        
+
         <div class="phrase-item">
-          <h3>Good morning <span class="italian-phrase">Buongiorno</span> <button class="play-audio" onclick="playAudio('buongiorno')"><i class="fas fa-volume-up"></i></button></h3>
+          <h3>Good morning <span class="italian-phrase">Buongiorno</span> </h3>
           <p>Used as a greeting until early afternoon.</p>
         </div>
-        
+
         <div class="phrase-item">
-          <h3>Thank you <span class="italian-phrase">Grazie</span> <button class="play-audio" onclick="playAudio('grazie')"><i class="fas fa-volume-up"></i></button></h3>
+          <h3>Thank you <span class="italian-phrase">Grazie</span> </h3>
           <p>Essential polite phrase for any situation.</p>
         </div>
-        
+
         <div class="phrase-item">
-          <h3>Please <span class="italian-phrase">Per favore</span> <button class="play-audio" onclick="playAudio('perfavore')"><i class="fas fa-volume-up"></i></button></h3>
+          <h3>Please <span class="italian-phrase">Per favore</span> </h3>
           <p>Used when making a request.</p>
         </div>
-        
+
         <div class="phrase-item">
-          <h3>I would like... <span class="italian-phrase">Vorrei...</span> <button class="play-audio" onclick="playAudio('vorrei')"><i class="fas fa-volume-up"></i></button></h3>
+          <h3>I would like... <span class="italian-phrase">Vorrei...</span> </h3>
           <p>Useful when ordering food or making requests.</p>
         </div>
       </section>
@@ -1353,10 +1322,10 @@
             <h3>About Us</h3>
             <p>Wanderlust Adventures is dedicated to helping travelers discover the world's most beautiful destinations and create unforgettable memories.</p>
             <div class="social-icons">
-              <a href="fb.com"><i class="fab fa-facebook-f"></i></a>
-              <a href="x.com"><i class="fab fa-twitter"></i></a>
-              <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-              <a href="pinterest.com"><i class="fab fa-pinterest"></i></a>
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-pinterest"></i></a>
             </div>
           </div>
           <div class="footer-column">
@@ -1395,122 +1364,9 @@
       </div>
     </footer>
 
-    <a href="#" class="back-to-top" id="back-to-top">
+    <a href="#" class="back-to-top">
       <i class="fas fa-arrow-up"></i>
     </a>
   </div>
-
-  <script>
-    // Splash screen functionality
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('splash-screen').style.opacity = '0';
-        setTimeout(function() {
-          document.getElementById('splash-screen').style.display = 'none';
-          document.getElementById('main-website').style.display = 'block';
-          setTimeout(function() {
-            document.getElementById('main-website').style.opacity = '1';
-          }, 50);
-        }, 800);
-      }, 2500); 
-    });
-
-    // Mobile menu toggle
-    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-      document.getElementById('main-nav').classList.toggle('show');
-    });
-
-    // Back to top button
-    window.addEventListener('scroll', function() {
-      var backToTop = document.getElementById('back-to-top');
-      if (window.pageYOffset > 300) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-    });
-
-    function toggleHotels(hotelId) {
-      const hotelElement = document.getElementById(hotelId);
-      const allHotels = document.querySelectorAll('.hotels-container');
-      
-      // Close all other hotel containers
-      allHotels.forEach(hotel => {
-        if (hotel.id !== hotelId && hotel.style.display === 'block') {
-          hotel.style.display = 'none';
-        }
-      });
-      
-      // Toggle the clicked hotel container
-      if (hotelElement.style.display === 'block') {
-        hotelElement.style.display = 'none';
-      } else {
-        hotelElement.style.display = 'block';
-      }
-    }
-
-    // Create olive branch effect for specific containers
-    function createOliveBranch(containerId) {
-      const container = document.getElementById(containerId);
-      if (!container) return;
-      
-      const branch = document.createElement('div');
-      branch.classList.add('olive-branch');
-      // Use Italian-themed elements (olives, grapes, etc.)
-      const items = ['🍃', '🫒', '🍇', '🌿'];
-      branch.innerHTML = items[Math.floor(Math.random() * items.length)];
-      branch.style.left = Math.random() * 100 + '%';
-      branch.style.animationDuration = (Math.random() * 10 + 8) + 's';
-      branch.style.fontSize = (Math.random() * 20 + 15) + 'px';
-      branch.style.opacity = Math.random() * 0.5 + 0.3;
-      container.appendChild(branch);
-      
-      // Remove the element after animation completes
-      setTimeout(() => {
-        if (branch.parentNode) {
-          branch.parentNode.removeChild(branch);
-        }
-      }, 15000);
-    }
-    
-
-    setInterval(() => createOliveBranch('title-olives'), 500);
-    
-
-    setInterval(() => createOliveBranch('wonders-olives'), 600);
-    
-
-    
-    // Simple audio pronunciation for Italian phrases
-    function playAudio(phrase) {
-
-      const speech = new SpeechSynthesisUtterance();
-      
-      switch(phrase) {
-        case 'ciao':
-          speech.text = 'ciao';
-          speech.lang = 'it-IT';
-          break;
-        case 'buongiorno':
-          speech.text = 'buongiorno';
-          speech.lang = 'it-IT';
-          break;
-        case 'grazie':
-          speech.text = 'grazie';
-          speech.lang = 'it-IT';
-          break;
-        case 'perfavore':
-          speech.text = 'per favore';
-          speech.lang = 'it-IT';
-          break;
-        case 'vorrei':
-          speech.text = 'vorrei';
-          speech.lang = 'it-IT';
-          break;
-      }
-      
-      window.speechSynthesis.speak(speech);
-    }
-  </script>
 </body>
 </html>
