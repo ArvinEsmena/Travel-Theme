@@ -8,18 +8,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-gold: #d4af37;
-      --primary-blue: #1e3a8a;
-      --primary-terracotta: #cc5533;
-      --primary-white: #f8f4f0;
-      --secondary-beige: #e8dcca;
-      --secondary-dark-blue: #0f2a5f;
-      --text-dark: #333;
-      --text-light: #777;
+      --primary: #1e3a8a;
+      --secondary: #0f2a5f;
+      --accent: #d4af37;
       --light: #f8f9fa;
       --dark: #212529;
+      --text: #333;
+      --text-light: #6c757d;
       --shadow: 0 5px 15px rgba(0,0,0,0.1);
       --transition: all 0.3s ease;
+      --egypt-blue: #1e3a8a;
+      --egypt-gold: #d4af37;
+      --egypt-terracotta: #cc5533;
+      --egypt-beige: #e8dcca;
     }
 
     * {
@@ -30,8 +31,8 @@
     }
 
     body {
-      background-color: var(--primary-white);
-      color: var(--text-dark);
+      background-color: var(--light);
+      color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
     }
@@ -43,7 +44,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('img/Pyramids.jpg') no-repeat center center/cover;
+        background: linear-gradient(to right, rgba(30, 58, 138, 0.85), rgba(204, 85, 51, 0.85)),
+                  url('https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -57,7 +59,7 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: linear-gradient(135deg, rgba(30, 58, 138, 0.85), rgba(204, 85, 51, 0.85));
+      background: linear-gradient(135deg, rgba(30, 58, 138, 0.85), rgba(13, 33, 89, 0.85));
       z-index: -1;
     }
 
@@ -81,7 +83,7 @@
 
     .logo i {
       font-size: 70px;
-      color: var(--primary-blue);
+      color: var(--primary);
       transition: var(--transition);
     }
 
@@ -122,7 +124,7 @@
     .loader-bar {
       height: 100%;
       width: 0%;
-      background: linear-gradient(to right, var(--primary-gold), var(--primary-terracotta));
+      background: linear-gradient(to right, var(--accent), var(--egypt-terracotta));
       animation: loading 2.5s ease-in-out;
       border-radius: 3px;
     }
@@ -146,7 +148,7 @@
 
     /* Header */
     header {
-      background: linear-gradient(to right, var(--primary-blue), var(--secondary-dark-blue));
+      background: linear-gradient(to right, var(--egypt-blue), var(--secondary));
       color: white;
       padding: 15px 0;
       box-shadow: var(--shadow);
@@ -175,7 +177,7 @@
     }
 
     .site-title span {
-      color: var(--primary-gold);
+      color: var(--accent);
     }
 
     .site-title i {
@@ -204,7 +206,7 @@
     }
 
     nav ul li a:hover, nav ul li a.active {
-      color: var(--primary-gold);
+      color: var(--egypt-gold);
      background-color: rgba(255, 255, 255, 0.1);
     }
 
@@ -215,7 +217,7 @@
       height: 2px;
       bottom: 0;
       left: 50%;
-      background-color: var(--primary-gold);
+      background-color: var(--accent);
       transition: var(--transition);
     }
 
@@ -242,7 +244,7 @@
       height: 100%;
       opacity: 0.03;
       pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23cc5533' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,50c0-13.81,11.19-25,25-25c5.52,0,10,4.48,10,10c0,15-12.5,27.5-27.5,27.5C52.5,62.5,50,60,50,50z M50,50c0,13.81-11.19,25-25,25c-5.52,0-10-4.48-10-10c0-15,12.5-27.5,27.5-27.5C47.5,37.5,50,40,50,50z' fill='%231e3a8a'/%3E%3Cpath d='M30,20c1.105,0,2-0.895,2-2s-0.895-2-2-2s-2,0.895-2,2S28.895,20,30,20z M70,80c1.105,0,2-0.895,2-2s-0.895-2-2-2s-2,0.895-2,2S68.895,80,70,80z M20,70c1.105,0,2-0.895,2-2s-0.895-2-2-2s-2,0.895-2,2S18.895,70,20,70z M80,30c1.105,0,2-0.895,2-2s-0.895-2-2-2s-2,0.895-2,2S78.895,30,80,30z' fill='%23d4af37'/%3E%3C/svg%3E");
       background-size: 200px;
       z-index: -1;
     }
@@ -265,7 +267,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50C50 30.5 65.5 15 85 15C95 15 100 20 100 30C100 50 85 65 65 65C55 65 50 60 50 50ZM50 50C50 69.5 34.5 85 15 85C5 85 0 80 0 70C0 50 15 35 35 35C45 35 50 40 50 50Z' fill='%23d4af37' fill-opacity='0.1'/%3E%3C/svg%3E");
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,50c0-13.81,11.19-25,25-25c5.52,0,10,4.48,10,10c0,15-12.5,27.5-27.5,27.5C52.5,62.5,50,60,50,50z M50,50c0,13.81-11.19,25-25,25c-5.52,0-10-4.48-10-10c0-15,12.5-27.5,27.5-27.5C47.5,37.5,50,40,50,50z' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
       opacity: 0.2;
     }
 
@@ -285,7 +287,7 @@
       transform: translateX(-50%);
       width: 100px;
       height: 4px;
-      background: var(--primary-gold);
+      background: var(--egypt-gold);
       border-radius: 2px;
     }
 
@@ -299,7 +301,7 @@
 
     /* Quick Facts Section */
     .quick-facts {
-      background: var(--primary-terracotta);
+      background: var(--egypt-terracotta);
       color: white;
       padding: 30px 0;
     }
@@ -319,7 +321,7 @@
     .fact-item i {
       font-size: 2rem;
       margin-bottom: 10px;
-      color: var(--primary-gold);
+      color: var(--egypt-gold);
     }
 
     .fact-item h3 {
@@ -337,7 +339,7 @@
     .country-intro {
       padding: 70px 0;
       text-align: center;
-      background: var(--secondary-beige);
+      background: var(--egypt-beige);
       position: relative;
     }
 
@@ -348,14 +350,14 @@
       left: 0;
       right: 0;
       height: 15px;
-      background: repeating-linear-gradient(45deg, var(--primary-terracotta), var(--primary-terracotta) 10px, var(--primary-blue) 10px, var(--primary-blue) 20px);
+      background: repeating-linear-gradient(90deg, var(--egypt-blue), var(--egypt-blue) 33%, var(--egypt-gold) 33%, var(--egypt-gold) 66%, var(--egypt-terracotta) 66%, var(--egypt-terracotta) 100%);
     }
 
     .country-intro p {
       max-width: 800px;
       margin: 0 auto;
       font-size: 1.1rem;
-      color: var(--text-dark);
+      color: var(--text);
       line-height: 1.8;
     }
 
@@ -380,7 +382,7 @@
       transform: translateX(-50%);
       width: 80px;
       height: 4px;
-      background: var(--primary-terracotta);
+      background: var(--egypt-terracotta);
       border-radius: 2px;
     }
 
@@ -393,7 +395,7 @@
     /* Wonders Section */
     .wonders-section {
       padding: 70px 0;
-      background: var(--primary-white);
+      background: var(--light);
       position: relative;
       overflow: hidden;
     }
@@ -474,7 +476,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(to right, var(--primary-gold), var(--primary-terracotta));
+      background: linear-gradient(to right, var(--accent), var(--egypt-terracotta));
       color: white;
       padding: 12px 28px;
       text-decoration: none;
@@ -495,23 +497,23 @@
 
     .btn-outline {
       background: transparent;
-      border: 2px solid var(--primary-terracotta);
-      color: var(--primary-terracotta);
+      border: 2px solid var(--egypt-terracotta);
+      color: var(--egypt-terracotta);
       box-shadow: none;
     }
 
     .btn-outline:hover {
-      background: var(--primary-terracotta);
+      background: var(--egypt-terracotta);
       color: white;
     }
 
     .country-btn {
-      background: var(--primary-terracotta);
+      background: var(--egypt-terracotta);
       margin: 0 5px;
     }
 
     .country-btn:hover {
-       background: var(--primary-blue);
+       background: var(--secondary);
     }
 	.country-navigation {
        display: flex;
@@ -568,18 +570,18 @@
 
     .hotel-price {
       font-weight: bold;
-      color: var(--primary-terracotta);
+      color: var(--egypt-terracotta);
       font-size: 1.2rem;
     }
 
     .hotel-rating {
-      color: var(--primary-blue);
+      color: var(--egypt-blue);
     }
 
     /* Cultural Tips Section */
     .cultural-tips {
       padding: 70px 0;
-      background: var(--secondary-beige);
+      background: var(--egypt-beige);
     }
 
     .tips-container {
@@ -597,7 +599,7 @@
     }
 
     .tip-icon {
-      background: var(--primary-terracotta);
+      background: var(--egypt-terracotta);
       color: white;
       font-size: 1.8rem;
       padding: 25px;
@@ -620,7 +622,7 @@
 
     /* Footer */
     footer {
-      background: linear-gradient(to right, var(--primary-blue), var(--secondary-dark-blue));
+      background: linear-gradient(to right, var(--egypt-blue), var(--secondary));
       color: white;
       padding: 60px 0 30px;
     }
@@ -646,7 +648,7 @@
       left: 0;
       width: 40px;
       height: 2px;
-      background-color: var(--primary-gold);
+      background-color: var(--accent);
     }
 
     .footer-column p {
@@ -670,7 +672,7 @@
     }
 
     .footer-links a:hover {
-      color: var(--primary-gold);
+      color: var(--egypt-gold);
       padding-left: 5px;
     }
 
@@ -693,7 +695,7 @@
     }
 
     .social-icons a:hover {
-     background: var(--primary-terracotta);
+     background: var(--egypt-terracotta);
       transform: translateY(-5px);
     }
 
@@ -715,7 +717,7 @@
       right: 30px;
       width: 50px;
       height: 50px;
-      background: var(--primary-gold);
+      background: var(--accent);
       color: white;
       border-radius: 50%;
       display: flex;
@@ -735,7 +737,7 @@
     }
 
     .back-to-top:hover {
-      background: var(--primary-blue);
+      background: var(--primary);
       transform: translateY(-5px);
     }
 
@@ -763,7 +765,7 @@
     .camel {
       position: absolute;
       font-size: 1.5rem;
-      color: var(--primary-gold);
+      color: #d4af37;
       opacity: 0.5;
       z-index: 1;
       animation: walk 15s linear infinite;
@@ -889,6 +891,110 @@
         font-size: 1rem;
       }
     }
+    
+    /* Arabic phrase styling */
+    .arabic-phrase {
+      font-family: Arial, sans-serif;
+      font-style: normal;
+      color: var(--egypt-blue);
+      font-weight: 500;
+      margin: 5px 0;
+      direction: rtl;
+    }
+    
+    /* Egyptian pattern overlay */
+    .egyptian-pattern-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e3a8a' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    /* Egyptian cuisine section */
+    .cuisine-section {
+      padding: 70px 0;
+      background: linear-gradient(to bottom, #fff, var(--egypt-beige));
+    }
+    
+    .food-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+    
+    .food-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .food-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .food-info {
+      padding: 20px;
+    }
+    
+    /* Egyptian flag animation */
+    .flag-wave {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 60px;
+      background: linear-gradient(to bottom, var(--egypt-terracotta) 33%, white 33%, white 66%, var(--egypt-blue) 66%);
+      border-radius: 4px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      animation: wave 3s infinite;
+      z-index: 5;
+    }
+    
+    @keyframes wave {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(3deg); }
+    }
+    
+
+    
+    /* Arabic phrase guide */
+    .phrase-guide {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      margin: 40px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    
+    .phrase-item {
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .phrase-item:last-child {
+      border-bottom: none;
+    }
+    
+    .play-audio {
+      background: var(--egypt-blue);
+      color: white;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 10px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -906,6 +1012,9 @@
 
   <!-- Egyptian Pattern Background -->
   <div class="egypt-pattern"></div>
+  
+  <!-- Egyptian pattern overlay -->
+  <div class="egyptian-pattern-overlay"></div>
 
   <!-- Main Website Content -->
   <div id="main-website">
@@ -931,9 +1040,11 @@
     </header>
 
     <section class="page-title">
+      <div class="flag-wave"></div>
       <div class="camel-container" id="title-camels"></div>
       <div class="container">
         <h1>Discover Egypt</h1>
+        <p class="arabic-phrase">أهلاً وسهلاً في مصر - Welcome to Egypt</p>
         <p>Journey through millennia of history and marvel at ancient wonders in the land of Pharaohs and pyramids.</p>
       </div>
     </section>
@@ -945,21 +1056,25 @@
             <i class="fas fa-language"></i>
             <h3>Language</h3>
             <p>Arabic</p>
+            <p class="arabic-phrase">العربية</p>
           </div>
           <div class="fact-item">
             <i class="fas fa-pound-sign"></i>
             <h3>Currency</h3>
             <p>Egyptian Pound (EGP)</p>
+            <p class="arabic-phrase">جنيه مصري</p>
           </div>
           <div class="fact-item">
             <i class="fas fa-users"></i>
             <h3>Population</h3>
             <p>109 million</p>
+            <p class="arabic-phrase">109 مليون</p>
           </div>
           <div class="fact-item">
             <i class="fas fa-plane"></i>
             <h3>Best Time to Visit</h3>
             <p>October to April</p>
+            <p class="arabic-phrase">أكتوبر إلى أبريل</p>
           </div>
         </div>
       </div>
@@ -976,16 +1091,19 @@
 
       <section class="country-intro">
         <div class="section-title">
-          <h2>Welcome to Egypt</h2>
+          <h2>Welcome to Egypt <span class="arabic-phrase">(أهلاً بكم في مصر)</span></h2>
           <p>Where ancient wonders meet timeless beauty</p>
         </div>
         <p>Egypt offers an unparalleled journey through time, where colossal temples and mysterious pyramids stand as testaments to one of history's greatest civilizations. From cruising the legendary Nile River to exploring vibrant bazaars filled with spices and treasures, Egypt captivates visitors with its rich heritage, warm hospitality, and breathtaking landscapes. Experience the magic of the desert, the mystery of the Pharaohs, and the vibrant culture that has flourished along the Nile for thousands of years.</p>
+        <p class="arabic-phrase">"مصر أم الدنيا" - Egypt is the mother of the world</p>
+        <p><em>(Ancient Egyptian proverb)</em></p>
       </section>
+
 
       <section class="wonders-section">
         <div class="camel-container" id="wonders-camels"></div>
         <div class="section-title">
-          <h2>Egypt's Wonders</h2>
+          <h2>Egypt's Wonders <span class="arabic-phrase">(عجائب مصر)</span></h2>
           <p>Discover the must-see destinations across Egypt</p>
         </div>
         <div class="wonders-grid">
@@ -993,7 +1111,7 @@
           <div class="wonder-card">
             <div class="wonder-image" style="background-image: url('img/Pyramids.jpg');" onclick="toggleHotels('pyramids-hotels')">
               <div class="wonder-name">
-                <h3>Great Pyramids of Giza</h3>
+                <h3>Great Pyramids <span class="arabic-phrase">(أهرامات الجيزة)</span></h3>
               </div>
             </div>
             <div class="wonder-info">
@@ -1038,7 +1156,7 @@
           <div class="wonder-card">
             <div class="wonder-image" style="background-image: url('img/Valley.jpg');" onclick="toggleHotels('luxor-hotels')">
               <div class="wonder-name">
-                <h3>Valley of the Kings</h3>
+                <h3>Valley of the Kings <span class="arabic-phrase">(وادي الملوك)</span></h3>
               </div>
             </div>
             <div class="wonder-info">
@@ -1083,7 +1201,7 @@
           <div class="wonder-card">
             <div class="wonder-image" style="background-image: url('img/Abu.jpg');" onclick="toggleHotels('abu-simbel-hotels')">
               <div class="wonder-name">
-                <h3>Abu Simbel Temples</h3>
+                <h3>Abu Simbel <span class="arabic-phrase">(أبو سمبل)</span></h3>
               </div>
             </div>
             <div class="wonder-info">
@@ -1126,19 +1244,95 @@
         </div>
       </section>
 
+      <!-- Egyptian Cuisine Section -->
+      <section class="cuisine-section">
+        <div class="section-title">
+          <h2>Taste of Egypt <span class="arabic-phrase">(طعم مصر)</span></h2>
+          <p>Discover Egypt's rich culinary traditions</p>
+        </div>
+        
+        <div class="wonders-grid">
+          <div class="food-card">
+            <div class="food-image" style="background-image: url('img/Koshari.jpg');"></div>
+            <div class="food-info">
+              <h3>Koshari</h3>
+              <p>Egypt's national dish - a delicious mix of rice, lentils, chickpeas, and pasta, topped with spicy tomato sauce and crispy fried onions.</p>
+            </div>
+          </div>
+          
+          <div class="food-card">
+            <div class="food-image" style="background-image: url('img/Ful Medames.jpg');"></div>
+            <div class="food-info">
+              <h3>Ful Medames</h3>
+              <p>A traditional breakfast dish made from fava beans cooked with oil, garlic, and lemon juice, typically served with pita bread.</p>
+            </div>
+          </div>
+          
+          <div class="food-card">
+            <div class="food-image" style="background-image: url('img/Egyptian Tea.jpg');"></div>
+            <div class="food-info">
+              <h3>Egyptian Tea</h3>
+              <p>Strong black tea often served with fresh mint leaves and plenty of sugar, a staple of Egyptian hospitality.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Arabic Phrase Guide -->
+      <section class="phrase-guide">
+        <div class="section-title">
+          <h2>Arabic Phrases <span class="arabic-phrase">(عبارات عربية)</span></h2>
+          <p>Essential phrases for your Egyptian adventure</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>Hello <span class="arabic-phrase">أهلاً</span> (Ahlan) <button class="play-audio" onclick="playAudio('ahlan')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Common greeting meaning "welcome".</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>Thank you <span class="arabic-phrase">شكراً</span> (Shukran) <button class="play-audio" onclick="playAudio('shukran')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Essential polite phrase for any situation.</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>Please <span class="arabic-phrase">من فضلك</span> (Min fadlak) <button class="play-audio" onclick="playAudio('minfadlak')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Used when making a request (to a male).</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>How much? <span class="arabic-phrase">بكام؟</span> (Bikam?) <button class="play-audio" onclick="playAudio('bikam')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Useful when shopping in markets.</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>Goodbye <span class="arabic-phrase">مع السلامة</span> (Ma'assalama) <button class="play-audio" onclick="playAudio('maassalama')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Common way to say goodbye, meaning "with safety".</p>
+        </div>
+      </section>
+
       <section class="cultural-tips">
         <div class="section-title">
-          <h2>Cultural Tips</h2>
+          <h2>Cultural Tips <span class="arabic-phrase">(نصائح ثقافية)</span></h2>
           <p>Understanding Egyptian customs and etiquette</p>
         </div>
         <div class="tips-container">
           <div class="tip-card">
             <div class="tip-icon">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <div class="tip-content">
+              <h3>Dining Etiquette</h3>
+              <p>Egyptians typically eat with their right hand, as the left is considered unclean. Always accept offers of tea or coffee as it's a sign of hospitality. When dining with Egyptians, expect to be offered second and third helpings - it's polite to accept at least a little more.</p>
+            </div>
+          </div>
+          <div class="tip-card">
+            <div class="tip-icon">
               <i class="fas fa-tshirt"></i>
             </div>
             <div class="tip-content">
-              <h3>Dress Modestly</h3>
-              <p>Egypt is a predominantly Muslim country, so it's respectful to dress modestly, especially when visiting religious sites. Women should cover their shoulders and knees, and both men and women should avoid revealing clothing.</p>
+              <h3>Dress Code</h3>
+              <p>Egypt is a predominantly Muslim country, so it's respectful to dress modestly, especially when visiting religious sites. Women should cover their shoulders and knees, and both men and women should avoid revealing clothing. In tourist areas, dress codes are more relaxed but still appreciated.</p>
             </div>
           </div>
           <div class="tip-card">
@@ -1147,16 +1341,7 @@
             </div>
             <div class="tip-content">
               <h3>Greetings</h3>
-              <p>Egyptians are generally warm and friendly. A handshake is the common greeting, but close friends and family may exchange kisses on the cheek. Always use your right hand for eating and greeting.</p>
-            </div>
-          </div>
-          <div class="tip-card">
-            <div class="tip-icon">
-              <i class="fas fa-coins"></i>
-            </div>
-            <div class="tip-content">
-              <h3>Bargaining</h3>
-              <p>Bargaining is expected in markets and with street vendors. Start by offering about half the asking price and negotiate politely. Remember that bargaining is a social interaction, not a confrontation.</p>
+              <p>Egyptians are generally warm and friendly. A handshake is the common greeting, but close friends and family may exchange kisses on the cheek. Always use your right hand for eating and greeting. It's common to see same-gender friends holding hands or walking arm-in-arm as a sign of friendship.</p>
             </div>
           </div>
         </div>
@@ -1293,6 +1478,36 @@
     
     // Generate camels periodically for wonders section
     setInterval(() => createCamel('wonders-camels'), 600);
+    
+    // Simple audio pronunciation for Arabic phrases
+    function playAudio(phrase) {
+      const speech = new SpeechSynthesisUtterance();
+      
+      switch(phrase) {
+        case 'ahlan':
+          speech.text = 'ahlan';
+          speech.lang = 'ar-EG';
+          break;
+        case 'shukran':
+          speech.text = 'shukran';
+          speech.lang = 'ar-EG';
+          break;
+        case 'minfadlak':
+          speech.text = 'min fadlak';
+          speech.lang = 'ar-EG';
+          break;
+        case 'bikam':
+          speech.text = 'bikam';
+          speech.lang = 'ar-EG';
+          break;
+        case 'maassalama':
+          speech.text = 'ma assalama';
+          speech.lang = 'ar-EG';
+          break;
+      }
+      
+      window.speechSynthesis.speak(speech);
+    }
   </script>
 </body>
 </html>
