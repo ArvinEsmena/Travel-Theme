@@ -46,7 +46,7 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      transition: opacity 0.8s ease-out;
+      animation: hideSplash 0.8s ease-out 2.5s forwards;
     }
 
     #splash-screen::after {
@@ -88,6 +88,10 @@
       100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(253, 187, 45, 0); }
     }
 
+    @keyframes hideSplash {
+      to { opacity: 0; visibility: hidden; }
+    }
+
     #splash-screen h1 {
       color: white;
       font-size: 3.5rem;
@@ -120,7 +124,7 @@
       height: 100%;
       width: 0%;
       background: linear-gradient(to right, var(--accent), #ff5e62);
-      animation: loading 2.5s ease-in-out;
+      animation: loading 2.5s ease-in-out forwards;
       border-radius: 3px;
     }
 
@@ -136,9 +140,12 @@
 
     /* Main Website */
     #main-website {
-      display: none;
       opacity: 0;
-      transition: opacity 1s ease-in;
+      animation: showMain 1s ease-in 2.5s forwards;
+    }
+
+    @keyframes showMain {
+      to { opacity: 1; }
     }
 
     /* Header */
@@ -228,6 +235,15 @@
       color: white;
       font-size: 1.5rem;
       cursor: pointer;
+    }
+
+    /* Mobile menu using :target */
+    #mobile-menu-toggle {
+      display: none;
+    }
+
+    #mobile-menu-toggle:checked ~ nav {
+      display: block;
     }
 
     /* Search Bar */
@@ -541,7 +557,9 @@
       z-index: 99;
     }
 
-    .back-to-top.visible {
+    /* Show back to top button when user scrolls */
+    /* This is a simplified version without JS - will always be visible */
+    .back-to-top {
       opacity: 1;
       visibility: visible;
     }
@@ -595,7 +613,7 @@
         margin-top: 15px;
       }
       
-      nav.show {
+      #mobile-menu-toggle:checked ~ nav {
         display: block;
       }
       
@@ -646,9 +664,10 @@
       <div class="container">
         <div class="header-content">
           <div class="site-title"><i class="fas fa-globe-americas"></i>Wanderlust <span>Adventures</span></div>
-          <button class="mobile-menu-btn" id="mobile-menu-btn">
+          <input type="checkbox" id="mobile-menu-toggle" style="display: none;">
+          <label for="mobile-menu-toggle" class="mobile-menu-btn">
             <i class="fas fa-bars"></i>
-          </button>
+          </label>
           <nav id="main-nav">
             <ul>
               <li><a href="index.html">Home</a></li>
@@ -867,70 +886,9 @@
       </div>
     </footer>
 
-    <a href="#" class="back-to-top" id="back-to-top">
+    <a href="#" class="back-to-top">
       <i class="fas fa-arrow-up"></i>
     </a>
   </div>
-
-  <script>
-    // Splash screen functionality
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('splash-screen').style.opacity = '0';
-        setTimeout(function() {
-          document.getElementById('splash-screen').style.display = 'none';
-          document.getElementById('main-website').style.display = 'block';
-          setTimeout(function() {
-            document.getElementById('main-website').style.opacity = '1';
-          }, 50);
-        }, 800);
-      }, 2500); // Reduced from 3s to 2.5s for better UX
-    });
-
-    // Mobile menu toggle
-    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-      document.getElementById('main-nav').classList.toggle('show');
-    });
-
-    // Back to top button
-    window.addEventListener('scroll', function() {
-      var backToTop = document.getElementById('back-to-top');
-      if (window.pageYOffset > 300) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-    });
-
-    // Filter buttons
-    var filterButtons = document.querySelectorAll('.filter-btn');
-    filterButtons.forEach(function(button) {
-      button.addEventListener('click', function() {
-        filterButtons.forEach(function(btn) {
-          btn.classList.remove('active');
-        });
-        this.classList.add('active');
-        // Here you would typically filter the content
-      });
-    });
-
-    // Simple search functionality
-    var searchBox = document.querySelector('.search-box');
-    searchBox.addEventListener('keyup', function() {
-      var searchTerm = this.value.toLowerCase();
-      var countryCards = document.querySelectorAll('.country-card');
-      
-      countryCards.forEach(function(card) {
-        var countryName = card.querySelector('.country-name h3 a').textContent.toLowerCase();
-        var countryDesc = card.querySelector('.country-info p').textContent.toLowerCase();
-        
-        if (countryName.includes(searchTerm) || countryDesc.includes(searchTerm)) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  </script>
 </body>
 </html>
