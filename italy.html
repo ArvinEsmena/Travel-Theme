@@ -305,7 +305,7 @@
       font-weight: 300;
     }
 
-    /* Quick Facts Section */
+
     .quick-facts {
       background: var(--italy-red);
       color: white;
@@ -783,24 +783,7 @@
       padding: 20px;
     }
 
-    /* Italian flag animation */
-    .flag-wave {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100px;
-      height: 60px;
-      background: linear-gradient(to right, var(--italy-green) 33%, var(--italy-white) 33%, var(--italy-white) 66%, var(--italy-red) 66%);
-      border-radius: 4px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      animation: wave 3s infinite;
-      z-index: 5;
-    }
-
-    @keyframes wave {
-      0%, 100% { transform: rotate(0deg); }
-      50% { transform: rotate(3deg); }
-    }
+   
 
     /* Italian phrase guide */
     .phrase-guide {
@@ -821,22 +804,9 @@
       border-bottom: none;
     }
 
-    .play-audio {
-      background: var(--italy-green);
-      color: white;
-      border: none;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-left: 10px;
-      cursor: pointer;
-    }
+    
 
-    /* Responsive */
-    @media (max-width: 992px) {
+      @media (max-width: 992px) {
       .header-content {
         flex-direction: column;
         text-align: center;
@@ -932,7 +902,7 @@
       }
     }
 
-    /* Italian phrase styling */
+  
     .italian-phrase {
       font-style: italic;
       color: var(--italy-green);
@@ -940,7 +910,7 @@
       margin: 5px 0;
     }
     
-    /* CSS-only hotel toggle */
+
     .hotel-toggle {
       display: none;
     }
@@ -954,7 +924,7 @@
       animation: fadeIn 0.5s ease-in;
     }
     
-    /* CSS-only mobile menu */
+
     .menu-toggle {
       display: none;
     }
