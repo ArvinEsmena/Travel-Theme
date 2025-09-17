@@ -632,7 +632,43 @@
       color: var(--text-light);
       line-height: 1.7;
     }
-
+    /* Australian cuisine section */
+    .cuisine-section {
+      padding: 70px 0;
+      background: linear-gradient(to bottom, #fff, #f5f0e8);
+    }
+    
+    .food-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+    
+    .food-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .food-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .food-info {
+      padding: 20px;
+    }
+    
+    .food-info h3 {
+      color: var(--primary-blue);
+      margin-bottom: 10px;
+    }
+    
+    .food-info p {
+      color: var(--text-light);
+      line-height: 1.6;
+    }
     /* Footer */
     footer {
       background: linear-gradient(to right, var(--primary-blue), var(--primary-green));
@@ -1255,7 +1291,39 @@
           </div>
         </div>
       </section>
-
+      <!-- Australian Cuisine Section -->
+      <section class="cuisine-section">
+        <div class="section-title">
+          <h2>Taste of Australia</h2>
+          <p>Discover Australia's unique culinary traditions</p>
+        </div>
+        
+        <div class="wonders-grid">
+          <div class="food-card">
+            <div class="food-image" style="background-image: url('https://images.unsplash.com/photo-1587017539505-2f15f7bb1f5a?auto=format&fit=crop&w=600&q=80');"></div>
+            <div class="food-info">
+              <h3>Meat Pie</h3>
+              <p>A classic Australian meat pie is a hand-sized pie filled with minced meat and gravy, often enjoyed with tomato sauce.</p>
+            </div>
+          </div>
+          
+          <div class="food-card">
+            <div class="food-image" style="background-image: url('https://images.unsplash.com/photo-1594708767771-a750052d0518?auto=format&fit=crop&w=600&q=80');"></div>
+            <div class="food-info">
+              <h3>Pavlova</h3>
+              <p>A meringue-based dessert with a crisp crust and soft, light inside, topped with fresh fruit and whipped cream.</p>
+            </div>
+          </div>
+          
+          <div class="food-card">
+            <div class="food-image" style="background-image: url('https://images.unsplash.com/photo-1626245234186-d9aa516ac1f5?auto=format&fit=crop&w=600&q=80');"></div>
+            <div class="food-info">
+              <h3>Barbecue (BBQ)</h3>
+              <p>Australians love their BBQs, featuring sausages, steaks, seafood, and veggies cooked outdoors.</p>
+            </div>
+          </div>
+        </div>
+      </section>
       <section class="cultural-tips">
         <div class="section-title">
           <h2>Cultural Tips</h2>
