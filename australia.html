@@ -51,7 +51,14 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      transition: opacity 0.8s ease-out;
+      animation: hideSplash 0.8s ease-out 2.5s forwards;
+    }
+
+    @keyframes hideSplash {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
     }
 
     #splash-screen::after {
@@ -125,7 +132,7 @@
       height: 100%;
       width: 0%;
       background: linear-gradient(to right, var(--primary-gold), #ff5e62);
-      animation: loading 2.5s ease-in-out;
+      animation: loading 2.5s ease-in-out forwards;
       border-radius: 3px;
     }
 
@@ -141,9 +148,14 @@
 
     /* Main Website */
     #main-website {
-      display: none;
       opacity: 0;
-      transition: opacity 1s ease-in;
+      animation: showMain 1s ease-in 2.5s forwards;
+    }
+
+    @keyframes showMain {
+      to {
+        opacity: 1;
+      }
     }
 
     /* Header */
@@ -207,7 +219,7 @@
 
     nav ul li a:hover, nav ul li a.active {
       color: var(--primary-white);
-     background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.1);
     }
 
     nav ul li a::after {
@@ -426,7 +438,6 @@
       background-position: center;
       background-size: cover;
       position: relative;
-      cursor: pointer;
       overflow: hidden;
     }
 
@@ -516,7 +527,8 @@
     .country-btn:hover {
        background: var(--primary-green);
     }
-	.country-navigation {
+    
+    .country-navigation {
        display: flex;
        justify-content: center;
        flex-wrap: wrap;
@@ -696,7 +708,7 @@
     }
 
     .social-icons a:hover {
-     background: var(--primary-gold);
+      background: var(--primary-gold);
       transform: translateY(-5px);
       color: var(--primary-black);
     }
@@ -728,14 +740,7 @@
       text-decoration: none;
       box-shadow: var(--shadow);
       transition: var(--transition);
-      opacity: 0;
-      visibility: hidden;
       z-index: 99;
-    }
-
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
     }
 
     .back-to-top:hover {
@@ -753,7 +758,30 @@
       margin: 30px 0;
     }
 
-    /* Australian Element Decoration */
+    /* CSS-only hotel toggle */
+    .hotel-toggle {
+      display: none;
+    }
+    
+    .hotel-toggle-label {
+      cursor: pointer;
+    }
+    
+    .hotel-toggle:checked ~ .hotels-container {
+      display: block;
+      animation: fadeIn 0.5s ease-in;
+    }
+    
+    /* CSS-only mobile menu */
+    .menu-toggle {
+      display: none;
+    }
+    
+    .menu-toggle:checked ~ nav {
+      display: block;
+    }
+
+    /* Australian Elements - CSS-only version */
     .australian-element-container {
       position: absolute;
       top: 0;
@@ -784,6 +812,77 @@
         transform: translateY(600px) translateX(30px) rotate(360deg);
         opacity: 0;
       }
+    }
+
+    /* Pre-defined Australian elements for CSS-only implementation */
+    .australian-element:nth-child(1) {
+      left: 10%;
+      animation-delay: 0s;
+      animation-duration: 18s;
+      content: "⭐";
+    }
+    
+    .australian-element:nth-child(2) {
+      left: 20%;
+      animation-delay: 2s;
+      animation-duration: 14s;
+      content: "🌊";
+    }
+    
+    .australian-element:nth-child(3) {
+      left: 30%;
+      animation-delay: 5s;
+      animation-duration: 16s;
+      content: "⭐";
+    }
+    
+    .australian-element:nth-child(4) {
+      left: 40%;
+      animation-delay: 8s;
+      animation-duration: 12s;
+      content: "🌊";
+    }
+    
+    .australian-element:nth-child(5) {
+      left: 50%;
+      animation-delay: 11s;
+      animation-duration: 15s;
+      content: "⭐";
+    }
+    
+    .australian-element:nth-child(6) {
+      left: 60%;
+      animation-delay: 3s;
+      animation-duration: 17s;
+      content: "🌊";
+    }
+    
+    .australian-element:nth-child(7) {
+      left: 70%;
+      animation-delay: 7s;
+      animation-duration: 13s;
+      content: "⭐";
+    }
+    
+    .australian-element:nth-child(8) {
+      left: 80%;
+      animation-delay: 10s;
+      animation-duration: 19s;
+      content: "🌊";
+    }
+    
+    .australian-element:nth-child(9) {
+      left: 90%;
+      animation-delay: 4s;
+      animation-duration: 16s;
+      content: "⭐";
+    }
+    
+    .australian-element:nth-child(10) {
+      left: 25%;
+      animation-delay: 6s;
+      animation-duration: 14s;
+      content: "🌊";
     }
 
     /* Responsive */
@@ -918,10 +1017,11 @@
       <div class="container">
         <div class="header-content">
           <div class="site-title"><i class="fas fa-globe-americas"></i>Wanderlust <span>Adventures</span></div>
-          <button class="mobile-menu-btn" id="mobile-menu-btn">
+          <input type="checkbox" id="mobile-menu-toggle" class="menu-toggle">
+          <label for="mobile-menu-toggle" class="mobile-menu-btn">
             <i class="fas fa-bars"></i>
-          </button>
-          <nav id="main-nav">
+          </label>
+          <nav>
             <ul>
               <li><a href="index.html">Home</a></li>
               <li><a href="countries.html" class="active">Countries</a></li>
@@ -936,7 +1036,18 @@
     </header>
 
     <section class="page-title">
-      <div class="australian-element-container" id="title-elements"></div>
+      <div class="australian-element-container">
+        <div class="australian-element"></div>
+        <div class="australian-element"></div>
+        <div class="australian-element"></div>
+        <div class="australian-element"></div>
+        <div class="australian-element"></div>
+        <div class="australian-element"></div>
+        <div class="australian-element"></div>
+        <div class="australian-element"></div>
+        <div class="australian-element"></div>
+        <div class="australian-element"></div>
+      </div>
       <div class="container">
         <h1>Discover Australia</h1>
         <p>Experience the breathtaking landscapes, unique wildlife, and vibrant cities of the Land Down Under.</p>
@@ -988,7 +1099,18 @@
       </section>
 
       <section class="wonders-section">
-        <div class="australian-element-container" id="wonders-elements"></div>
+        <div class="australian-element-container">
+          <div class="australian-element"></div>
+          <div class="australian-element"></div>
+          <div class="australian-element"></div>
+          <div class="australian-element"></div>
+          <div class="australian-element"></div>
+          <div class="australian-element"></div>
+          <div class="australian-element"></div>
+          <div class="australian-element"></div>
+          <div class="australian-element"></div>
+          <div class="australian-element"></div>
+        </div>
         <div class="section-title">
           <h2>Australia's Wonders</h2>
           <p>Discover the must-see destinations across Australia</p>
@@ -996,15 +1118,16 @@
         <div class="wonders-grid">
           <!-- Wonder 1 -->
           <div class="wonder-card">
-            <div class="wonder-image" style="background-image: url('img/Uluru.jpg');" onclick="toggleHotels('uluru-hotels')">
+            <div class="wonder-image" style="background-image: url('img/Uluru.jpg');">
               <div class="wonder-name">
                 <h3>Uluru</h3>
               </div>
             </div>
             <div class="wonder-info">
               <p>Located in the heart of Australia's Red Centre, Uluru (Ayers Rock) is one of the world's most iconic natural landmarks. This massive sandstone monolith is sacred to Aboriginal Australians and changes color dramatically at sunrise and sunset. The surrounding Uluru-Kata Tjuta National Park is a UNESCO World Heritage site.</p>
-              <button class="btn" onclick="toggleHotels('uluru-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
-              <div id="uluru-hotels" class="hotels-container">
+              <input type="checkbox" id="uluru-toggle" class="hotel-toggle">
+              <label for="uluru-toggle" class="btn hotel-toggle-label"><i class="fas fa-hotel"></i> Find Nearby Hotels</label>
+              <div class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
                     <h4>Desert Gardens Hotel</h4>
@@ -1041,15 +1164,16 @@
 
           <!-- Wonder 2 -->
           <div class="wonder-card">
-            <div class="wonder-image" style="background-image: url('img/Great.jpg');" onclick="toggleHotels('reef-hotels')">
+            <div class="wonder-image" style="background-image: url('img/Great.jpg');">
               <div class="wonder-name">
                 <h3>Great Barrier Reef</h3>
               </div>
             </div>
             <div class="wonder-info">
               <p>The world's largest coral reef system, stretching over 2,300 kilometers along the Queensland coast. This UNESCO World Heritage site is home to an incredible diversity of marine life, including over 1,500 species of fish, 400 types of coral, and countless other organisms. It's one of the Seven Natural Wonders of the World and can even be seen from outer space.</p>
-              <button class="btn" onclick="toggleHotels('reef-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
-              <div id="reef-hotels" class="hotels-container">
+              <input type="checkbox" id="reef-toggle" class="hotel-toggle">
+              <label for="reef-toggle" class="btn hotel-toggle-label"><i class="fas fa-hotel"></i> Find Nearby Hotels</label>
+              <div class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
                     <h4>Qualia Resort</h4>
@@ -1086,15 +1210,16 @@
 
           <!-- Wonder 3 -->
           <div class="wonder-card">
-            <div class="wonder-image" style="background-image: url('img/Sydney.jpg');" onclick="toggleHotels('opera-hotels')">
+            <div class="wonder-image" style="background-image: url('img/Sydney.jpg');">
               <div class="wonder-name">
                 <h3>Sydney Opera House</h3>
               </div>
             </div>
             <div class="wonder-info">
               <p>One of the world's most famous and distinctive buildings, the Sydney Opera House is a masterpiece of 20th century architecture. Situated on Bennelong Point in Sydney Harbour, this UNESCO World Heritage site hosts over 1,500 performances annually and is the home of Opera Australia, the Sydney Theatre Company, and the Sydney Symphony Orchestra.</p>
-              <button class="btn" onclick="toggleHotels('opera-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
-              <div id="opera-hotels" class="hotels-container">
+              <input type="checkbox" id="opera-toggle" class="hotel-toggle">
+              <label for="opera-toggle" class="btn hotel-toggle-label"><i class="fas fa-hotel"></i> Find Nearby Hotels</label>
+              <div class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
                     <h4>Park Hyatt Sydney</h4>
@@ -1175,10 +1300,10 @@
             <h3>About Us</h3>
             <p>Wanderlust Adventures is dedicated to helping travelers discover the world's most beautiful destinations and create unforgettable memories.</p>
             <div class="social-icons">
-              <a href="fb.com"><i class="fab fa-facebook-f"></i></a>
-              <a href="x.com"><i class="fab fa-twitter"></i></a>
-              <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-              <a href="pinterest.com"><i class="fab fa-pinterest"></i></a>
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-pinterest"></i></a>
             </div>
           </div>
           <div class="footer-column">
@@ -1217,88 +1342,9 @@
       </div>
     </footer>
 
-    <a href="#" class="back-to-top" id="back-to-top">
+    <a href="#" class="back-to-top">
       <i class="fas fa-arrow-up"></i>
     </a>
   </div>
-
-  <script>
-    // Splash screen functionality
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('splash-screen').style.opacity = '0';
-        setTimeout(function() {
-          document.getElementById('splash-screen').style.display = 'none';
-          document.getElementById('main-website').style.display = 'block';
-          setTimeout(function() {
-            document.getElementById('main-website').style.opacity = '1';
-          }, 50);
-        }, 800);
-      }, 2500); 
-    });
-
-    // Mobile menu toggle
-    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-      document.getElementById('main-nav').classList.toggle('show');
-    });
-
-    // Back to top button
-    window.addEventListener('scroll', function() {
-      var backToTop = document.getElementById('back-to-top');
-      if (window.pageYOffset > 300) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-    });
-
-    function toggleHotels(hotelId) {
-      const hotelElement = document.getElementById(hotelId);
-      const allHotels = document.querySelectorAll('.hotels-container');
-      
-      // Close all other hotel containers
-      allHotels.forEach(hotel => {
-        if (hotel.id !== hotelId && hotel.style.display === 'block') {
-          hotel.style.display = 'none';
-        }
-      });
-      
-      // Toggle the clicked hotel container
-      if (hotelElement.style.display === 'block') {
-        hotelElement.style.display = 'none';
-      } else {
-        hotelElement.style.display = 'block';
-      }
-    }
-
-    // Create Australian element effect for specific containers
-    function createAustralianElement(containerId) {
-      const container = document.getElementById(containerId);
-      if (!container) return;
-      
-      const elements = ['⭐', '🌊'];
-      const element = document.createElement('div');
-      element.classList.add('australian-element');
-      element.innerHTML = elements[Math.floor(Math.random() * elements.length)];
-      element.style.left = Math.random() * 100 + '%';
-      element.style.animationDuration = (Math.random() * 10 + 8) + 's';
-      element.style.fontSize = (Math.random() * 20 + 15) + 'px';
-      element.style.opacity = Math.random() * 0.5 + 0.3;
-      container.appendChild(element);
-      
-      // Remove the element after animation completes
-      setTimeout(() => {
-        if (element.parentNode) {
-          element.parentNode.removeChild(element);
-        }
-      }, 15000);
-    }
-    
-    // Generate Australian elements periodically for title section
-    setInterval(() => createAustralianElement('title-elements'), 500);
-    
-    // Generate Australian elements periodically for wonders section
-    setInterval(() => createAustralianElement('wonders-elements'), 600);
-  </script>
 </body>
 </html>
