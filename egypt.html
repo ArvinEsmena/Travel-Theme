@@ -81,11 +81,17 @@
       margin-bottom: 30px;
       animation: pulse 2s infinite;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transition: var(--transition);
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     .logo i {
       font-size: 70px;
       color: var(--primary);
+      transition: var(--transition);
     }
 
     @keyframes pulse {
@@ -213,7 +219,7 @@
 
     nav ul li a:hover, nav ul li a.active {
       color: var(--egypt-gold);
-     background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.1);
     }
 
     nav ul li a::after {
@@ -339,6 +345,16 @@
     .fact-item p {
       font-size: 0.9rem;
       opacity: 0.9;
+    }
+
+    /* Arabic phrase styling */
+    .arabic-phrase {
+      font-family: Arial, sans-serif;
+      font-style: normal;
+      color: var(--egypt-blue);
+      font-weight: 500;
+      margin: 5px 0;
+      direction: rtl;
     }
 
     /* Country Intro */
@@ -520,7 +536,8 @@
     .country-btn:hover {
        background: var(--secondary);
     }
-	.country-navigation {
+    
+    .country-navigation {
        display: flex;
        justify-content: center;
        flex-wrap: wrap;
@@ -700,7 +717,7 @@
     }
 
     .social-icons a:hover {
-     background: var(--egypt-terracotta);
+      background: var(--egypt-terracotta);
       transform: translateY(-5px);
     }
 
@@ -748,37 +765,105 @@
       margin: 30px 0;
     }
 
-    /* Camel Decoration */
-    .camel-container {
+    /* Egyptian pattern overlay */
+    .egyptian-pattern-overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e3a8a' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
       pointer-events: none;
-      overflow: hidden;
-      z-index: 2;
-    }
-    
-    .camel {
-      position: absolute;
-      font-size: 1.5rem;
-      color: #d4af37;
-      opacity: 0.5;
       z-index: 1;
-      animation: walk 15s linear infinite;
-      pointer-events: none;
     }
 
-    @keyframes walk {
-      0% {
-        transform: translateY(-10px) translateX(0) rotate(0deg);
-        opacity: 0.7;
-      }
-      100% {
-        transform: translateY(600px) translateX(30px) rotate(360deg);
-        opacity: 0;
-      }
+    /* Egyptian cuisine section */
+    .cuisine-section {
+      padding: 70px 0;
+      background: linear-gradient(to bottom, #fff, var(--egypt-beige));
+    }
+
+    .food-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+
+    .food-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .food-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .food-info {
+      padding: 20px;
+    }
+
+    /* Egyptian flag animation */
+    .flag-wave {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 60px;
+      background: linear-gradient(to bottom, var(--egypt-terracotta) 33%, white 33%, white 66%, var(--egypt-blue) 66%);
+      border-radius: 4px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      animation: wave 3s infinite;
+      z-index: 5;
+    }
+
+    @keyframes wave {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(3deg); }
+    }
+
+    /* CSS-only hotel toggle */
+    .hotel-toggle {
+      display: none;
+    }
+    
+    .hotel-toggle-label {
+      cursor: pointer;
+    }
+    
+    .hotel-toggle:checked ~ .hotels-container {
+      display: block;
+      animation: fadeIn 0.5s ease-in;
+    }
+    
+    /* CSS-only mobile menu */
+    .menu-toggle {
+      display: none;
+    }
+    
+    .menu-toggle:checked ~ nav {
+      display: block;
+    }
+
+    /* Arabic phrase guide */
+    .phrase-guide {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      margin: 40px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .phrase-item {
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .phrase-item:last-child {
+      border-bottom: none;
     }
 
     /* Responsive */
@@ -862,18 +947,6 @@
       .fact-item {
         flex: 0 0 100%;
       }
-      
-      /* Adjust camel animation for mobile */
-      @keyframes walk {
-        0% {
-          transform: translateY(-10px) translateX(0) rotate(0deg);
-          opacity: 0.7;
-        }
-        100% {
-          transform: translateY(400px) translateX(30px) rotate(360deg);
-          opacity: 0;
-        }
-      }
     }
 
     @media (max-width: 576px) {
@@ -888,140 +961,6 @@
       .page-title p {
         font-size: 1rem;
       }
-    }
-    
-    /* Arabic phrase styling */
-    .arabic-phrase {
-      font-family: Arial, sans-serif;
-      font-style: normal;
-      color: var(--egypt-blue);
-      font-weight: 500;
-      margin: 5px 0;
-      direction: rtl;
-    }
-    
-    /* Egyptian pattern overlay */
-    .egyptian-pattern-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e3a8a' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 1;
-    }
-    
-    /* Egyptian cuisine section */
-    .cuisine-section {
-      padding: 70px 0;
-      background: linear-gradient(to bottom, #fff, var(--egypt-beige));
-    }
-    
-    .food-card {
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      transition: transform 0.3s;
-    }
-    
-    .food-card:hover {
-      transform: translateY(-5px);
-    }
-    
-    .food-image {
-      height: 200px;
-      background-size: cover;
-      background-position: center;
-    }
-    
-    .food-info {
-      padding: 20px;
-    }
-    
-    /* Egyptian flag animation */
-    .flag-wave {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100px;
-      height: 60px;
-      background: linear-gradient(to bottom, var(--egypt-terracotta) 33%, white 33%, white 66%, var(--egypt-blue) 66%);
-      border-radius: 4px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      animation: wave 3s infinite;
-      z-index: 5;
-    }
-    
-    @keyframes wave {
-      0%, 100% { transform: rotate(0deg); }
-      50% { transform: rotate(3deg); }
-    }
-    
-    /* CSS-only hotel toggle */
-    .hotel-toggle {
-      display: none;
-    }
-    
-    .hotel-toggle-label {
-      cursor: pointer;
-    }
-    
-    .hotel-toggle:checked ~ .hotels-container {
-      display: block;
-      animation: fadeIn 0.5s ease-in;
-    }
-    
-    /* CSS-only mobile menu */
-    .menu-toggle {
-      display: none;
-    }
-    
-    .menu-toggle:checked ~ nav {
-      display: block;
-    }
-    
-    /* CSS camel animations */
-    .camel:nth-child(1) {
-      left: 10%;
-      animation-delay: 0s;
-      font-size: 20px;
-    }
-    
-    .camel:nth-child(2) {
-      left: 25%;
-      animation-delay: 3s;
-      font-size: 24px;
-    }
-    
-    .camel:nth-child(3) {
-      left: 40%;
-      animation-delay: 6s;
-      font-size: 18px;
-    }
-    
-    .camel:nth-child(4) {
-      left: 55%;
-      animation-delay: 9s;
-      font-size: 22px;
-    }
-    
-    .camel:nth-child(5) {
-      left: 70%;
-      animation-delay: 12s;
-      font-size: 16px;
-    }
-    
-    .camel:nth-child(6) {
-      left: 85%;
-      animation-delay: 15s;
-      font-size: 20px;
-    }
-    
-    /* Remove audio button functionality */
-    .play-audio {
-      display: none;
     }
   </style>
 </head>
@@ -1040,7 +979,7 @@
 
   <!-- Egyptian Pattern Background -->
   <div class="egypt-pattern"></div>
-  
+
   <!-- Egyptian pattern overlay -->
   <div class="egyptian-pattern-overlay"></div>
 
@@ -1069,15 +1008,6 @@
     </header>
 
     <section class="page-title">
-      <div class="flag-wave"></div>
-      <div class="camel-container">
-        <div class="camel">🐫</div>
-        <div class="camel">🐫</div>
-        <div class="camel">🐫</div>
-        <div class="camel">🐫</div>
-        <div class="camel">🐫</div>
-        <div class="camel">🐫</div>
-      </div>
       <div class="container">
         <h1>Discover Egypt</h1>
         <p class="arabic-phrase">أهلاً وسهلاً في مصر - Welcome to Egypt</p>
@@ -1135,16 +1065,7 @@
         <p><em>(Ancient Egyptian proverb)</em></p>
       </section>
 
-
       <section class="wonders-section">
-        <div class="camel-container">
-          <div class="camel">🐫</div>
-          <div class="camel">🐫</div>
-          <div class="camel">🐫</div>
-          <div class="camel">🐫</div>
-          <div class="camel">🐫</div>
-          <div class="camel">🐫</div>
-        </div>
         <div class="section-title">
           <h2>Egypt's Wonders <span class="arabic-phrase">(عجائب مصر)</span></h2>
           <p>Discover the must-see destinations across Egypt</p>
@@ -1205,8 +1126,8 @@
             </div>
             <div class="wonder-info">
               <p>The burial place of Egypt's New Kingdom pharaohs, the Valley of the Kings contains 63 magnificent royal tombs, including that of the famous Tutankhamun. Located on the west bank of the Nile near Luxor, this UNESCO World Heritage site features elaborately decorated tombs carved deep into the desert rock.</p>
-              <input type="checkbox" id="luxor-toggle" class="hotel-toggle">
-              <label for="luxor-toggle" class="btn hotel-toggle-label"><i class="fas fa-hotel"></i> Find Nearby Hotels</label>
+              <input type="checkbox" id="valley-toggle" class="hotel-toggle">
+              <label for="valley-toggle" class="btn hotel-toggle-label"><i class="fas fa-hotel"></i> Find Nearby Hotels</label>
               <div class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
@@ -1251,8 +1172,8 @@
             </div>
             <div class="wonder-info">
               <p>The massive rock-cut temples of Abu Simbel, built by Ramesses II in the 13th century BCE, stand as a monumental feat of ancient engineering. The complex was miraculously relocated in the 1960s to save it from rising waters caused by the Aswan High Dam. The temples are famous for their colossal statues and precise alignment with the sun.</p>
-              <input type="checkbox" id="abu-simbel-toggle" class="hotel-toggle">
-              <label for="abu-simbel-toggle" class="btn hotel-toggle-label"><i class="fas fa-hotel"></i> Find Nearby Hotels</label>
+              <input type="checkbox" id="abu-toggle" class="hotel-toggle">
+              <label for="abu-toggle" class="btn hotel-toggle-label"><i class="fas fa-hotel"></i> Find Nearby Hotels</label>
               <div class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
@@ -1296,7 +1217,7 @@
           <h2>Taste of Egypt <span class="arabic-phrase">(طعم مصر)</span></h2>
           <p>Discover Egypt's rich culinary traditions</p>
         </div>
-        
+
         <div class="wonders-grid">
           <div class="food-card">
             <div class="food-image" style="background-image: url('img/Koshari.jpg');"></div>
@@ -1305,7 +1226,7 @@
               <p>Egypt's national dish - a delicious mix of rice, lentils, chickpeas, and pasta, topped with spicy tomato sauce and crispy fried onions.</p>
             </div>
           </div>
-          
+
           <div class="food-card">
             <div class="food-image" style="background-image: url('img/Ful Medames.jpg');"></div>
             <div class="food-info">
@@ -1313,7 +1234,7 @@
               <p>A traditional breakfast dish made from fava beans cooked with oil, garlic, and lemon juice, typically served with pita bread.</p>
             </div>
           </div>
-          
+
           <div class="food-card">
             <div class="food-image" style="background-image: url('img/Egyptian Tea.jpg');"></div>
             <div class="food-info">
@@ -1325,7 +1246,7 @@
       </section>
 
       <!-- Arabic Phrase Guide -->
-            <section class="phrase-guide">
+      <section class="phrase-guide">
         <div class="section-title">
           <h2>Arabic Phrases <span class="arabic-phrase">(عبارات عربية)</span></h2>
           <p>Essential phrases for your Egyptian adventure</p>
@@ -1337,17 +1258,17 @@
         </div>
 
         <div class="phrase-item">
-          <h3>Thank you <span class="arabic-phrase">شكراً</span> (Shukran) </h3>
+          <h3>Thank you <span class="arabic-phrase">شكراً</span> (Shukran)</h3>
           <p>Essential polite phrase for any situation.</p>
         </div>
 
         <div class="phrase-item">
-          <h3>Please <span class="arabic-phrase">من فضلك</span> (Min fadlak) </h3>
+          <h3>Please <span class="arabic-phrase">من فضلك</span> (Min fadlak)</h3>
           <p>Used when making a request (to a male).</p>
         </div>
 
         <div class="phrase-item">
-          <h3>How much? <span class="arabic-phrase">بكام؟</span> (Bikam?) </h3>
+          <h3>How much? <span class="arabic-phrase">بكام؟</span> (Bikam?)</h3>
           <p>Useful when shopping in markets.</p>
         </div>
 
