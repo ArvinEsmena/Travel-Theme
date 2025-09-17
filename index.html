@@ -221,6 +221,11 @@
       left: 15%;
     }
 
+    /* Mobile menu checkbox hack - replaces JS toggle */
+    #mobile-menu-toggle {
+      display: none;
+    }
+
     .mobile-menu-btn {
       display: none;
       background: none;
@@ -452,13 +457,14 @@
         top: 20px;
       }
       
-      nav {
+      /* Mobile menu using checkbox hack */
+      #main-nav {
         display: none;
         width: 100%;
         margin-top: 15px;
       }
       
-      nav.show {
+      #mobile-menu-toggle:checked ~ #main-nav {
         display: block;
       }
       
@@ -505,9 +511,11 @@
       <div class="container">
         <div class="header-content">
           <div class="site-title"><i class="fas fa-globe-americas"></i>Wanderlust <span>Adventures</span></div>
-          <button class="mobile-menu-btn" id="mobile-menu-btn">
+          <!-- Checkbox for mobile menu toggle (CSS-only solution) -->
+          <input type="checkbox" id="mobile-menu-toggle" style="display: none;">
+          <label for="mobile-menu-toggle" class="mobile-menu-btn" id="mobile-menu-btn">
             <i class="fas fa-bars"></i>
-          </button>
+          </label>
           <nav id="main-nav">
             <ul>
               <li><a href="index.html" class="active">Home</a></li>
@@ -587,7 +595,7 @@
   </div>
 
   <script>
-    // Splash screen functionality
+    // Splash screen functionality - needs to remain in JS
     window.addEventListener('load', function() {
       setTimeout(function() {
         document.getElementById('splash-screen').style.opacity = '0';
@@ -601,12 +609,7 @@
       }, 2500); 
     });
 
-    // Mobile menu toggle
-    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-      document.getElementById('main-nav').classList.toggle('show');
-    });
-
-    // Back to top button
+    // Back to top button - needs to remain in JS for scroll detection
     window.addEventListener('scroll', function() {
       var backToTop = document.getElementById('back-to-top');
       if (window.pageYOffset > 300) {
