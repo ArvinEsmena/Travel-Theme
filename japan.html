@@ -8,16 +8,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-red: #ac2b37;
-      --primary-black: #2d2926;
-      --primary-gold: #d9a62e;
-      --primary-white: #f8f4f0;
-      --secondary-beige: #e8dcca;
-      --secondary-dark-red: #8a1f28;
-      --text-dark: #333;
-      --text-light: #777;
+      --primary: #ac2b37;
+      --secondary: #2d2926;
+      --accent: #d9a62e;
+      --light: #f8f4f0;
+      --dark: #212529;
+      --text: #333;
+      --text-light: #6c757d;
       --shadow: 0 5px 15px rgba(0,0,0,0.1);
       --transition: all 0.3s ease;
+      --japan-red: #ac2b37;
+      --japan-black: #2d2926;
+      --japan-white: #f8f4f0;
+      --japan-gold: #d9a62e;
+      --japan-dark-red: #8a1f28;
     }
 
     * {
@@ -28,8 +32,8 @@
     }
 
     body {
-      background-color: var(--primary-white);
-      color: var(--text-dark);
+      background-color: var(--light);
+      color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
     }
@@ -41,7 +45,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+      background: linear-gradient(to right, rgba(172, 43, 55, 0.85), rgba(45, 41, 38, 0.85)),
+                  url('https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -55,7 +60,7 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: linear-gradient(135deg, rgba(45, 41, 38, 0.85), rgba(138, 31, 40, 0.85));
+      background: linear-gradient(135deg, rgba(172, 43, 55, 0.85), rgba(45, 41, 38, 0.85));
       z-index: -1;
     }
 
@@ -79,7 +84,7 @@
 
     .logo i {
       font-size: 70px;
-      color: var(--primary-red);
+      color: var(--primary);
       transition: var(--transition);
     }
 
@@ -120,7 +125,7 @@
     .loader-bar {
       height: 100%;
       width: 0%;
-      background: linear-gradient(to right, var(--primary-gold), var(--primary-red));
+      background: linear-gradient(to right, var(--accent), var(--japan-red));
       animation: loading 2.5s ease-in-out;
       border-radius: 3px;
     }
@@ -144,7 +149,7 @@
 
     /* Header */
     header {
-      background: linear-gradient(to right, var(--primary-black), var(--secondary-dark-red));
+      background: linear-gradient(to right, var(--japan-black), var(--japan-dark-red));
       color: white;
       padding: 15px 0;
       box-shadow: var(--shadow);
@@ -173,7 +178,7 @@
     }
 
     .site-title span {
-      color: var(--primary-gold);
+      color: var(--accent);
     }
 
     .site-title i {
@@ -202,7 +207,7 @@
     }
 
     nav ul li a:hover, nav ul li a.active {
-      color: var(--primary-white);
+      color: var(--japan-white);
      background-color: rgba(255, 255, 255, 0.1);
     }
 
@@ -213,7 +218,7 @@
       height: 2px;
       bottom: 0;
       left: 50%;
-      background-color: var(--primary-gold);
+      background-color: var(--accent);
       transition: var(--transition);
     }
 
@@ -283,7 +288,7 @@
       transform: translateX(-50%);
       width: 100px;
       height: 4px;
-      background: var(--primary-gold);
+      background: var(--accent);
       border-radius: 2px;
     }
 
@@ -297,7 +302,7 @@
 
     /* Quick Facts Section */
     .quick-facts {
-      background: var(--primary-red);
+      background: var(--japan-red);
       color: white;
       padding: 30px 0;
     }
@@ -317,7 +322,7 @@
     .fact-item i {
       font-size: 2rem;
       margin-bottom: 10px;
-      color: var(--primary-gold);
+      color: var(--accent);
     }
 
     .fact-item h3 {
@@ -331,11 +336,19 @@
       opacity: 0.9;
     }
 
+    /* Japanese phrase styling */
+    .japanese-phrase {
+      font-style: italic;
+      color: var(--accent);
+      font-weight: 500;
+      margin: 5px 0;
+    }
+
     /* Country Intro */
     .country-intro {
       padding: 70px 0;
       text-align: center;
-      background: var(--secondary-beige);
+      background: #f5f0e8;
       position: relative;
     }
 
@@ -346,14 +359,14 @@
       left: 0;
       right: 0;
       height: 15px;
-      background: repeating-linear-gradient(90deg, var(--primary-red), var(--primary-red) 33%, white 33%, white 66%, var(--primary-black) 66%, var(--primary-black) 100%);
+      background: repeating-linear-gradient(90deg, var(--japan-red), var(--japan-red) 50%, white 50%, white 100%);
     }
 
     .country-intro p {
       max-width: 800px;
       margin: 0 auto;
       font-size: 1.1rem;
-      color: var(--text-dark);
+      color: var(--text);
       line-height: 1.8;
     }
 
@@ -378,7 +391,7 @@
       transform: translateX(-50%);
       width: 80px;
       height: 4px;
-      background: var(--primary-red);
+      background: var(--japan-red);
       border-radius: 2px;
     }
 
@@ -391,7 +404,7 @@
     /* Wonders Section */
     .wonders-section {
       padding: 70px 0;
-      background: var(--primary-white);
+      background: var(--light);
       position: relative;
       overflow: hidden;
     }
@@ -472,7 +485,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(to right, var(--primary-gold), var(--primary-red));
+      background: linear-gradient(to right, var(--accent), var(--japan-red));
       color: white;
       padding: 12px 28px;
       text-decoration: none;
@@ -493,23 +506,23 @@
 
     .btn-outline {
       background: transparent;
-      border: 2px solid var(--primary-red);
-      color: var(--primary-red);
+      border: 2px solid var(--japan-red);
+      color: var(--japan-red);
       box-shadow: none;
     }
 
     .btn-outline:hover {
-      background: var(--primary-red);
+      background: var(--japan-red);
       color: white;
     }
 
     .country-btn {
-      background: var(--primary-red);
+      background: var(--japan-red);
       margin: 0 5px;
     }
 
     .country-btn:hover {
-       background: var(--secondary-dark-red);
+       background: var(--japan-dark-red);
     }
 	.country-navigation {
        display: flex;
@@ -566,18 +579,18 @@
 
     .hotel-price {
       font-weight: bold;
-      color: var(--primary-red);
+      color: var(--japan-red);
       font-size: 1.2rem;
     }
 
     .hotel-rating {
-      color: var(--primary-gold);
+      color: var(--accent);
     }
 
     /* Cultural Tips Section */
     .cultural-tips {
       padding: 70px 0;
-      background: var(--secondary-beige);
+      background: #f5f0e8;
     }
 
     .tips-container {
@@ -595,7 +608,7 @@
     }
 
     .tip-icon {
-      background: var(--primary-red);
+      background: var(--japan-red);
       color: white;
       font-size: 1.8rem;
       padding: 25px;
@@ -618,7 +631,7 @@
 
     /* Footer */
     footer {
-      background: linear-gradient(to right, var(--primary-black), var(--secondary-dark-red));
+      background: linear-gradient(to right, var(--japan-black), var(--japan-dark-red));
       color: white;
       padding: 60px 0 30px;
     }
@@ -644,7 +657,7 @@
       left: 0;
       width: 40px;
       height: 2px;
-      background-color: var(--primary-gold);
+      background-color: var(--accent);
     }
 
     .footer-column p {
@@ -668,7 +681,7 @@
     }
 
     .footer-links a:hover {
-      color: var(--primary-white);
+      color: var(--japan-white);
       padding-left: 5px;
     }
 
@@ -691,7 +704,7 @@
     }
 
     .social-icons a:hover {
-     background: var(--primary-red);
+     background: var(--japan-red);
       transform: translateY(-5px);
     }
 
@@ -713,7 +726,7 @@
       right: 30px;
       width: 50px;
       height: 50px;
-      background: var(--primary-gold);
+      background: var(--accent);
       color: white;
       border-radius: 50%;
       display: flex;
@@ -733,7 +746,7 @@
     }
 
     .back-to-top:hover {
-      background: var(--primary-black);
+      background: var(--japan-black);
       transform: translateY(-5px);
     }
 
@@ -777,6 +790,92 @@
         transform: translateY(600px) translateX(30px) rotate(360deg);
         opacity: 0;
       }
+    }
+
+    /* Japanese pattern overlay */
+    .japanese-pattern-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ac2b37' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    /* Japanese cuisine section */
+    .cuisine-section {
+      padding: 70px 0;
+      background: linear-gradient(to bottom, #fff, #f5f0e8);
+    }
+    
+    .food-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+    
+    .food-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .food-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .food-info {
+      padding: 20px;
+    }
+    
+    /* Japanese flag animation */
+    .flag-circle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 80px;
+      height: 80px;
+      background: var(--japan-red);
+      border-radius: 50%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      z-index: 5;
+    }
+    
+    /* Japanese phrase guide */
+    .phrase-guide {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      margin: 40px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    
+    .phrase-item {
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .phrase-item:last-child {
+      border-bottom: none;
+    }
+    
+    .play-audio {
+      background: var(--japan-red);
+      color: white;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 10px;
+      cursor: pointer;
     }
 
     /* Responsive */
@@ -904,6 +1003,9 @@
 
   <!-- Japanese Pattern Background -->
   <div class="japan-pattern"></div>
+  
+  <!-- Japanese pattern overlay -->
+  <div class="japanese-pattern-overlay"></div>
 
   <!-- Main Website Content -->
   <div id="main-website">
@@ -929,9 +1031,11 @@
     </header>
 
     <section class="page-title">
+      <div class="flag-circle"></div>
       <div class="cherry-blossom-container" id="title-blossoms"></div>
       <div class="container">
         <h1>Discover Japan</h1>
+        <p class="japanese-phrase">日本へようこそ - Land of the Rising Sun</p>
         <p>Experience the perfect harmony of ancient traditions and cutting-edge innovation in the Land of the Rising Sun.</p>
       </div>
     </section>
@@ -943,21 +1047,25 @@
             <i class="fas fa-language"></i>
             <h3>Language</h3>
             <p>Japanese</p>
+            <p class="japanese-phrase">日本語 (Nihongo)</p>
           </div>
           <div class="fact-item">
             <i class="fas fa-yen-sign"></i>
             <h3>Currency</h3>
             <p>Yen (JPY)</p>
+            <p class="japanese-phrase">円 (En)</p>
           </div>
           <div class="fact-item">
             <i class="fas fa-users"></i>
             <h3>Population</h3>
             <p>125.8 million</p>
+            <p class="japanese-phrase">1億2580万人</p>
           </div>
           <div class="fact-item">
             <i class="fas fa-plane"></i>
             <h3>Best Time to Visit</h3>
             <p>March-May, September-November</p>
+            <p class="japanese-phrase">3月-5月, 9月-11月</p>
           </div>
         </div>
       </div>
@@ -974,16 +1082,19 @@
 
       <section class="country-intro">
         <div class="section-title">
-          <h2>Welcome to Japan</h2>
+          <h2>Welcome to Japan <span class="japanese-phrase">(日本へようこそ)</span></h2>
           <p>Where ancient traditions meet modern innovation</p>
         </div>
         <p>Japan offers a unique travel experience where ancient temples stand beside neon skyscrapers. From the serene beauty of Mount Fuji to the bustling streets of Tokyo, Japan captivates visitors with its perfect harmony of tradition and innovation, exquisite cuisine, and unparalleled natural beauty. Experience the tranquility of Zen gardens, the excitement of high-speed bullet trains, and the warmth of omotenashi (Japanese hospitality).</p>
+        <p class="japanese-phrase">"七転び八起き" - Japanese Proverb</p>
+        <p><em>("Fall seven times, stand up eight")</em></p>
       </section>
+
 
       <section class="wonders-section">
         <div class="cherry-blossom-container" id="wonders-blossoms"></div>
         <div class="section-title">
-          <h2>Japan's Wonders</h2>
+          <h2>Japan's Wonders <span class="japanese-phrase">(日本の驚異)</span></h2>
           <p>Discover the must-see destinations across Japan</p>
         </div>
         <div class="wonders-grid">
@@ -991,7 +1102,7 @@
           <div class="wonder-card">
             <div class="wonder-image" style="background-image: url('https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?auto=format&fit=crop&w=1350&q=80');" onclick="toggleHotels('fuji-hotels')">
               <div class="wonder-name">
-                <h3>Mount Fuji</h3>
+                <h3>Mount Fuji <span class="japanese-phrase">(富士山)</span></h3>
               </div>
             </div>
             <div class="wonder-info">
@@ -1036,7 +1147,7 @@
           <div class="wonder-card">
             <div class="wonder-image" style="background-image: url('img/Fushimi.jpg');" onclick="toggleHotels('fushimi-hotels')">
               <div class="wonder-name">
-                <h3>Fushimi Inari Shrine</h3>
+                <h3>Fushimi Inari Shrine <span class="japanese-phrase">(伏見稲荷大社)</span></h3>
               </div>
             </div>
             <div class="wonder-info">
@@ -1079,44 +1190,44 @@
 
           <!-- Wonder 3 -->
           <div class="wonder-card">
-            <div class="wonder-image" style="background-image: url('img/Hiroshima.jpg');" onclick="toggleHotels('hiroshima-hotels')">
+            <div class="wonder-image" style="background-image: url('img/Kinkaku-ji.jpg');" onclick="toggleHotels('kyoto-hotels')">
               <div class="wonder-name">
-                <h3>Hiroshima Peace Memorial</h3>
+                <h3>Kinkaku-ji <span class="japanese-phrase">(金閣寺)</span></h3>
               </div>
             </div>
             <div class="wonder-info">
-              <p>Also known as the Atomic Bomb Dome, this haunting structure is a UNESCO World Heritage Site that stands as a powerful symbol of peace and a reminder of the devastation of nuclear weapons. It was one of the few buildings to partially survive the atomic bomb explosion on August 6, 1945.</p>
-              <button class="btn" onclick="toggleHotels('hiroshima-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
-              <div id="hiroshima-hotels" class="hotels-container">
+              <p>Also known as the Golden Pavilion, this Zen Buddhist temple in Kyoto is one of Japan's most famous buildings. The top two floors are completely covered in gold leaf, reflecting beautifully in the surrounding pond. Originally built in 1397 as a retirement villa for shogun Ashikaga Yoshimitsu, it was converted into a temple after his death.</p>
+              <button class="btn" onclick="toggleHotels('kyoto-hotels')"><i class="fas fa-hotel"></i> Find Nearby Hotels</button>
+              <div id="kyoto-hotels" class="hotels-container">
                 <div class="hotel-card">
                   <div class="hotel-info">
-                    <h4>Hiroshima Peace Hotel</h4>
+                    <h4>Golden Pavilion Inn</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.2 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.8 miles away</span>
                       <span class="hotel-rating">★★★★☆</span>
                     </div>
                   </div>
-                  <div class="hotel-price">¥16,000/night</div>
+                  <div class="hotel-price">¥22,000/night</div>
                 </div>
                 <div class="hotel-card">
                   <div class="hotel-info">
-                    <h4>Memorial View Inn</h4>
+                    <h4>Kyoto Heritage Hotel</h4>
                     <div class="hotel-details">
-                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.4 miles away</span>
-                      <span class="hotel-rating">★★★☆☆</span>
-                    </div>
-                  </div>
-                  <div class="hotel-price">¥12,000/night</div>
-                </div>
-                <div class="hotel-card">
-                  <div class="hotel-info">
-                    <h4>Riverfront Suites</h4>
-                    <div class="hotel-details">
-                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 0.6 miles away</span>
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 1.2 miles away</span>
                       <span class="hotel-rating">★★★★★</span>
                     </div>
                   </div>
-                  <div class="hotel-price">¥22,000/night</div>
+                  <div class="hotel-price">¥32,000/night</div>
+                </div>
+                <div class="hotel-card">
+                  <div class="hotel-info">
+                    <h4>Traditional Ryokan</h4>
+                    <div class="hotel-details">
+                      <span class="hotel-distance"><i class="fas fa-map-marker-alt"></i> 1.5 miles away</span>
+                      <span class="hotel-rating">★★★☆☆</span>
+                    </div>
+                  </div>
+                  <div class="hotel-price">¥16,000/night</div>
                 </div>
               </div>
             </div>
@@ -1124,9 +1235,76 @@
         </div>
       </section>
 
+      <!-- Japanese Cuisine Section -->
+      <section class="cuisine-section">
+        <div class="section-title">
+          <h2>Taste of Japan <span class="japanese-phrase">(日本の味)</span></h2>
+          <p>Discover Japan's world-renowned culinary traditions</p>
+        </div>
+        
+        <div class="wonders-grid">
+          <div class="food-card">
+            <div class="food-image" style="background-image: url('img/Sushi.jpg');"></div>
+            <div class="food-info">
+              <h3>Sushi & Sashimi</h3>
+              <p>Fresh, expertly prepared raw fish served over vinegared rice (sushi) or alone (sashimi). A true art form in Japanese cuisine.</p>
+            </div>
+          </div>
+          
+          <div class="food-card">
+            <div class="food-image" style="background-image: url('img/Ramen.jpg');"></div>
+            <div class="food-info">
+              <h3>Ramen</h3>
+              <p>Hearty noodle soup with various broths (soy, miso, pork) topped with sliced pork, nori, menma, and green onions.</p>
+            </div>
+          </div>
+          
+          <div class="food-card">
+            <div class="food-image" style="background-image: url('img/Matcha.jpg');"></div>
+            <div class="food-info">
+              <h3>Matcha & Wagashi</h3>
+              <p>Traditional Japanese green tea served with delicate, artistic sweets that change with the seasons.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Japanese Phrase Guide -->
+      <section class="phrase-guide">
+        <div class="section-title">
+          <h2>Japanese Phrases <span class="japanese-phrase">(日本語のフレーズ)</span></h2>
+          <p>Essential phrases for your Japanese adventure</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>Hello <span class="japanese-phrase">こんにちは (Konnichiwa)</span> <button class="play-audio" onclick="playAudio('konnichiwa')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Standard greeting used during the day.</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>Thank you <span class="japanese-phrase">ありがとう (Arigatou)</span> <button class="play-audio" onclick="playAudio('arigatou')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Essential polite phrase for any situation.</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>Please <span class="japanese-phrase">お願いします (Onegaishimasu)</span> <button class="play-audio" onclick="playAudio('onegaishimasu')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Used when making a request or ordering.</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>Excuse me <span class="japanese-phrase">すみません (Sumimasen)</span> <button class="play-audio" onclick="playAudio('sumimasen')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Used to get attention or apologize.</p>
+        </div>
+        
+        <div class="phrase-item">
+          <h3>Delicious <span class="japanese-phrase">美味しい (Oishii)</span> <button class="play-audio" onclick="playAudio('oishii')"><i class="fas fa-volume-up"></i></button></h3>
+          <p>Essential when enjoying Japanese food.</p>
+        </div>
+      </section>
+
       <section class="cultural-tips">
         <div class="section-title">
-          <h2>Cultural Tips</h2>
+          <h2>Cultural Tips <span class="japanese-phrase">(文化のヒント)</span></h2>
           <p>Understanding Japanese customs and etiquette</p>
         </div>
         <div class="tips-container">
@@ -1291,6 +1469,36 @@
     
     // Generate cherry blossoms periodically for wonders section
     setInterval(() => createCherryBlossom('wonders-blossoms'), 600);
+    
+    // Simple audio pronunciation for Japanese phrases
+    function playAudio(phrase) {
+      const speech = new SpeechSynthesisUtterance();
+      
+      switch(phrase) {
+        case 'konnichiwa':
+          speech.text = 'konnichiwa';
+          speech.lang = 'ja-JP';
+          break;
+        case 'arigatou':
+          speech.text = 'arigatou';
+          speech.lang = 'ja-JP';
+          break;
+        case 'onegaishimasu':
+          speech.text = 'onegaishimasu';
+          speech.lang = 'ja-JP';
+          break;
+        case 'sumimasen':
+          speech.text = 'sumimasen';
+          speech.lang = 'ja-JP';
+          break;
+        case 'oishii':
+          speech.text = 'oishii';
+          speech.lang = 'ja-JP';
+          break;
+      }
+      
+      window.speechSynthesis.speak(speech);
+    }
   </script>
 </body>
 </html>
